@@ -6,7 +6,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="index.php">TWZ surveillantenadministratie</a>
+        <a class="navbar-brand" href="index.php">TWZ administratie surveillanten</a>
     </div>
     <!-- /.navbar-header -->
 
