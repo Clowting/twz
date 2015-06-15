@@ -11,6 +11,9 @@
 
     <title>SB Admin 2 - Bootstrap Admin Theme</title>
 
+    <!-- Main CSS -->
+    <link href="../stylesheets/styles.css" rel="stylesheet">
+
     <!-- MetisMenu CSS -->
     <link href="../bower_components/metisMenu/dist/metisMenu.min.css" rel="stylesheet">
 
@@ -40,7 +43,7 @@
     <div id="wrapper">
 
         <!-- Navigation -->
-        <?php include_once"/includes/nav.php"?>
+        <?php include_once "../includes/nav.php" ?>
 
         <div id="page-wrapper">
             <div class="row">
