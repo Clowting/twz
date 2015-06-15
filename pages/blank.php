@@ -68,14 +68,13 @@
                                 <tbody>
                                 <?php
                                 $surveillanten = $dataManager->get('Surveillant');
-                                print_r($surveillanten);
                                 if ($dataManager->count > 0)
                                     foreach ($surveillanten as $surveillant) {
                                         echo '<tr>';
-                                        echo '<td>'; $surveillant["ID"]; echo '</td>';
-                                        echo '<td>'; $surveillant["Voornaam"]; echo '</td>';
-                                        echo '<td>'; $surveillant["Tussenvoegsel"]; echo '</td>';
-                                        echo '<td>'; $surveillant["Achternaam"]; echo '</td>';
+                                        echo '<td>' . $surveillant["ID"] . '</td>';
+                                        echo '<td>' .  $surveillant["Voornaam"] . '</td>';
+                                        echo '<td>' .  $surveillant["Tussenvoegsel"] . '</td>';
+                                        echo '<td>' .  $surveillant["Achternaam"] . '</td>';
                                         echo '</tr>';
                                     }
                                 ?>
