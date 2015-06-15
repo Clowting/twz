@@ -51,7 +51,7 @@
             <div class="col-lg-6">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        Hover Rows
+                        <h2>Surveillantenbeheer</h2>
                     </div>
                     <!-- /.panel-heading -->
                     <div class="panel-body">
@@ -71,10 +71,10 @@
                                 if ($dataManager->count > 0)
                                     foreach ($surveillanten as $surveillant) {
                                         echo '<tr>';
-                                        echo '<td>';$surveillant["ID"];echo '</td>';
-                                        echo '<td>';$surveillant["Voornaam"];echo '</td>';
-                                        echo '<td>';$surveillant["Tussenvoegsel"];echo '</td>';
-                                        echo '<td>';$surveillant["Achternaam"];echo '</td>';
+                                        echo '<td>'; $surveillant["ID"]; echo '</td>';
+                                        echo '<td>'; $surveillant["Voornaam"]; echo '</td>';
+                                        echo '<td>'; $surveillant["Tussenvoegsel"]; echo '</td>';
+                                        echo '<td>'; $surveillant["Achternaam"]; echo '</td>';
                                         echo '</tr>';
                                     }
                                 ?>
