@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-
+    <?php require_once "../lib/connectdb.php"?>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -387,31 +387,15 @@
                             <table class="table table-hover">
                                 <thead>
                                 <tr>
-                                    <th>#</th>
-                                    <th>First Name</th>
-                                    <th>Last Name</th>
-                                    <th>Username</th>
-                                </tr>
+                                    <?php
+                                    $banaan = $dataManager->get('Surveillant');
+                                    if ($dataManager->count > 0)
+                                        foreach ($banaan as $courgette) {
+                                            print_r ($courgette);
+                                        }
+                                    ?>
                                 </thead>
                                 <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>Mark</td>
-                                    <td>Otto</td>
-                                    <td>@mdo</td>
-                                </tr>
-                                <tr>
-                                    <td>2</td>
-                                    <td>Jacob</td>
-                                    <td>Thornton</td>
-                                    <td>@fat</td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td>Larry</td>
-                                    <td>the Bird</td>
-                                    <td>@twitter</td>
-                                </tr>
                                 </tbody>
                             </table>
                         </div>
