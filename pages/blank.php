@@ -398,10 +398,12 @@
                                 $surveillanten = $dataManager->get('Surveillant');
                                 if ($dataManager->count > 0)
                                     foreach ($surveillanten as $surveillant) {
+                                        echo '<tr>';
                                         echo '<td>';$surveillant["ID"];echo '</td>';
                                         echo '<td>';$surveillant["Voornaam"];echo '</td>';
                                         echo '<td>';$surveillant["Tussenvoegsel"];echo '</td>';
                                         echo '<td>';$surveillant["Achternaam"];echo '</td>';
+                                        echo '</tr>';
                                     }
                                 ?>
                                 </tbody>
