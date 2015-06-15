@@ -387,15 +387,20 @@
                             <table class="table table-hover">
                                 <thead>
                                 <tr>
-                                    <?php
-                                    $banaan = $dataManager->get('Surveillant');
-                                    if ($dataManager->count > 0)
-                                        foreach ($banaan as $courgette) {
-                                            print_r ($courgette);
-                                        }
-                                    ?>
+                                    <th>ID</th>
+                                    <th>Voornaam</th>
+                                    <th>Tussenvoegsel</th>
+                                    <th>Achternaam</th>
+                                </tr>
                                 </thead>
                                 <tbody>
+                                <?php
+                                $surveillanten = $dataManager->get('Surveillant');
+                                if ($dataManager->count > 0)
+                                    foreach ($surveillanten as $surveillant) {
+                                        print_r (array_values($surveillant));
+                                    }
+                                ?>
                                 </tbody>
                             </table>
                         </div>
