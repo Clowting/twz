@@ -68,6 +68,7 @@
                                 <tbody>
                                 <?php
                                 $surveillanten = $dataManager->get('Surveillant');
+                                print_r($surveillanten);
                                 if ($dataManager->count > 0)
                                     foreach ($surveillanten as $surveillant) {
                                         echo '<tr>';
