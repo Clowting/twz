@@ -268,7 +268,10 @@
                             <a href="self.php"><i class="fa fa-cogs"></i> Account instellingen</a>
                         </li>
                         <li>
-                            <a href="morris.php">Morris.js Charts</a>
+                            <a href="availability.php"><i class="fa fa-calendar-o fa-fw"></i>Beschikbaarheid</a>
+                        </li>
+                        <li>
+                            <a href="self_rooster.php"><i class="fa fa-calendar fa-fw"></i>Rooster</a>
                         </li>
                     </ul>
                     <!-- /.nav-second-level -->
