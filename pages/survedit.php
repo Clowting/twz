@@ -1,3 +1,11 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: Startklaar
+ * Date: 16-6-2015
+ * Time: 09:49
+ */
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -26,8 +34,8 @@
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
 </head>
@@ -42,10 +50,7 @@
     <div id="page-wrapper">
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header">Tables
-                    <form action="survedit.php">
-                    <button type="submit" class="btn btn-primary">Bewerken</button>
-                    </form>
+                <h1 class="page-header">Verwijderen
                 </h1>
             </div>
             <!-- /.col-lg-12 -->
@@ -55,46 +60,20 @@
             <div class="col-lg-6">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <h2>Surveillantenbeheer</h2>
+                        <h2>Surveillanten</h2>
                     </div>
                     <!-- /.panel-heading -->
                     <div class="panel-body">
-                        <div class="table-responsive">
-                            <table class="table table-hover">
-                                <thead>
-                                <tr>
-                                    <th>ID</th>
-                                    <th>Voornaam</th>
-                                    <th>Tussenvoegsel</th>
-                                    <th>Achternaam</th>
-                                    <th>X</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <?php
-                                $surveillanten = $dataManager->get('Surveillant');
-                                if ($dataManager->count > 0)
-                                    foreach ($surveillanten as $surveillant) {
-                                        echo '<tr>';
-                                        echo '<td>' . $surveillant["ID"] . '</td>';
-                                        echo '<td>' .  $surveillant["Voornaam"] . '</td>';
-                                        echo '<td>' .  $surveillant["Tussenvoegsel"] . '</td>';
-                                        echo '<td>' .  $surveillant["Achternaam"] . '</td>';
-                                        ?><td>
-                                        <form action="survdel.php" method="get">
-                                            <input type="hidden" name="id" value="<?php echo $surveillant["ID"]; ?>">
-                                            <button type="submit" class="btn btn-danger">Verwijderen</button>
-                                        </form>
-                                        </td>
-                                        <!--<td><a href="survdel.php?id=/">Delete</a></td>-->
-                                <?php
-                                        echo '</tr>';
-                                    }
-                                ?>
-                                </tbody>
-                            </table>
-                        </div>
-                        <!-- /.table-responsive -->
+                        <?php
+                        if (!isset($_GET['id']))
+                        {
+                            echo 'No ID was given...';
+                            exit;
+                        }
+                        $sid = $_GET['id'];
+                        $dataManager->where ("ID", $sid);
+                        if($dataManager->delete('Surveillant')) echo 'Succesvol verwijderd.';
+                        ?>
                     </div>
                     <!-- /.panel-body -->
                 </div>

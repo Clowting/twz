@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Bootstrap Admin Theme</title>
+    <title>TWZ - Academiebeheer</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -22,7 +22,7 @@
 
     <!-- Custom Fonts -->
     <link href="../bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-
+file
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -42,11 +42,7 @@
     <div id="page-wrapper">
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header">Tables
-                    <form action="survedit.php">
-                    <button type="submit" class="btn btn-primary">Bewerken</button>
-                    </form>
-                </h1>
+                <h1 class="page-header">Tables <button type="button" class="btn btn-primary">Bewerken</button> <button type="button" class="btn btn-primary">Verwijderen</button></h1>
             </div>
             <!-- /.col-lg-12 -->
         </div>
@@ -67,27 +63,16 @@
                                     <th>Voornaam</th>
                                     <th>Tussenvoegsel</th>
                                     <th>Achternaam</th>
-                                    <th>X</th>
                                 </tr>
                                 </thead>
                                 <tbody>
                                 <?php
-                                $surveillanten = $dataManager->get('Surveillant');
+                                $academies = $dataManager->get('Opleiding');
                                 if ($dataManager->count > 0)
-                                    foreach ($surveillanten as $surveillant) {
+                                    foreach ($academies as $academie) {
                                         echo '<tr>';
-                                        echo '<td>' . $surveillant["ID"] . '</td>';
-                                        echo '<td>' .  $surveillant["Voornaam"] . '</td>';
-                                        echo '<td>' .  $surveillant["Tussenvoegsel"] . '</td>';
-                                        echo '<td>' .  $surveillant["Achternaam"] . '</td>';
-                                        ?><td>
-                                        <form action="survdel.php" method="get">
-                                            <input type="hidden" name="id" value="<?php echo $surveillant["ID"]; ?>">
-                                            <button type="submit" class="btn btn-danger">Verwijderen</button>
-                                        </form>
-                                        </td>
-                                        <!--<td><a href="survdel.php?id=/">Delete</a></td>-->
-                                <?php
+                                        echo '<td>' . $academie["ID"] . '</td>';
+                                        echo '<td>' .  $academie["Naam"] . '</td>';
                                         echo '</tr>';
                                     }
                                 ?>
