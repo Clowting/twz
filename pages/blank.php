@@ -42,15 +42,34 @@
     <div id="page-wrapper">
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header">Surveillantenbeheer
+                <h1 class="page-header">Surveillantenbeheer <a href="survcreate.php" role="button" class="btn btn-primary">Toevoegen</a>
                 </h1>
-                    <a href="survcreate.php" role="button" class="btn btn-primary">Toevoegen</a>
+                <?php
+                if(isset($_GET[''])){
+                    $data = array();
+                    $data['WerknemerID'] = sanitize_text_field($_POST['werknemerid']);
+                    if (!isset($_POST['voornaam'])) {
+                        $error_message[] = 'De voornaam is niet meegestuurd';
+                    } else {
+                        $data['Voornaam'] = sanitize_text_field($_POST['voornaam']);
+                    }
+                    $data['Tussenvoegsel'] = sanitize_text_field($_POST['tussenvoegsel']);
+                    if (!isset($_POST['achternaam'])) {
+                        $error_message[] = 'De achternaam is niet meegestuurd';
+                    } else {
+                        $data['Achternaam'] = sanitize_text_field($_POST['achternaam']);
+                    }
+                    $id = $dataManager->insert('Surveillant', $data);
+                    if ($id)
+                        echo 'User was created. ID=' . $id
+                }
+                    ?>
             </div>
             <!-- /.col-lg-12 -->
         </div>
         <!-- /.row -->
         <div class="row">
-            <div class="col-lg-6">
+            <div class="col-md-12">
                 <div class="panel panel-default">
                     <!-- /.panel-heading -->
                     <div class="panel-body">
