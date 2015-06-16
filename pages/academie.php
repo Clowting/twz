@@ -58,6 +58,11 @@ file
                     echo "</div>";
                 }
             }
+            if(isset($_POST['naam'])){
+                $data = array();
+                $data['naam'] = $_POST['naam'];
+                $dataManager->insert('Opleiding',$data);
+            }
             ?>
         </div>
         <!-- /.row -->
