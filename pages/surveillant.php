@@ -1,8 +1,15 @@
+<?php
+require_once '../lib/connectdb.php';
+require_once '../lib/functions.php';
+//require_once '../lib/requireAuth.php';
+//require_once '../lib/requireSession.php';
+//require_once '../lib/requireAdmin.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <?php require_once "../lib/connectdb.php"?>
+
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -45,25 +52,40 @@
                 <h1 class="page-header">Surveillantenbeheer <a href="survcreate.php" role="button" class="btn btn-primary">Toevoegen</a>
                 </h1>
                 <?php
-                if(isset($_GET[''])){
-                    $data = array();
-                    $data['WerknemerID'] = sanitize_text_field($_POST['werknemerid']);
-                    if (!isset($_POST['voornaam'])) {
-                        $error_message[] = 'De voornaam is niet meegestuurd';
+                if($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+                    $werknemerID = cleanInput($_POST['werknemerid']);
+                    $voornaam = cleanInput($_POST['voornaam']);
+                    $tussenvoegsel = cleanInput($_POST['tussenvoegsel']);
+                    $acthernaam = cleanInput($_POST['achternaam']);
+
+                    if (validateNumber($werknemerID, 0, 2147483647) &&
+                        validateInput($voornaam, 1, 128) &&
+                        validateInput($acthernaam, 2, 128)
+                    ) {
+
+                        $data = array(
+                            "WerknemerID" => $werknemerID,
+                            "Voornaam" => $voornaam,
+                            "Achternaam" => $acthernaam
+                        );
+
+                        if (validateInput($tussenvoegsel, 1, 16)) {
+                            $data['Tussenvoegsel'] = $tussenvoegsel;
+                        }
+
+                        $insert = $dataManager->insert('Surveillant', $data);
+                        if ($insert) {
+                            echo '<div class="alert alert-success" role="alert">De surveillant is succesvol toegevoegd.</div>';
+                        } else {
+                            echo '<div class="alert alert-danger" role="alert">Fout bij het toevoegen aan de database.</div>';
+                        }
                     } else {
-                        $data['Voornaam'] = sanitize_text_field($_POST['voornaam']);
+                        echo '<div class="alert alert-warning" role="alert">Niet alle gegevens zijn juist ingevoerd.</div>';
                     }
-                    $data['Tussenvoegsel'] = sanitize_text_field($_POST['tussenvoegsel']);
-                    if (!isset($_POST['achternaam'])) {
-                        $error_message[] = 'De achternaam is niet meegestuurd';
-                    } else {
-                        $data['Achternaam'] = sanitize_text_field($_POST['achternaam']);
-                    }
-                    $id = $dataManager->insert('Surveillant', $data);
-                    if ($id)
-                        echo 'User was created. ID=' . $id;
+
                 }
-                    ?>
+                ?>
             </div>
             <!-- /.col-lg-12 -->
         </div>

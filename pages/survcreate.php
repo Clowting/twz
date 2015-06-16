@@ -60,7 +60,8 @@
             <div class="col-lg-6">
                 <!-- /.panel-heading -->
                 <div class="panel-body">
-                    <form action="blank.php" method="post">
+<<<<<<< HEAD
+                    <form action="surveillant.php" method="post">
                         <div class="form-group">
                             <label for="werknemerid">WerknemerID</label>
                             <input name="werknemerid" class="form-control" placeholder="WerknemerID">
@@ -84,6 +85,9 @@
 
                         <button type="submit" class="btn btn-primary">Toevoegen</button>
                     </form>
+=======
+
+>>>>>>> origin/master
                 </div>
                 <!-- /.panel-body -->
             </div>
