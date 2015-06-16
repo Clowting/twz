@@ -60,7 +60,30 @@
             <div class="col-lg-6">
                 <!-- /.panel-heading -->
                 <div class="panel-body">
+                    <form action="blank.php" method="post">
+                        <div class="form-group">
+                            <label for="werknemerid">WerknemerID</label>
+                            <input name="werknemerid" class="form-control" placeholder="WerknemerID">
+                        </div>
+                        <div class="form-group">
+                            <label for="voornaam">Voornaam</label>
+                            <input name="voornaam" class="form-control" aria-required="true" placeholder="Voornaam">
+                        </div>
+                        <div class="form-group">
+                            <label for="tussenvoegsel">Tussenvoegsel</label>
+                            <input name="tussenvoegsel" class="form-control" placeholder="Tussenvoegsel">
+                        </div>
+                        <div class="form-group">
+                            <label for="achternaam">Achternaam</label>
+                            <input name="achternaam" class="form-control" aria-required="true" placeholder="Achternaam">
+                        </div>
+                        <div class="form-group">
+                            <label>E-Mail</label>
+                            <input name="email" class="form-control" placeholder="E-Mail adres">
+                        </div>
 
+                        <button type="submit" class="btn btn-primary">Toevoegen</button>
+                    </form>
                 </div>
                 <!-- /.panel-body -->
             </div>
