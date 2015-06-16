@@ -1,10 +1,9 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Startklaar
- * Date: 16-6-2015
- * Time: 09:49
- */
+require_once '../lib/connectdb.php';
+require_once '../lib/functions.php';
+require_once '../lib/requireAuth.php';
+//require_once '../lib/requireSession.php';
+//require_once '../lib/requireAdmin.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -45,26 +44,46 @@
 <div id="wrapper">
 
     <!-- Navigation -->
-    <?php include_once "../includes/nav.php" ?>
+<?php include_once "../includes/nav.php"; ?>
 
     <div id="page-wrapper">
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header">Toevoegen</h1>
+                <h1 class="page-header">Bewerken</h1>
             </div>
             <!-- /.col-lg-12 -->
         </div>
         <!-- /.row -->
         <div class="row">
-            <div class="col-lg-12">
-                <form action="academie.php" method="post">
-                    <div class="form-group">
-                        <label for="naam">Academie/Opleiding</label>
-                        <input name="naam" class="form-control" aria-required="true" placeholder="Academie/Opleiding">
+            <?php
+                if(!isset($_GET['id'])){
+                            echo "<div class='alert alert-danger'>";
+                            echo 'Foutieve data meegestuurd.';
+                            echo "</div>";
+                        }
+                else {
+                    $id = $_GET['id'];
+                    $dataManager->where("id", $id);
+                    $academies = $dataManager->get('Opleiding');
+
+                    ?>
+                    <div class="col-lg-12">
+                        <form action="academie.php" method="post">
+                            <input type="hidden" name="action" value="edit">
+                            <input type="hidden" name="id" value="<?php echo $id ; ?>">
+                            <div class="form-group">
+                                <label for="naam">Nieuwe naam voor de academie/opleiding</label>
+                                <?php foreach ($academies as $academie) {
+                                echo '<input name="naam" class="form-control" aria-required="true" placeholder="'. $academie["Naam"] .'">';
+                                }
+                                ?>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Bewerken</button>
+                        </form>
                     </div>
-                    <button type="submit" class="btn btn-primary">Toevoegen</button>
-                </form>
-            </div>
+                <?php
+                }
+                ?>
         </div>
     <!-- /.row -->
     </div>

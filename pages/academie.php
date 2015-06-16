@@ -65,41 +65,62 @@ file
             //        echo "</div>";
             //    }
             //}
-            if($_SERVER['REQUEST_METHOD'] == 'POST'){
-                $data = array();
-                $opleidingnaam = cleanInput($_POST['naam']);
-                if( validateInput($opleidingnaam,1,128)) {
-                    $data['naam'] = $opleidingnaam;
-                    if ($dataManager->insert('Opleiding', $data)) {
-                        echo "<div class='alert alert-success'>";
-                        echo 'Succesvol aangemaakt.';
-                        echo "</div>";
-                    }
-                    else {
-                        echo "<div class='alert alert-danger'>";
-                        echo 'Fout bij het toevoegen aan de database.';
+            if($_SERVER['REQUEST_METHOD'] == 'POST' ) {
+                if ($_POST['action'] == create) {
+                    $data = array();
+                    $opleidingnaam = cleanInput($_POST['naam']);
+                    if (validateInput($opleidingnaam, 1, 128)) {
+                        $data['naam'] = $opleidingnaam;
+                        if ($dataManager->insert('Opleiding', $data)) {
+                            echo "<div class='alert alert-success'>";
+                            echo 'Succesvol aangemaakt.';
+                            echo "</div>";
+                        } else {
+                            echo "<div class='alert alert-danger'>";
+                            echo 'Fout bij het toevoegen aan de database.';
+                            echo "</div>";
+                        }
+                    } else {
+                        echo "<div class='alert alert-warning>";
+                        echo 'Foutieve data meegestuurd.';
                         echo "</div>";
                     }
                 }
-                else {
-                    echo "<div class='alert alert-warning>";
-                    echo 'Foutieve data meegestuurd.';
-                    echo "</div>";
+                if ($_POST['action'] == edit) {
+                    $data = array();
+                    $id = $_POST['id'];
+                    $opleidingnaam = cleanInput($_POST['naam']);
+                    if (validateInput($opleidingnaam, 1, 128)) {
+                        $data['naam'] = $opleidingnaam;
+                        $dataManager->where('ID', $id);
+                        if ($dataManager->update('Opleiding', $data)) {
+                            echo "<div class='alert alert-success'>";
+                            echo 'Succesvol aangepast.';
+                            echo "</div>";
+                        } else {
+                            echo "<div class='alert alert-danger'>";
+                            echo 'Fout bij het toevoegen aan de database.';
+                            echo "</div>";
+                        }
+                    } else {
+                        echo "<div class='alert alert-warning>";
+                        echo 'Foutieve data meegestuurd.';
+                        echo "</div>";
+                    }
                 }
-
             }
             ?>
         </div>
         <!-- /.row -->
         <div class="row">
             <div class="col-md-12">
-                <div class="table-responsive" width="100%">
+                <div class="table-responsive">
                     <table class="table table-hover">
                         <thead>
                         <tr>
                             <th>ID</th>
                             <th>Academie</th>
-                            <th>Bewerken</th>
+                            <th style="text-align: right;">Bewerken</th>
                             <!--<th>Verwijderen</th>-->
                         </tr>
                         </thead>
@@ -113,7 +134,7 @@ file
                                 echo '<td>' .  $academie["Naam"] . '</td>';
 
                                 ?>
-                                <td>
+                                <td style="text-align: right;">
                                     <form action="academie_edit.php" method="get">
                                         <input type="hidden" name="id" value="<?php echo $academie["ID"]; ?>">
                                         <button type="submit" class="btn btn-primary">Bewerken</button>
