@@ -4,4 +4,9 @@ if(!isset($_COOKIE[$config->cookie_name]) || !$auth->checkSession($_COOKIE[$conf
     echo "Forbidden";
 
     exit();
+} else {
+    $uid = $auth->getSessionUID($_COOKIE[$config->cookie_name]);
+
+    $dataManager->where('id', $uid);
+    $user = $dataManager->getOne('users', 'email, rank');
 }

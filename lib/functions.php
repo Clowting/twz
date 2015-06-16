@@ -1,8 +1,12 @@
 <?php
 
-	function isAdmin($roles) {
-		return in_array('administrator', $roles);
+	function isAdmin($user) {
+		return $user['rank'] == 'admin';
 	}
+
+    function isUser($user) {
+        return $user['rank'] == 'user';
+    }
 	
 	function isSurveillant($roles) {
 		return in_array('lid', $roles);
