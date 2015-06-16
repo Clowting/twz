@@ -1,8 +1,15 @@
+<?php
+require_once '../lib/connectdb.php';
+require_once '../lib/functions.php';
+require_once '../lib/requireAuth.php';
+require_once '../lib/requireSession.php';
+require_once '../lib/requireAdmin.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <?php require_once "../lib/connectdb.php"?>
+
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -48,20 +55,38 @@ file
         </div>
         <div class="row">
             <?php
-            if(isset($_GET['id'])) {
-                if (isset($_GET['action']) && $_GET['action'] == 'delete') {
-                    $sid = $_GET['id'];
-                    $dataManager->where("ID", $sid);
-                    if ($dataManager->delete('Opleiding'))
+            //if(isset($_GET['id'])) {
+            //    if (isset($_GET['action']) && $_GET['action'] == 'delete') {
+            //        $sid = $_GET['id'];
+            //        $dataManager->where("ID", $sid);
+            //        if ($dataManager->delete('Opleiding'))
+            //            echo "<div class='alert alert-success'>";
+            //        echo 'Succesvol verwijderd.';
+            //        echo "</div>";
+            //    }
+            //}
+            if($_SERVER['REQUEST_METHOD'] == 'POST'){
+                $data = array();
+                $opleidingnaam = cleanInput($_POST['naam']);
+                if( validateInput($opleidingnaam,1,128)) {
+                    $data['naam'] = $opleidingnaam;
+                    if ($dataManager->insert('Opleiding', $data)) {
                         echo "<div class='alert alert-success'>";
-                    echo 'Succesvol verwijderd.';
+                        echo 'Succesvol aangemaakt.';
+                        echo "</div>";
+                    }
+                    else {
+                        echo "<div class='alert alert-danger'>";
+                        echo 'Fout bij het toevoegen aan de database.';
+                        echo "</div>";
+                    }
+                }
+                else {
+                    echo "<div class='alert alert-warning>";
+                    echo 'Foutieve data meegestuurd.';
                     echo "</div>";
                 }
-            }
-            if(isset($_POST['naam'])){
-                $data = array();
-                $data['naam'] = $_POST['naam'];
-                $dataManager->insert('Opleiding',$data);
+
             }
             ?>
         </div>
@@ -95,10 +120,10 @@ file
                                     </form>
                                 </td>
                                 <td>
-                                    <form action="academie_delete.php" method="get">
+                                    <!--<form action="academie_delete.php" method="get">
                                         <input type="hidden" name="id" value="<?php echo $academie["ID"]; ?>">
                                         <button type="submit" class="btn btn-danger">Verwijderen</button>
-                                    </form>
+                                    </form>-->
                                 </td>
                                 </tr>
                         <?php
