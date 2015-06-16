@@ -3,6 +3,7 @@
 $lang = array();
 
 $lang['user_blocked'] = "Je bent momenteel geblokkeerd uit het systeem.";
+$lang["key_invalid"] = "De opgegeven activeringscode is niet geldig";
 
 $lang['email_password_invalid'] = "Emailadres of wachtwoord onjuist.";
 $lang['email_password_incorrect'] = "Emailadres of wachtwoord incorrect";

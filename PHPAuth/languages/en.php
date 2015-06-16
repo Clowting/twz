@@ -3,6 +3,7 @@
 $lang = array();
 
 $lang['user_blocked'] = "You are currently locked out of the system.";
+$lang["key_invalid"] = "The provided activation key is not valid";
 
 $lang['email_password_invalid'] = "Email address / password are invalid.";
 $lang['email_password_incorrect'] = "Email address / password are incorrect.";
