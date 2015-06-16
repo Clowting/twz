@@ -100,7 +100,7 @@ file
                             <th>ID</th>
                             <th>Academie</th>
                             <th>Bewerken</th>
-                            <th>Verwijderen</th>
+                            <!--<th>Verwijderen</th>-->
                         </tr>
                         </thead>
                         <tbody>
