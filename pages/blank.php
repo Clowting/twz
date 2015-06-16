@@ -42,7 +42,12 @@
     <div id="page-wrapper">
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header">Tables <button type="button" class="btn btn-primary">Bewerken</button> <button type="button" class="btn btn-primary">Verwijderen</button></h1>
+                <h1 class="page-header">Tables
+                    <button type="button" class="btn btn-primary">Bewerken</button>
+                    <form action="survdel.php">
+                    <button type="submit" class="btn btn-danger">Verwijderen</button>
+                        </form>
+                </h1>
             </div>
             <!-- /.col-lg-12 -->
         </div>

@@ -313,7 +313,7 @@
                     <a href="#"><i class="fa fa-files-o fa-fw"></i> Sample Pages<span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                         <li>
-                            <a href="blank.php">Blank Page</a>
+                            <a href="blank.php">Surveillantenbeheer</a>
                         </li>
                         <li>
                             <a href="blank.php">Academiebeheer</a>
