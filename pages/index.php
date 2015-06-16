@@ -1,3 +1,7 @@
+<?php
+require_once '../lib/requireAuth.php';
+require_once '../lib/requireSession.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
 

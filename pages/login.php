@@ -1,3 +1,7 @@
+<?php
+require_once '../lib/requireAuth.php';
+require_once '../lib/functions.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -42,7 +46,37 @@
                         <h3 class="panel-title">Please Sign In</h3>
                     </div>
                     <div class="panel-body">
-                        <form role="form">
+
+                        <?php
+
+                            if(isset($_GET['option']) && !empty($_GET['option'])) {
+                                $option = cleanInput($_GET['option']);
+
+                                if($option == 'logout') {
+                                    $logout = $auth->logout($_COOKIE[$config->cookie_name]);
+
+                                    if($logout) {
+                                        echo '<div class="alert alert-success" role="alert">U bent succesvol uitgelogd.</div>';
+                                    } else {
+                                        echo '<div class="alert alert-warning" role="alert">Er is iets fout gegaan bij het uitloggen.</div>';
+                                    }
+                                }
+                            }
+
+                            if($_SERVER['REQUEST_METHOD'] == 'POST') {
+                                if(isset($_POST['remember']) && !empty($_POST['remember'])) {
+                                    $login = $auth->login($_POST['email'], $_POST['password'], $_POST['remember']);
+                                } else {
+                                    $login = $auth->login($_POST['email'], $_POST['password']);
+                                }
+                                print_r($login['hash']);
+                                setcookie($config->cookie_name, $login['hash'], $login['expire']);
+                                header('Location: index.php');
+                            }
+
+                        ?>
+
+                        <form method="post" role="form">
                             <fieldset>
                                 <div class="form-group">
                                     <input class="form-control" placeholder="E-mail" name="email" type="email" autofocus>
@@ -52,11 +86,11 @@
                                 </div>
                                 <div class="checkbox">
                                     <label>
-                                        <input name="remember" type="checkbox" value="Remember Me">Remember Me
+                                        <input name="remember" type="checkbox" value="1">Remember Me
                                     </label>
                                 </div>
                                 <!-- Change this to a button or input when using this as a form -->
-                                <a href="index.php" class="btn btn-lg btn-success btn-block">Login</a>
+                                <button type="submit" class="btn btn-lg btn-success btn-block">Login</button>
                             </fieldset>
                         </form>
                     </div>
