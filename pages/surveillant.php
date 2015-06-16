@@ -130,7 +130,7 @@ require_once '../lib/requireAdmin.php';
                         $dataManager->where('ID', $id);
                         if ($dataManager->update('Surveillant', $data)) {
                             echo "<div class='alert alert-success'>";
-                            echo 'De surveillant is succesvol op actief gezet.';
+                            echo 'De surveillant is succesvol op inactief gezet.';
                             echo "</div>";
                         } else {
                             echo "<div class='alert alert-danger'>";
