@@ -42,9 +42,23 @@ file
     <div id="page-wrapper">
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header">Tables <button type="button" class="btn btn-primary">Toevoegen</button></h1>
+                <h1 class="page-header">Tables <a href="academie_create.php" role="button" class="btn btn-primary">Toevoegen</a> </h1>
             </div>
             <!-- /.col-lg-12 -->
+        </div>
+        <div class="row">
+            <?php
+            if(isset($_GET['id'])) {
+                if (isset($_GET['action']) && $_GET['action'] == 'delete') {
+                    $sid = $_GET['id'];
+                    $dataManager->where("ID", $sid);
+                    if ($dataManager->delete('Opleiding'))
+                        echo "<div class='alert alert-success'>";
+                    echo 'Succesvol verwijderd.';
+                    echo "</div>";
+                }
+            }
+            ?>
         </div>
         <!-- /.row -->
         <div class="row">

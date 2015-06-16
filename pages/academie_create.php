@@ -17,7 +17,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Bootstrap Admin Theme</title>
+    <title>TWZ - Academiebeheer</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -50,25 +50,25 @@
     <div id="page-wrapper">
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header">Toevoegen
-                </h1>
+                <h1 class="page-header">Toevoegen</h1>
             </div>
             <!-- /.col-lg-12 -->
         </div>
         <!-- /.row -->
         <div class="row">
-            <div class="col-lg-6">
-                <!-- /.panel-heading -->
-                <div class="panel-body">
-
-                </div>
-                <!-- /.panel-body -->
+            <div class="col-lg-12">
+                <form action="academie.php" method="post">
+                    <div class="form-group">
+                        <label for="naam">Academie/Opleiding</label>
+                        <input name="naam" class="form-control" aria-required="true" placeholder="Academie/Opleiding">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Toevoegen</button>
+                </form>
             </div>
-            <!-- /.col-lg-6 -->
         </div>
-        <!-- /.row -->
+    <!-- /.row -->
     </div>
-    <!-- /#page-wrapper -->
+<!-- /#page-wrapper -->
 
 </div>
 <!-- /#wrapper -->
