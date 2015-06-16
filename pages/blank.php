@@ -44,7 +44,7 @@
             <div class="col-lg-12">
                 <h1 class="page-header">Tables
                     <form action="survedit.php">
-                    <button type="button" class="btn btn-primary">Bewerken</button>
+                    <button type="submit" class="btn btn-primary">Bewerken</button>
                     </form>
                         <form action="survdel.php">
                     <button type="submit" class="btn btn-danger">Verwijderen</button>
