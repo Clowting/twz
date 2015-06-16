@@ -68,19 +68,20 @@
                         if(isset($_GET['id'])&& !isset($_GET['confirm'])) {
 
                             echo "<div class='alert alert-danger'>";
-                            echo "Weet u zeker dat deze surveillant wilt verwijderen? <br />";
+                            echo "<h2>Weet u zeker dat u deze surveillant wilt verwijderen?</h2>";
                             ?>
+                                    </div>
                             <form action='survdel.php' method='get' style="float: left">
                                     <input type="hidden" name="id" value="<?php echo $_GET['id']; ?>">
                                     <input type="hidden" name="confirm" value="true">
                                 <br />
-                                    <button type='submit' class='btn btn-success btn-circle btn-lg'><i class='fa fa-check'></i>
+                                    <button type='submit' class='btn btn-success btn-circle btn-xl'><i class='fa fa-check'></i>
                             </button></form>
-                                <form action="blank.php" style="float: left; clear: right">
+
+                                <form action="blank.php"">
                                     <br />
-                            <button type='submit' class='btn btn-danger btn-circle btn-lg'><i class='fa fa-times'></i>
+                            <button type='submit' class='btn btn-danger btn-circle btn-xl'><i class='fa fa-times'></i>
                             </button></form>
-                            </div>
                 <?php
                         }
                         if(isset($_GET['id'])&& isset($_GET['confirm'])) {
