@@ -44,6 +44,7 @@
             <div class="col-lg-12">
                 <h1 class="page-header">Surveillantenbeheer
                 </h1>
+                    <a href="survcreate.php" role="button" class="btn btn-primary">Toevoegen</a>
             </div>
             <!-- /.col-lg-12 -->
         </div>
@@ -57,7 +58,7 @@
                             <table class="table table-hover">
                                 <thead>
                                 <tr>
-                                    <th>ID</th>
+                                    <th>WerknemerID</th>
                                     <th>Voornaam</th>
                                     <th>Tussenvoegsel</th>
                                     <th>Achternaam</th>
@@ -71,7 +72,7 @@
                                 if ($dataManager->count > 0)
                                     foreach ($surveillanten as $surveillant) {
                                         echo '<tr>';
-                                        echo '<td>' . $surveillant["ID"] . '</td>';
+                                        echo '<td>' .  $surveillant["WerknemerID"] . '</td>';
                                         echo '<td>' .  $surveillant["Voornaam"] . '</td>';
                                         echo '<td>' .  $surveillant["Tussenvoegsel"] . '</td>';
                                         echo '<td>' .  $surveillant["Achternaam"] . '</td>';
