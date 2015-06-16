@@ -60,7 +60,7 @@
             <div class="col-lg-6">
                 <!-- /.panel-heading -->
                 <div class="panel-body">
-                    <form action="blank.php" method="post">
+                    <form action="suveillant.php" method="post">
                         <div class="form-group">
                             <label for="werknemerid">WerknemerID</label>
                             <input name="werknemerid" class="form-control" placeholder="WerknemerID">
