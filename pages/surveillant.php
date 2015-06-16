@@ -60,8 +60,7 @@ require_once '../lib/requireAdmin.php';
                     $voornaam = cleanInput($_POST['voornaam']);
                     $tussenvoegsel = cleanInput($_POST['tussenvoegsel']);
                     $acthernaam = cleanInput($_POST['achternaam']);
-                    $account = cleanInput($_POST['account']);
-                    $email = cleanInput($_POST['email']);
+                    $email = $_POST['email'];
 
                     if (validateNumber($werknemerID, 0, 2147483647) &&
                         validateInput($voornaam, 1, 128) &&
@@ -78,14 +77,17 @@ require_once '../lib/requireAdmin.php';
                             $data['Tussenvoegsel'] = $tussenvoegsel;
                         }
 
-                        if($account && filter_input($email, FILTER_VALIDATE_EMAIL)) {
-                            $password = randomPassword();
-                            $register = $auth->register($email, $password, $password);
+                        if(isset($_POST['account'])) {
+                            $account = cleanInput($_POST['account']);
+                            if(filter_var($email, FILTER_VALIDATE_EMAIL) && $account == 'on') {
+                                $password = randomPassword();
+                                $register = $auth->register($email, $password, $password);
 
-                            if($register['error'] == 0) {
-                                echo '<div class="alert alert-success" role="alert">Het account is succesvol toegevoegd.</div>';
-                            } else {
-                                echo '<div class="alert alert-warning" role="alert">Het account voor de surveillant kon niet worden toegevoegd. ' . $register['message'] . '</div>';
+                                if($register['error'] == 0) {
+                                    echo '<div class="alert alert-success" role="alert">Het account is succesvol toegevoegd.</div>';
+                                } else {
+                                    echo '<div class="alert alert-warning" role="alert">Het account voor de surveillant kon niet worden toegevoegd. ' . $register['message'] . '</div>';
+                                }
                             }
                         }
 
