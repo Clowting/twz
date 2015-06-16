@@ -49,41 +49,43 @@ file
         <!-- /.row -->
         <div class="row">
             <div class="col-lg-6">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h2>Surveillantenbeheer</h2>
-                    </div>
-                    <!-- /.panel-heading -->
-                    <div class="panel-body">
-                        <div class="table-responsive">
-                            <table class="table table-hover">
-                                <thead>
-                                <tr>
-                                    <th>ID</th>
-                                    <th>Voornaam</th>
-                                    <th>Tussenvoegsel</th>
-                                    <th>Achternaam</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <?php
-                                $academies = $dataManager->get('Opleiding');
-                                if ($dataManager->count > 0)
-                                    foreach ($academies as $academie) {
-                                        echo '<tr>';
-                                        echo '<td>' . $academie["ID"] . '</td>';
-                                        echo '<td>' .  $academie["Naam"] . '</td>';
-                                        echo '</tr>';
-                                    }
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Academie</th>
+                            <th>Bewerken</th>
+                            <th>Verwijderen</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <?php
+                        $academies = $dataManager->get('Opleiding');
+                        if ($dataManager->count > 0)
+                            foreach ($academies as $academie) {
+                                echo '<tr>';
+                                echo '<td>' . $academie["ID"] . '</td>';
+                                echo '<td>' .  $academie["Naam"] . '</td>';
+                                echo '</tr>';
                                 ?>
-                                </tbody>
-                            </table>
-                        </div>
-                        <!-- /.table-responsive -->
-                    </div>
-                    <!-- /.panel-body -->
+                                <td>
+                                    <form action="academie_edit.php" method="get">
+                                        <input type="hidden" name="id" value="<?php echo $academie["ID"]; ?>">
+                                        <button type="submit" class="btn btn-primary">Bewerken</button>
+                                    </form>
+                                    <form action="academie_delete.php" method="get">
+                                        <input type="hidden" name="id" value="<?php echo $academie["ID"]; ?>">
+                                        <button type="submit" class="btn btn-danger">Verwijderen</button>
+                                    </form>
+                                </td>
+                        <?php
+                            }
+                        ?>
+                        </tbody>
+                    </table>
                 </div>
-                <!-- /.panel -->
+                <!-- /.table-responsive -->
             </div>
             <!-- /.col-lg-6 -->
         </div>
