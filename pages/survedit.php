@@ -44,23 +44,66 @@ require_once '../lib/requireAdmin.php';
 <div id="wrapper">
 
     <!-- Navigation -->
-    <?php include_once "../includes/nav.php" ?>
+    <?php include "../includes/nav.php";
+    ?>
 
     <div id="page-wrapper">
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header">Bewerken
+                <h1 class="page-header">Surveillanten <small>Bewerken</small>
                 </h1>
             </div>
             <!-- /.col-lg-12 -->
         </div>
         <!-- /.row -->
         <div class="row">
-            <div class="col-lg-6">
+            <div class="col-lg-12">
+                <?php
+                if(!isset($_GET['id'])){
+                echo "<div class='alert alert-danger'>";
+                    echo 'Foutieve data meegestuurd.';
+                    echo "</div>";
+                }
+                else {
+                $id = $_GET['id'];
+                $dataManager->where("id", $id);
+                $surveillant = $dataManager->getOne('Surveillant');
+
+                ?>
                     <!-- /.panel-heading -->
                     <div class="panel-body">
+                        <form action="surveillant.php" method="post">
+                            <input type="hidden" name="action" value="create">
+                            <div class="form-group">
+                                <label for="werknemerid">Werknemernummer</label>
+                                <input name="werknemerid" type="number" class="form-control" placeholder="<?php echo $surveillant['WerknemerID'] ;?>">
+                            </div>
+                            <div class="form-group">
+                                <label for="voornaam">Voornaam</label>
+                                <input name="voornaam" type="text" class="form-control" aria-required="true" placeholder="<?php echo $surveillant['Voornaam'] ;?>">
+                            </div>
+                            <div class="form-group">
+                                <label for="tussenvoegsel">Tussenvoegsel</label>
+                                <input name="tussenvoegsel" type="text" class="form-control" placeholder="<?php echo $surveillant['Tussenvoegsel'] ;?>">
+                            </div>
+                            <div class="form-group">
+                                <label for="achternaam">Achternaam</label>
+                                <input name="achternaam" type="text" class="form-control" aria-required="true" placeholder="<?php echo $surveillant['Achternaam'] ;?>">
+                            </div>
 
+                            <h3>Persoonlijk account</h3>
+                            <div class="form-group">
+                                <label>Account aanmaken</label>
+                                <input name="account" type="checkbox">
+                            </div>
+                            <div class="form-group">
+                                <label>E-mail</label>
+                                <input name="email" type="email" class="form-control" placeholder="naam@provider.nl">
+                            </div>
+                            <button type="submit" class="btn btn-primary">Toevoegen</button>
+                        </form>
                     </div>
+                <?php }?>
                     <!-- /.panel-body -->
             </div>
             <!-- /.col-lg-6 -->

@@ -65,7 +65,7 @@ require_once '../lib/requireAdmin.php';
                 else {
                     $id = $_GET['id'];
                     $dataManager->where("id", $id);
-                    $academies = $dataManager->get('Opleiding');
+                    $academie = $dataManager->getOne('Opleiding');
 
                     ?>
                     <div class="col-lg-12">
@@ -74,10 +74,8 @@ require_once '../lib/requireAdmin.php';
                             <input type="hidden" name="id" value="<?php echo $id ; ?>">
                             <div class="form-group">
                                 <label for="naam">Nieuwe naam voor de academie/opleiding</label>
-                                <?php foreach ($academies as $academie) {
-                                echo '<input name="naam" class="form-control" aria-required="true" placeholder="'. $academie["Naam"] .'">';
-                                }
-                                ?>
+                                <?php echo'<input name="naam" class="form-control" aria-required="true" placeholder="'. $academie["Naam"] .'">'?>
+
                             </div>
                             <button type="submit" class="btn btn-primary">Bewerken</button>
                         </form>

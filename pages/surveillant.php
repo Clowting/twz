@@ -16,7 +16,7 @@ require_once '../lib/requireAdmin.php';
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Bootstrap Admin Theme</title>
+    <title>TWZ - Surveillantenbeheer</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -86,14 +86,16 @@ require_once '../lib/requireAdmin.php';
 
                                         if($register['error'] == 0) {
                                             echo '<div class="alert alert-success" role="alert">Het account is succesvol toegevoegd.</div>';
+                                            $dataManager->where('email',$email);
+                                            $uid = $dataManager->getOne('users');
+                                            $data['GebruikerID']=$uid['id'];
                                         } else {
-                                            echo '<div class="alert alert-warning" role="alert">Het account voor de surveillant kon niet worden toegevoegd. ' . $register['message'] . '</div>';
+                                            echo '<div class="alert alert-warning" role="alert">('.$password.')Het account voor de surveillant kon niet worden toegevoegd. ' . $register['message'] . '</div>';
                                         }
                                     }
                                 }
 
-                                $insert = $dataManager->insert('Surveillant', $data);
-                                if ($insert)
+                                if ($insert = $dataManager->insert('Surveillant', $data))
                                 {
                                     echo '<div class="alert alert-success" role="alert">De surveillant is succesvol toegevoegd.</div>';
                                 }
@@ -107,30 +109,17 @@ require_once '../lib/requireAdmin.php';
                             echo '<div class="alert alert-warning" role="alert">Niet alle gegevens zijn juist ingevoerd.</div>';
                         }
                     }
-                if(isset($_POST['action']) && $_POST['action'] == 'active'){
-                    $data = array();
-                    $id = cleanInput($_POST['id']);
-                    $data['actief'] = 1;
-                    $dataManager->where('ID', $id);
-                    if ($dataManager->update('Surveillant', $data)) {
-                        echo "<div class='alert alert-success'>";
-                        echo 'De surveillant is succesvol op actief gezet.';
-                        echo "</div>";
-                    } else {
-                        echo "<div class='alert alert-danger'>";
-                        echo 'Fout bij het aanpassen van de surveillant.';
-                        echo "</div>";
-                    }
-
-                }
-                    if(isset($_POST['action']) && $_POST['action'] == 'inactive'){
+                    /**
+                     * set inactive/active for a specific surveillant
+                     */
+                    if(isset($_POST['action']) && $_POST['action'] == 'active'){
                         $data = array();
                         $id = cleanInput($_POST['id']);
-                        $data['actief'] = 0;
+                        $data['actief'] = 1;
                         $dataManager->where('ID', $id);
                         if ($dataManager->update('Surveillant', $data)) {
                             echo "<div class='alert alert-success'>";
-                            echo 'De surveillant is succesvol op inactief gezet.';
+                            echo 'De surveillant is succesvol op actief gezet.';
                             echo "</div>";
                         } else {
                             echo "<div class='alert alert-danger'>";
@@ -139,7 +128,23 @@ require_once '../lib/requireAdmin.php';
                         }
 
                     }
-                }
+                        if(isset($_POST['action']) && $_POST['action'] == 'inactive'){
+                            $data = array();
+                            $id = cleanInput($_POST['id']);
+                            $data['actief'] = 0;
+                            $dataManager->where('ID', $id);
+                            if ($dataManager->update('Surveillant', $data)) {
+                                echo "<div class='alert alert-success'>";
+                                echo 'De surveillant is succesvol op inactief gezet.';
+                                echo "</div>";
+                            } else {
+                                echo "<div class='alert alert-danger'>";
+                                echo 'Fout bij het aanpassen van de surveillant.';
+                                echo "</div>";
+                            }
+
+                        }
+                    }
 
                 ?>
             </div>
@@ -182,6 +187,7 @@ require_once '../lib/requireAdmin.php';
                                         ?>
                                         <td>
                                             <form action="survedit.php" method="get">
+                                                <input type="hidden" name="id" value="<?php echo $surveillant["ID"]; ?>">
                                                 <button type="submit" class="btn btn-primary">Bewerken</button>
                                             </form>
                                         </td>
