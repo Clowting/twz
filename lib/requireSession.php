@@ -1,8 +1,7 @@
 <?php
 if(!isset($_COOKIE[$config->cookie_name]) || !$auth->checkSession($_COOKIE[$config->cookie_name])) {
-    header('HTTP/1.0 403 Forbidden');
-    echo "Forbidden";
-
+    header('HTTP/1.1 403 Forbidden');
+    header('Location: 403.html');
     exit();
 } else {
     $uid = $auth->getSessionUID($_COOKIE[$config->cookie_name]);
