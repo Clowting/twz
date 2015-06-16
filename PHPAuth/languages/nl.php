@@ -2,65 +2,65 @@
 
 $lang = array();
 
-$lang['user_blocked'] = "You are currently locked out of the system.";
+$lang['user_blocked'] = "Je bent momenteel geblokkeerd uit het systeem.";
 
-$lang['email_password_invalid'] = "Email address / password are invalid.";
-$lang['email_password_incorrect'] = "Email address / password are incorrect.";
-$lang['remember_me_invalid'] = "The remember me field is invalid.";
+$lang['email_password_invalid'] = "Emailadres of wachtwoord onjuist.";
+$lang['email_password_incorrect'] = "Emailadres of wachtwoord incorrect";
+$lang['remember_me_invalid'] = "Het onthoud mij veld is incorrect.";
 
-$lang['password_short'] = "Password is too short.";
-$lang['password_long'] = "Password is too long.";
-$lang['password_invalid'] = "Password must contain at least one uppercase and lowercase character, and at least one digit.";
-$lang['password_nomatch'] = "Passwords do not match.";
-$lang['password_changed'] = "Password changed successfully.";
-$lang['password_incorrect'] = "Current password is incorrect.";
-$lang['password_notvalid'] = "Password is invalid.";
+$lang['password_short'] = "Wachtwoord is te kort.";
+$lang['password_long'] = "Wachtwoord is te lang";
+$lang['password_invalid'] = "Het wachtwoord moet minstens een hoofdletter, normale letter en een getal bevatten.";
+$lang['password_nomatch'] = "Wachtwoorden komen niet overeen";
+$lang['password_changed'] = "Wachtwoord succesvol veranderd..";
+$lang['password_incorrect'] = "Huidige wachrwoord is incorrect.";
+$lang['password_notvalid'] = "Wachtwoord is incorrect";
 
-$lang['newpassword_short'] = "New password is too short.";
-$lang['newpassword_long'] = "New password is too long.";
-$lang['newpassword_invalid'] = "New password must contain at least one uppercase and lowercase character, and at least one digit.";
-$lang['newpassword_nomatch'] = "New passwords do not match.";
+$lang['newpassword_short'] = "Nieuwe wachtwoord is te kort.";
+$lang['newpassword_long'] = "Nieuwe wachtwoord is te lang.";
+$lang['newpassword_invalid'] = "Nieuwe wachtwoord moet minstens een hoofdletter, normale letter en een getal bevatten.";
+$lang['newpassword_nomatch'] = "Nieuwe wachtwoorden komen niet overeen.";
 
-$lang['email_short'] = "Email address is too short.";
-$lang['email_long'] = "Email address is too long.";
-$lang['email_invalid'] = "Email address is invalid.";
-$lang['email_incorrect'] = "Email address is incorrect.";
-$lang['email_banned'] = "This email address is not allowed.";
-$lang['email_changed'] = "Email address changed successfully.";
+$lang['email_short'] = "Emailadres is te kort.";
+$lang['email_long'] = "Emailadres is te lang..";
+$lang['email_invalid'] = "Emailadres is onjuist.";
+$lang['email_incorrect'] = "Emailadres is incorrect.";
+$lang['email_banned'] = "Emailadres is niet toegestaan.";
+$lang['email_changed'] = "Emailadres is succesvol veranderd.";
 
-$lang['newemail_match'] = "New email matches previous email.";
+$lang['newemail_match'] = "Het nieuwe emailadres is gelijk aan het oude emailadres.";
 
-$lang['account_inactive'] = "Account has not yet been activated.";
-$lang['account_activated'] = "Account activated.";
+$lang['account_inactive'] = "Het account is nog niet geactiveerd.";
+$lang['account_activated'] = "Account is geactiveerd.";
 
-$lang['logged_in'] = "You are now logged in.";
-$lang['logged_out'] = "You are now logged out.";
+$lang['logged_in'] = "U bent nu ingelogd.";
+$lang['logged_out'] = "U bent nu uitgelogd.";
 
-$lang['system_error'] = "A system error has been encountered. Please try again.";
+$lang['system_error'] = "Er is een systeemfout opgetreden. Probeer het alstublieft nog eens.";
 
-$lang['register_success'] = "Account created. Activation email sent to email.";
-$lang['email_taken'] = "The email address is already in use.";
+$lang['register_success'] = "Account aangemaakt. Activatie email verzonden naar email.";
+$lang['email_taken'] = "Dit emailadres is al in gebruik.";
 
-$lang['resetkey_invalid'] = "Reset key is invalid.";
+$lang['resetkey_invalid'] = "Reset key is invalide.";
 $lang['resetkey_incorrect'] = "Reset key is incorrect.";
-$lang['resetkey_expired'] = "Reset key has expired.";
-$lang['password_reset'] = "Password reset successfully.";
+$lang['resetkey_expired'] = "Reset key is verlopen.";
+$lang['password_reset'] = "Het ressetten van het wachtwoord is gelukt.";
 
-$lang['activationkey_invalid'] = "Activation key is invalid.";
-$lang['activationkey_incorrect'] = "Activation key is incorrect.";
-$lang['activationkey_expired'] = "Activation key has expired.";
+$lang['activationkey_invalid'] = "Activatie key is invalide.";
+$lang['activationkey_incorrect'] = "Activatie key is incorrect.";
+$lang['activationkey_expired'] = "Activatie key is verlopen.";
 
-$lang['reset_requested'] = "Password reset request sent to email address.";
-$lang['reset_exists'] = "A reset request already exists.";
+$lang['reset_requested'] = "Het resetten van het wachtwoord heeft een emailadres nodig.";
+$lang['reset_exists'] = "Een resetverzoek bestaat al.";
 
-$lang['already_activated'] = "Account is already activated.";
-$lang['activation_sent'] = "Activation email has been sent.";
-$lang['activation_exists'] = "An activation email has already been sent.";
+$lang['already_activated'] = "Account is al geactiveerd.";
+$lang['activation_sent'] = "Activeringsemail is verstuurd.";
+$lang['activation_exists'] = "Er is al een activeringsemail verstuurd.";
 
-$lang['email_activation_subject'] = "%s - Activate account";
-$lang['email_activation_body'] = 'Hello,<br/><br/> To be able to log in to your account you first need to activate your account by clicking on the following link : <strong><a href="%1$s/%2$s">%1$s/%2$s</a></strong><br/><br/> You then need to use the following activation key: <strong>%3$s</strong><br/><br/> If you did not sign up on %1$s recently then this message was sent in error, please ignore it.';
-$lang['email_activation_altbody'] = 'Hello, \n\n To be able to log in to your account you first need to activate your account by visiting the following link :\n %1$s/%2$s\n\n You then need to use the following activation key: %3$s\n\n If you did not sign up on %1$s recently then this message was sent in error, please ignore it.';
+$lang['email_activation_subject'] = "%s - Activeer account";
+$lang['email_activation_body'] = 'Hallo,<br/><br/> Druk op de link om je account te activeren : <strong><a href="%1$s/%2$s">%1$s/%2$s</a></strong><br/><br/> Gebruik de volgende activeringscode: <strong>%3$s</strong><br/><br/> Als u zich niet heeft aangemeld voor %1$s kunt u deze email negeren..';
+$lang['email_activation_altbody'] = 'Hallo, \n\n Druk op de link om je account te activeren :\n %1$s/%2$s\n\n Gebruik de volgende activeringscode: %3$s\n\n Als u zich niet heeft aangemeld voor %1$s kunt u deze email negeren.';
 
-$lang['email_reset_subject'] = "%s - Password reset request";
-$lang['email_reset_body'] = 'Hello,<br/><br/>To reset your password click the following link :<br/><br/><strong><a href="%1$s/%2$s">%1$s/%2$s</a></strong><br/><br/>You then need to use the following password reset key: <strong>%3$s</strong><br/><br/>If you did not request a password reset key on %1$s recently then this message was sent in error, please ignore it.';
-$lang['email_reset_altbody'] = 'Hello, \n\n To reset your password please visiting the following link :\n %1$s/%2$s\n\n You then need to use the following password reset key: %3$s\n\n If you did not request a password reset key on %1$s recently then this message was sent in error, please ignore it.';
+$lang['email_reset_subject'] = "%s - Wachtwoord herstel";
+$lang['email_reset_body'] = 'Hallo,<br/><br/>Om uw wachtwoord te herstellen, klik op de volgende link :<br/><br/><strong><a href="%1$s/%2$s">%1$s/%2$s</a></strong><br/><br/>Gebruik  de volgende activeringscode: <strong>%3$s</strong><br/><br/>Als u zich niet heeft aangemeld voor %1$s kunt u deze email negeren.';
+$lang['email_reset_altbody'] = 'Hallo, \n\n Om uw wachtwoord te herstellen, klik op de volgende link :\n %1$s/%2$s\n\n Gebruik de volgende activeringscode: %3$s\n\n Gebruik de volgende activeringscode %1$s Als u zich niet heeft aangemeld kunt u deze email negeren..';
