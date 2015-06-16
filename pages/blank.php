@@ -70,6 +70,7 @@
                                     <th>Voornaam</th>
                                     <th>Tussenvoegsel</th>
                                     <th>Achternaam</th>
+                                    <th>X</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -82,6 +83,9 @@
                                         echo '<td>' .  $surveillant["Voornaam"] . '</td>';
                                         echo '<td>' .  $surveillant["Tussenvoegsel"] . '</td>';
                                         echo '<td>' .  $surveillant["Achternaam"] . '</td>';
+                                        ?>
+                                        <td><a href="survdel.php?id=<?php echo $surveillant['ID']; ?>">Delete</a></td>
+                                <?php
                                         echo '</tr>';
                                     }
                                 ?>

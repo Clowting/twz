@@ -50,7 +50,7 @@
     <div id="page-wrapper">
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header">Tables
+                <h1 class="page-header">Verwijderen
                 </h1>
             </div>
             <!-- /.col-lg-12 -->
@@ -60,37 +60,20 @@
             <div class="col-lg-6">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <h2>Surveillantenbeheer</h2>
+                        <h2>Surveillanten</h2>
                     </div>
                     <!-- /.panel-heading -->
                     <div class="panel-body">
-                        <div class="table-responsive">
-                            <table class="table table-hover">
-                                <thead>
-                                <tr>
-                                    <th>ID</th>
-                                    <th>Voornaam</th>
-                                    <th>Tussenvoegsel</th>
-                                    <th>Achternaam</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <?php
-                                $surveillanten = $dataManager->get('Surveillant');
-                                if ($dataManager->count > 0)
-                                    foreach ($surveillanten as $surveillant) {
-                                        echo '<tr>';
-                                        echo '<td>' . $surveillant["ID"] . '</td>';
-                                        echo '<td>' .  $surveillant["Voornaam"] . '</td>';
-                                        echo '<td>' .  $surveillant["Tussenvoegsel"] . '</td>';
-                                        echo '<td>' .  $surveillant["Achternaam"] . '</td>';
-                                        echo '</tr>';
-                                    }
-                                ?>
-                                </tbody>
-                            </table>
-                        </div>
-                        <!-- /.table-responsive -->
+                        <?php
+                        $surveillanten = $dataManager->get('Surveillant');
+                        if (!isset($_GET['ID']))
+                        {
+                            echo 'No ID was given...';
+                            exit;
+                        }
+                        $dataManger->where ("ID", $surveillanten);
+                        if($dataManager->delete('Surveillant')) echo 'Succesvol verwijderd.';
+                        ?>
                     </div>
                     <!-- /.panel-body -->
                 </div>
