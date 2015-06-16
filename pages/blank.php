@@ -42,11 +42,9 @@
     <div id="page-wrapper">
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header">Tables
-                    <form action="survedit.php">
-                    <button type="submit" class="btn btn-primary">Bewerken</button>
-                    </form>
+                <h1 class="page-header">Surveillantenbeheer
                 </h1>
+                    <a href="survcreate.php" role="button" class="btn btn-primary">Toevoegen</a>
             </div>
             <!-- /.col-lg-12 -->
         </div>
@@ -54,20 +52,18 @@
         <div class="row">
             <div class="col-lg-6">
                 <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h2>Surveillantenbeheer</h2>
-                    </div>
                     <!-- /.panel-heading -->
                     <div class="panel-body">
                         <div class="table-responsive">
                             <table class="table table-hover">
                                 <thead>
                                 <tr>
-                                    <th>ID</th>
+                                    <th>WerknemerID</th>
                                     <th>Voornaam</th>
                                     <th>Tussenvoegsel</th>
                                     <th>Achternaam</th>
-                                    <th>X</th>
+                                    <th>Bewerken</th>
+                                    <th>Verwijderen</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -76,11 +72,17 @@
                                 if ($dataManager->count > 0)
                                     foreach ($surveillanten as $surveillant) {
                                         echo '<tr>';
-                                        echo '<td>' . $surveillant["ID"] . '</td>';
+                                        echo '<td>' .  $surveillant["WerknemerID"] . '</td>';
                                         echo '<td>' .  $surveillant["Voornaam"] . '</td>';
                                         echo '<td>' .  $surveillant["Tussenvoegsel"] . '</td>';
                                         echo '<td>' .  $surveillant["Achternaam"] . '</td>';
-                                        ?><td>
+                                        ?>
+                                        <td>
+                                            <form action="survedit.php" method="get">
+                                                <button type="submit" class="btn btn-primary">Bewerken</button>
+                                            </form>
+                                        </td>
+                                        <td>
                                         <form action="survdel.php" method="get">
                                             <input type="hidden" name="id" value="<?php echo $surveillant["ID"]; ?>">
                                             <button type="submit" class="btn btn-danger">Verwijderen</button>
@@ -95,8 +97,6 @@
                             </table>
                         </div>
                         <!-- /.table-responsive -->
-                    </div>
-                    <!-- /.panel-body -->
                 </div>
                 <!-- /.panel -->
             </div>
