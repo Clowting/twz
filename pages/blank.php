@@ -42,10 +42,7 @@
     <div id="page-wrapper">
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header">Tables
-                    <form action="survedit.php">
-                    <button type="submit" class="btn btn-primary">Bewerken</button>
-                    </form>
+                <h1 class="page-header">Surveillantenbeheer
                 </h1>
             </div>
             <!-- /.col-lg-12 -->
@@ -54,9 +51,6 @@
         <div class="row">
             <div class="col-lg-6">
                 <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h2>Surveillantenbeheer</h2>
-                    </div>
                     <!-- /.panel-heading -->
                     <div class="panel-body">
                         <div class="table-responsive">
@@ -67,7 +61,8 @@
                                     <th>Voornaam</th>
                                     <th>Tussenvoegsel</th>
                                     <th>Achternaam</th>
-                                    <th>X</th>
+                                    <th>Bewerken</th>
+                                    <th>Verwijderen</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -80,7 +75,13 @@
                                         echo '<td>' .  $surveillant["Voornaam"] . '</td>';
                                         echo '<td>' .  $surveillant["Tussenvoegsel"] . '</td>';
                                         echo '<td>' .  $surveillant["Achternaam"] . '</td>';
-                                        ?><td>
+                                        ?>
+                                        <td>
+                                            <form action="survedit.php" method="get">
+                                                <button type="submit" class="btn btn-primary">Bewerken</button>
+                                            </form>
+                                        </td>
+                                        <td>
                                         <form action="survdel.php" method="get">
                                             <input type="hidden" name="id" value="<?php echo $surveillant["ID"]; ?>">
                                             <button type="submit" class="btn btn-danger">Verwijderen</button>
@@ -95,8 +96,6 @@
                             </table>
                         </div>
                         <!-- /.table-responsive -->
-                    </div>
-                    <!-- /.panel-body -->
                 </div>
                 <!-- /.panel -->
             </div>
