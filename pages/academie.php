@@ -1,9 +1,9 @@
 <?php
 require_once '../lib/connectdb.php';
 require_once '../lib/functions.php';
-//require_once '../lib/requireAuth.php';
-//require_once '../lib/requireSession.php';
-//require_once '../lib/requireAdmin.php';
+require_once '../lib/requireAuth.php';
+require_once '../lib/requireSession.php';
+require_once '../lib/requireAdmin.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -54,7 +54,9 @@ file
             <!-- /.col-lg-12 -->
         </div>
         <div class="row">
+
             <?php
+
             //if(isset($_GET['id'])) {
             //    if (isset($_GET['action']) && $_GET['action'] == 'delete') {
             //        $sid = $_GET['id'];
