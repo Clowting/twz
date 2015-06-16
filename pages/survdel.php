@@ -65,20 +65,37 @@
                             echo 'No ID was given...';
                             exit;
                         }
-                        ?>
-                        <div class="alert alert-danger">
-                        Weet u zeker dat deze surveillant wilt verwijderen. <br />
-                            <button type="submit" class="btn btn-success btn-circle btn-lg"><i class="fa fa-check"></i>
-                            </button>
-                            <button type="submit" class="btn btn-danger btn-circle btn-lg"><i class="fa fa-times"></i>
-                            </button>
+                        if(isset($_GET['id'])&& !isset($_GET['confirm'])) {
+
+                            echo "<div class='alert alert-danger'>";
+                            echo "Weet u zeker dat deze surveillant wilt verwijderen? <br />";
+                            ?>
+                            <form action='survdel.php' method='get' style="float: left">
+                                    <input type="hidden" name="id" value="<?php echo $_GET['id']; ?>">
+                                    <input type="hidden" name="confirm" value="true">
+                                <br />
+                                    <button type='submit' class='btn btn-success btn-circle btn-lg'><i class='fa fa-check'></i>
+                            </button></form>
+                                <form action="blank.php" style="float: left; clear: right">
+                                    <br />
+                            <button type='submit' class='btn btn-danger btn-circle btn-lg'><i class='fa fa-times'></i>
+                            </button></form>
                             </div>
-                        <?php
-                        function checkDelete()
-                        {
+                <?php
+                        }
+                        if(isset($_GET['id'])&& isset($_GET['confirm'])) {
+
                             $sid = $_GET['id'];
                             $dataManager->where("ID", $sid);
-                            if ($dataManager->delete('Surveillant')) echo 'Succesvol verwijderd.';
+                            if ($dataManager->delete('Surveillant'))
+                                echo "<div class'alert alert-success'>";
+                                echo 'Succesvol verwijderd.';
+                                echo "</div>";
+                            ?>
+                            <form action="blank.php">
+                                <button type='submit' class='btn btn-outline btn-info'>Ga terug
+                                </button></form>
+            <?php
                         }
                         ?>
             </div>
