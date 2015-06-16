@@ -1,10 +1,9 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Startklaar
- * Date: 16-6-2015
- * Time: 09:49
- */
+require_once '../lib/connectdb.php';
+require_once '../lib/functions.php';
+require_once '../lib/requireAuth.php';
+require_once '../lib/requireSession.php';
+require_once '../lib/requireAdmin.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">

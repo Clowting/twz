@@ -239,31 +239,33 @@
                 </li>
                 <li>
                     <a href="tables.php"><i class="fa fa-cog fa-fw"></i> Instellingen</a>
-                </li>
+                </li><?php if(isAdmin($user)){echo'
                 <li>
                     <a href="#"><i class="fa fa-user-plus fa-fw"></i> Admin<span class="fa arrow"></span></a>
-                    <ul class="nav nav-first-level">
+                    <ul class="nav nav-second-level">
                         <li>
-                            <a href="surveillant.php">Surveillanten</a>
+                            <a href="surveillant.php"><i class="fa fa-users fa-fw"></i> Surveillanten</a>
                         </li>
                         <li>
-                            <a href="academie.php">Opleidingen/Academies</a>
+                            <a href="academie.php"><i class="fa fa-university fa-fw"></i> Opleidingen/Academies</a>
                         </li>
                         <li>
-                            <a href="rooster.php">Tentamenroosters</a>
+                            <a href="rooster.php"><i class="fa fa-calendar-o fa-fw"></i> Tentamenroosters</a>
                         </li>
                         <li>
-                            <a href="academie.php">Roosters</a>
+                            <a href=""><i class="fa fa-calendar fa-fw"></i> Roosters</a>
                         </li>
                     </ul>
 
                     <!-- /.nav-second-level -->
                 </li>
+                ';}
+                if(isUser($user)){echo'
                 <li>
                     <a href="#"><i class="fa fa-user fa-fw"></i> Surveillant<span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                         <li>
-                            <a href="self.php">Flot Charts</a>
+                            <a href="self.php"><i class="fa fa-cogs"></i> Account instellingen</a>
                         </li>
                         <li>
                             <a href="morris.php">Morris.js Charts</a>
@@ -271,8 +273,10 @@
                     </ul>
                     <!-- /.nav-second-level -->
                 </li>
+                ';}?>
             </ul>
         </div>
+
         <!-- /.sidebar-collapse -->
     </div>
     <!-- /.navbar-static-side -->
