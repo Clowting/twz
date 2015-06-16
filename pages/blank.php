@@ -45,7 +45,7 @@
                 <h1 class="page-header">Tables
                     <button type="button" class="btn btn-primary">Bewerken</button>
                     <form action="surveillantdelete.php">
-                    <button type="button" class="btn btn-danger">Verwijderen</button>
+                    <button type="submit" class="btn btn-danger">Verwijderen</button>
                         </form>
                 </h1>
             </div>
