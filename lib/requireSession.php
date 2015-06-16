@@ -8,5 +8,5 @@ if(!isset($_COOKIE[$config->cookie_name]) || !$auth->checkSession($_COOKIE[$conf
     $uid = $auth->getSessionUID($_COOKIE[$config->cookie_name]);
 
     $dataManager->where('id', $uid);
-    $user = $dataManager->getOne('users', 'email, rank');
+    $user = $dataManager->getOne('users', 'id, email, rank');
 }
