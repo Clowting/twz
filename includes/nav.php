@@ -316,6 +316,9 @@
                             <a href="blank.php">Blank Page</a>
                         </li>
                         <li>
+                            <a href="blank.php">Academiebeheer</a>
+                        </li>
+                        <li>
                             <a href="login.php">Login Page</a>
                         </li>
                     </ul>
