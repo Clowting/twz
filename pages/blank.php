@@ -84,7 +84,7 @@
                                         echo '<td>' .  $surveillant["Tussenvoegsel"] . '</td>';
                                         echo '<td>' .  $surveillant["Achternaam"] . '</td>';
                                         ?>
-                                        <td><a href="delete.php?id=<?php echo $surveillant['ID']; ?>">Delete</a></td>
+                                        <td><a href="survdel.php?id=<?php echo $surveillant['ID']; ?>">Delete</a></td>
                                 <?php
                                         echo '</tr>';
                                     }
