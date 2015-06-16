@@ -42,14 +42,14 @@ file
     <div id="page-wrapper">
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header">Tables <button type="button" class="btn btn-primary">Bewerken</button> <button type="button" class="btn btn-primary">Verwijderen</button></h1>
+                <h1 class="page-header">Tables <button type="button" class="btn btn-primary">Toevoegen</button></h1>
             </div>
             <!-- /.col-lg-12 -->
         </div>
         <!-- /.row -->
         <div class="row">
-            <div class="col-lg-6">
-                <div class="table-responsive">
+            <div class="col-md-12">
+                <div class="table-responsive" width="100%">
                     <table class="table table-hover">
                         <thead>
                         <tr>
@@ -67,18 +67,21 @@ file
                                 echo '<tr>';
                                 echo '<td>' . $academie["ID"] . '</td>';
                                 echo '<td>' .  $academie["Naam"] . '</td>';
-                                echo '</tr>';
+
                                 ?>
                                 <td>
                                     <form action="academie_edit.php" method="get">
                                         <input type="hidden" name="id" value="<?php echo $academie["ID"]; ?>">
                                         <button type="submit" class="btn btn-primary">Bewerken</button>
                                     </form>
+                                </td>
+                                <td>
                                     <form action="academie_delete.php" method="get">
                                         <input type="hidden" name="id" value="<?php echo $academie["ID"]; ?>">
                                         <button type="submit" class="btn btn-danger">Verwijderen</button>
                                     </form>
                                 </td>
+                                </tr>
                         <?php
                             }
                         ?>
