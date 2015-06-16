@@ -29,7 +29,6 @@ require_once '../lib/requireAdmin.php';
 
     <!-- Custom Fonts -->
     <link href="../bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-file
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -44,7 +43,7 @@ file
 <div id="wrapper">
 
     <!-- Navigation -->
-    <?php include_once "../includes/nav.php" ?>
+    <?php include "../includes/nav.php" ?>
 
     <div id="page-wrapper">
         <div class="row">

@@ -6,7 +6,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="index.php">TWZ administratie surveillanten</a>
+        <a class="navbar-brand" href="../index.php">TWZ - administratie surveillanten</a>
     </div>
     <!-- /.navbar-header -->
 
@@ -242,21 +242,28 @@
                 </li>
                 <li>
                     <a href="#"><i class="fa fa-user-plus fa-fw"></i> Admin<span class="fa arrow"></span></a>
-                    <ul class="nav nav-second-level">
+                    <ul class="nav nav-first-level">
                         <li>
-                            <a href="flot.php">Flot Charts</a>
+                            <a href="surveillant.php">Surveillanten</a>
                         </li>
                         <li>
-                            <a href="morris.php">Morris.js Charts</a>
+                            <a href="academie.php">Opleidingen/Academies</a>
+                        </li>
+                        <li>
+                            <a href="rooster.php">Tentamenroosters</a>
+                        </li>
+                        <li>
+                            <a href="academie.php">Roosters</a>
                         </li>
                     </ul>
+
                     <!-- /.nav-second-level -->
                 </li>
                 <li>
                     <a href="#"><i class="fa fa-user fa-fw"></i> Surveillant<span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                         <li>
-                            <a href="flot.php">Flot Charts</a>
+                            <a href="self.php">Flot Charts</a>
                         </li>
                         <li>
                             <a href="morris.php">Morris.js Charts</a>
