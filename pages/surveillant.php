@@ -1,9 +1,9 @@
 <?php
 require_once '../lib/connectdb.php';
 require_once '../lib/functions.php';
-//require_once '../lib/requireAuth.php';
-//require_once '../lib/requireSession.php';
-//require_once '../lib/requireAdmin.php';
+require_once '../lib/requireAuth.php';
+require_once '../lib/requireSession.php';
+require_once '../lib/requireAdmin.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -49,7 +49,9 @@ require_once '../lib/functions.php';
     <div id="page-wrapper">
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header">Surveillantenbeheer <a href="survcreate.php" role="button" class="btn btn-primary">Toevoegen</a>
+                <h1 class="page-header">Surveillanten
+                    <small>Overzicht</small>
+                    <a href="survcreate.php" role="button" class="btn btn-primary">Toevoegen</a>
                 </h1>
                 <?php
                 if($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -58,6 +60,8 @@ require_once '../lib/functions.php';
                     $voornaam = cleanInput($_POST['voornaam']);
                     $tussenvoegsel = cleanInput($_POST['tussenvoegsel']);
                     $acthernaam = cleanInput($_POST['achternaam']);
+                    $account = cleanInput($_POST['account']);
+                    $email = cleanInput($_POST['email']);
 
                     if (validateNumber($werknemerID, 0, 2147483647) &&
                         validateInput($voornaam, 1, 128) &&
@@ -72,6 +76,17 @@ require_once '../lib/functions.php';
 
                         if (validateInput($tussenvoegsel, 1, 16)) {
                             $data['Tussenvoegsel'] = $tussenvoegsel;
+                        }
+
+                        if($account && filter_input($email, FILTER_VALIDATE_EMAIL)) {
+                            $password = randomPassword();
+                            $register = $auth->register($email, $password, $password);
+
+                            if($register['error'] == 0) {
+                                echo '<div class="alert alert-success" role="alert">Het account is succesvol toegevoegd.</div>';
+                            } else {
+                                echo '<div class="alert alert-warning" role="alert">Het account voor de surveillant kon niet worden toegevoegd. ' . $register['message'] . '</div>';
+                            }
                         }
 
                         $insert = $dataManager->insert('Surveillant', $data);
@@ -129,7 +144,6 @@ require_once '../lib/functions.php';
                                             <button type="submit" class="btn btn-danger">Verwijderen</button>
                                         </form>
                                         </td>
-                                        <!--<td><a href="survdel.php?id=/">Delete</a></td>-->
                                 <?php
                                         echo '</tr>';
                                     }
