@@ -49,16 +49,19 @@ require_once '../lib/functions.php';
 
                         <?php
 
-                            if(isset($_GET['option']) && !empty($_GET['option'])) {
-                                $option = cleanInput($_GET['option']);
+                            if($_SERVER['REQUEST_METHOD'] != 'POST') {
 
-                                if($option == 'logout') {
-                                    $logout = $auth->logout($_COOKIE[$config->cookie_name]);
+                                if (isset($_GET['option']) && !empty($_GET['option'])) {
+                                    $option = cleanInput($_GET['option']);
 
-                                    if($logout) {
-                                        echo '<div class="alert alert-success" role="alert">U bent succesvol uitgelogd.</div>';
-                                    } else {
-                                        echo '<div class="alert alert-warning" role="alert">Er is iets fout gegaan bij het uitloggen.</div>';
+                                    if ($option == 'logout') {
+                                        $logout = $auth->logout($_COOKIE[$config->cookie_name]);
+
+                                        if ($logout) {
+                                            echo '<div class="alert alert-success" role="alert">U bent succesvol uitgelogd.</div>';
+                                        } else {
+                                            echo '<div class="alert alert-danger" role="alert">Er is iets fout gegaan bij het uitloggen.</div>';
+                                        }
                                     }
                                 }
                             }
@@ -69,9 +72,13 @@ require_once '../lib/functions.php';
                                 } else {
                                     $login = $auth->login($_POST['email'], $_POST['password']);
                                 }
-                                print_r($login['hash']);
-                                setcookie($config->cookie_name, $login['hash'], $login['expire']);
-                                header('Location: index.php');
+
+                                if($login['error'] == 0) {
+                                    setcookie($config->cookie_name, $login['hash'], $login['expire']);
+                                    header('Location: index.php');
+                                } else {
+                                    echo '<div class="alert alert-warning" role="alert">' . $login['message'] . '</div>';
+                                }
                             }
 
                         ?>
