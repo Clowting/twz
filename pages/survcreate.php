@@ -60,6 +60,7 @@ require_once '../lib/requireAdmin.php';
                 <!-- /.panel-heading -->
                 <div class="panel-body">
                     <form action="surveillant.php" method="post">
+                        <input type="hidden" name="action" value="create">
                         <div class="form-group">
                             <label for="werknemerid">Werknemernummer</label>
                             <input name="werknemerid" type="number" class="form-control" placeholder="Werknemernummer">

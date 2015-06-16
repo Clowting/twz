@@ -235,10 +235,10 @@
                     <!-- /input-group -->
                 </li>
                 <li>
-                    <a href="index.php"><i class="fa fa-dashboard fa-fw"></i> Home</a>
+                    <a href="index.php"><i class="fa fa-dashboard fa-fw"></i> Hoofdpagina</a>
                 </li>
                 <li>
-                    <a href="tables.php"><i class="fa fa-cog fa-fw"></i> Instellingen</a>
+                    <a href="tables.php"><i class="fa fa-envelope fa-fw"></i> Contact</a>
                 </li><?php if(isAdmin($user)){echo'
                 <li>
                     <a href="#"><i class="fa fa-user-plus fa-fw"></i> Admin<span class="fa arrow"></span></a>
@@ -250,10 +250,10 @@
                             <a href="academie.php"><i class="fa fa-university fa-fw"></i> Opleidingen/Academies</a>
                         </li>
                         <li>
-                            <a href="rooster.php"><i class="fa fa-calendar-o fa-fw"></i> Tentamenroosters</a>
+                            <a href="tentamen_rooster.php"><i class="fa fa-calendar-o fa-fw"></i> Tentamenroosters</a>
                         </li>
                         <li>
-                            <a href=""><i class="fa fa-calendar fa-fw"></i> Roosters</a>
+                            <a href="rooster.php"><i class="fa fa-calendar fa-fw"></i> Roosters</a>
                         </li>
                     </ul>
 
@@ -265,7 +265,7 @@
                     <a href="#"><i class="fa fa-user fa-fw"></i> Surveillant<span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                         <li>
-                            <a href="self.php"><i class="fa fa-cogs"></i> Account instellingen</a>
+                            <a href="self.php"><i class="fa fa-cogs"></i> Account</a>
                         </li>
                         <li>
                             <a href="availability.php"><i class="fa fa-calendar-o fa-fw"></i>Beschikbaarheid</a>

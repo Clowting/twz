@@ -48,7 +48,8 @@ require_once '../lib/requireAdmin.php';
     <div id="page-wrapper">
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header">Tables <a href="academie_create.php" role="button" class="btn btn-primary">Toevoegen</a> </h1>
+                <h1 class="page-header">Opleidingen/Academies
+                    <small>Overzicht</small> <a href="academie_create.php" role="button" class="btn btn-primary">Toevoegen</a> </h1>
             </div>
             <!-- /.col-lg-12 -->
         </div>
@@ -115,46 +116,50 @@ require_once '../lib/requireAdmin.php';
         <!-- /.row -->
         <div class="row">
             <div class="col-md-12">
-                <div class="table-responsive">
-                    <table class="table table-hover">
-                        <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Academie</th>
-                            <th style="text-align: right;">Bewerken</th>
-                            <!--<th>Verwijderen</th>-->
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <?php
-                        $academies = $dataManager->get('Opleiding');
-                        if ($dataManager->count > 0)
-                            foreach ($academies as $academie) {
-                                echo '<tr>';
-                                echo '<td>' . $academie["ID"] . '</td>';
-                                echo '<td>' .  $academie["Naam"] . '</td>';
-
-                                ?>
-                                <td style="text-align: right;">
-                                    <form action="academie_edit.php" method="get">
-                                        <input type="hidden" name="id" value="<?php echo $academie["ID"]; ?>">
-                                        <button type="submit" class="btn btn-primary">Bewerken</button>
-                                    </form>
-                                </td>
-                                <td>
-                                    <!--<form action="academie_delete.php" method="get">
-                                        <input type="hidden" name="id" value="<?php echo $academie["ID"]; ?>">
-                                        <button type="submit" class="btn btn-danger">Verwijderen</button>
-                                    </form>-->
-                                </td>
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <div class="table-responsive">
+                            <table class="table table-hover">
+                                <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Academie</th>
+                                    <th style="text-align: right;">Bewerken</th>
+                                    <!--<th>Verwijderen</th>-->
                                 </tr>
-                        <?php
-                            }
-                        ?>
-                        </tbody>
-                    </table>
+                                </thead>
+                                <tbody>
+                                <?php
+                                $academies = $dataManager->get('Opleiding');
+                                if ($dataManager->count > 0)
+                                    foreach ($academies as $academie) {
+                                        echo '<tr>';
+                                        echo '<td>' . $academie["ID"] . '</td>';
+                                        echo '<td>' .  $academie["Naam"] . '</td>';
+
+                                        ?>
+                                        <td style="text-align: right;">
+                                            <form action="academie_edit.php" method="get">
+                                                <input type="hidden" name="id" value="<?php echo $academie["ID"]; ?>">
+                                                <button type="submit" class="btn btn-primary">Bewerken</button>
+                                            </form>
+                                        </td>
+                                        <td>
+                                            <!--<form action="academie_delete.php" method="get">
+                                                <input type="hidden" name="id" value="<?php echo $academie["ID"]; ?>">
+                                                <button type="submit" class="btn btn-danger">Verwijderen</button>
+                                            </form>-->
+                                        </td>
+                                        </tr>
+                                <?php
+                                    }
+                                ?>
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- /.table-responsive -->
+                    </div>
                 </div>
-                <!-- /.table-responsive -->
             </div>
             <!-- /.col-lg-6 -->
         </div>

@@ -44,7 +44,7 @@ require_once '../lib/requireAdmin.php';
 <div id="wrapper">
 
     <!-- Navigation -->
-    <?php include_once "../includes/nav.php" ?>
+    <?php include "../includes/nav.php" ?>
 
     <div id="page-wrapper">
         <div class="row">
@@ -55,53 +55,92 @@ require_once '../lib/requireAdmin.php';
                 </h1>
                 <?php
                 if($_SERVER['REQUEST_METHOD'] == 'POST') {
+                    if(isset($_POST['action']) && $_POST['action'] == 'create'){
+                        $werknemerID = cleanInput($_POST['werknemerid']);
+                        $voornaam = cleanInput($_POST['voornaam']);
+                        $tussenvoegsel = cleanInput($_POST['tussenvoegsel']);
+                        $acthernaam = cleanInput($_POST['achternaam']);
+                        $email = $_POST['email'];
 
-                    $werknemerID = cleanInput($_POST['werknemerid']);
-                    $voornaam = cleanInput($_POST['voornaam']);
-                    $tussenvoegsel = cleanInput($_POST['tussenvoegsel']);
-                    $acthernaam = cleanInput($_POST['achternaam']);
-                    $email = $_POST['email'];
+                        if (validateNumber($werknemerID, 0, 2147483647) &&
+                            validateInput($voornaam, 1, 128) &&
+                            validateInput($acthernaam, 2, 128)
+                        )
+                            {
 
-                    if (validateNumber($werknemerID, 0, 2147483647) &&
-                        validateInput($voornaam, 1, 128) &&
-                        validateInput($acthernaam, 2, 128)
-                    ) {
+                                $data = array(
+                                    "WerknemerID" => $werknemerID,
+                                    "Voornaam" => $voornaam,
+                                    "Achternaam" => $acthernaam
+                                );
 
-                        $data = array(
-                            "WerknemerID" => $werknemerID,
-                            "Voornaam" => $voornaam,
-                            "Achternaam" => $acthernaam
-                        );
+                                if (validateInput($tussenvoegsel, 1, 16)) {
+                                    $data['Tussenvoegsel'] = $tussenvoegsel;
+                                }
 
-                        if (validateInput($tussenvoegsel, 1, 16)) {
-                            $data['Tussenvoegsel'] = $tussenvoegsel;
-                        }
+                                if(isset($_POST['account'])) {
+                                    $account = cleanInput($_POST['account']);
+                                    if(filter_var($email, FILTER_VALIDATE_EMAIL) && $account == 'on') {
+                                        $password = randomPassword();
+                                        $register = $auth->register($email, $password, $password);
 
-                        if(isset($_POST['account'])) {
-                            $account = cleanInput($_POST['account']);
-                            if(filter_var($email, FILTER_VALIDATE_EMAIL) && $account == 'on') {
-                                $password = randomPassword();
-                                $register = $auth->register($email, $password, $password);
+                                        if($register['error'] == 0) {
+                                            echo '<div class="alert alert-success" role="alert">Het account is succesvol toegevoegd.</div>';
+                                        } else {
+                                            echo '<div class="alert alert-warning" role="alert">Het account voor de surveillant kon niet worden toegevoegd. ' . $register['message'] . '</div>';
+                                        }
+                                    }
+                                }
 
-                                if($register['error'] == 0) {
-                                    echo '<div class="alert alert-success" role="alert">Het account is succesvol toegevoegd.</div>';
-                                } else {
-                                    echo '<div class="alert alert-warning" role="alert">Het account voor de surveillant kon niet worden toegevoegd. ' . $register['message'] . '</div>';
+                                $insert = $dataManager->insert('Surveillant', $data);
+                                if ($insert)
+                                {
+                                    echo '<div class="alert alert-success" role="alert">De surveillant is succesvol toegevoegd.</div>';
+                                }
+                                else
+                                {
+                                    echo '<div class="alert alert-danger" role="alert">Fout bij het toevoegen aan de database.</div>';
                                 }
                             }
+                        else
+                        {
+                            echo '<div class="alert alert-warning" role="alert">Niet alle gegevens zijn juist ingevoerd.</div>';
                         }
-
-                        $insert = $dataManager->insert('Surveillant', $data);
-                        if ($insert) {
-                            echo '<div class="alert alert-success" role="alert">De surveillant is succesvol toegevoegd.</div>';
-                        } else {
-                            echo '<div class="alert alert-danger" role="alert">Fout bij het toevoegen aan de database.</div>';
-                        }
+                    }
+                if(isset($_POST['action']) && $_POST['action'] == 'active'){
+                    $data = array();
+                    $id = cleanInput($_POST['id']);
+                    $data['actief'] = 1;
+                    $dataManager->where('ID', $id);
+                    if ($dataManager->update('Surveillant', $data)) {
+                        echo "<div class='alert alert-success'>";
+                        echo 'De surveillant is succesvol op actief gezet.';
+                        echo "</div>";
                     } else {
-                        echo '<div class="alert alert-warning" role="alert">Niet alle gegevens zijn juist ingevoerd.</div>';
+                        echo "<div class='alert alert-danger'>";
+                        echo 'Fout bij het aanpassen van de surveillant.';
+                        echo "</div>";
                     }
 
                 }
+                    if(isset($_POST['action']) && $_POST['action'] == 'inactive'){
+                        $data = array();
+                        $id = cleanInput($_POST['id']);
+                        $data['actief'] = 0;
+                        $dataManager->where('ID', $id);
+                        if ($dataManager->update('Surveillant', $data)) {
+                            echo "<div class='alert alert-success'>";
+                            echo 'De surveillant is succesvol op actief gezet.';
+                            echo "</div>";
+                        } else {
+                            echo "<div class='alert alert-danger'>";
+                            echo 'Fout bij het aanpassen van de surveillant.';
+                            echo "</div>";
+                        }
+
+                    }
+                }
+
                 ?>
             </div>
             <!-- /.col-lg-12 -->
@@ -120,8 +159,9 @@ require_once '../lib/requireAdmin.php';
                                     <th>Voornaam</th>
                                     <th>Tussenvoegsel</th>
                                     <th>Achternaam</th>
+                                    <th>Actief</th>
                                     <th>Bewerken</th>
-                                    <th>Verwijderen</th>
+                                    <th>Activiteit</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -134,6 +174,11 @@ require_once '../lib/requireAdmin.php';
                                         echo '<td>' .  $surveillant["Voornaam"] . '</td>';
                                         echo '<td>' .  $surveillant["Tussenvoegsel"] . '</td>';
                                         echo '<td>' .  $surveillant["Achternaam"] . '</td>';
+                                        if($surveillant["Actief"]==1){
+                                            echo '<td>Actief</td>';
+                                        } else {
+                                            echo '<td>Inactief</td>';
+                                        }
                                         ?>
                                         <td>
                                             <form action="survedit.php" method="get">
@@ -141,9 +186,16 @@ require_once '../lib/requireAdmin.php';
                                             </form>
                                         </td>
                                         <td>
-                                        <form action="survdel.php" method="get">
+                                        <form action="surveillant.php" method="post">
                                             <input type="hidden" name="id" value="<?php echo $surveillant["ID"]; ?>">
-                                            <button type="submit" class="btn btn-danger">Verwijderen</button>
+                                            <?php if($surveillant["Actief"]==1){
+                                                echo'<input type="hidden" name="action" value="inactive">';
+                                                echo'<button type="submit" class="btn btn-danger">Maak Inactief</button>';}
+                                            else{
+                                                echo'<input type="hidden" name="action" value="active">';
+                                                echo'<button type="submit" class="btn btn-success">Maak Actief </button>';}
+                                            ?>
+
                                         </form>
                                         </td>
                                 <?php

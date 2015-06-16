@@ -59,7 +59,7 @@ require_once '../lib/requireAdmin.php';
             <div class="col-lg-6">
                     <!-- /.panel-heading -->
                     <div class="panel-body">
-                        Hier gaan we mensen bewerken hahahaha
+
                     </div>
                     <!-- /.panel-body -->
             </div>
