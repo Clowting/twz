@@ -22,7 +22,7 @@
 
     <!-- Custom Fonts -->
     <link href="../bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-
+file
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -67,14 +67,12 @@
                                 </thead>
                                 <tbody>
                                 <?php
-                                $surveillanten = $dataManager->get('Surveillant');
+                                $academies = $dataManager->get('Opleiding');
                                 if ($dataManager->count > 0)
-                                    foreach ($surveillanten as $surveillant) {
+                                    foreach ($academies as $academie) {
                                         echo '<tr>';
-                                        echo '<td>' . $surveillant["ID"] . '</td>';
-                                        echo '<td>' .  $surveillant["Voornaam"] . '</td>';
-                                        echo '<td>' .  $surveillant["Tussenvoegsel"] . '</td>';
-                                        echo '<td>' .  $surveillant["Achternaam"] . '</td>';
+                                        echo '<td>' . $academie["ID"] . '</td>';
+                                        echo '<td>' .  $academie["Naam"] . '</td>';
                                         echo '</tr>';
                                     }
                                 ?>

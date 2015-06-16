@@ -316,7 +316,7 @@
                             <a href="blank.php">Surveillantenbeheer</a>
                         </li>
                         <li>
-                            <a href="blank.php">Academiebeheer</a>
+                            <a href="academie.php">Academiebeheer</a>
                         </li>
                         <li>
                             <a href="login.php">Login Page</a>
