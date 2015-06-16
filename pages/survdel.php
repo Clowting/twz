@@ -78,7 +78,7 @@
                                     <button type='submit' class='btn btn-success btn-circle btn-xl'><i class='fa fa-check'></i>
                             </button></form>
 
-                                <form action="suveillant.php"">
+                                <form action="surveillant.php"">
                                     <br />
                             <button type='submit' class='btn btn-danger btn-circle btn-xl'><i class='fa fa-times'></i>
                             </button></form>
@@ -93,7 +93,7 @@
                                 echo 'Succesvol verwijderd.';
                                 echo "</div>";
                             ?>
-                            <form action="suveillant.php">
+                            <form action="surveillant.php">
                                 <button type='submit' class='btn btn-outline btn-info'>Ga terug
                                 </button></form>
             <?php
