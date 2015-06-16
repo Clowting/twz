@@ -65,15 +65,16 @@ require_once '../lib/requireAdmin.php';
                     echo "</div>";
                 }
                 else {
-                $id = $_GET['id'];
-                $dataManager->where("id", $id);
-                $surveillant = $dataManager->getOne('Surveillant');
+                    $id = $_GET['id'];
+                    $dataManager->where("id", $id);
+                    $surveillant = $dataManager->getOne('Surveillant');
 
                 ?>
                     <!-- /.panel-heading -->
                     <div class="panel-body">
                         <form action="surveillant.php" method="post">
-                            <input type="hidden" name="action" value="create">
+                            <h3>Persoonlijke gegevens</h3>
+                            <input type="hidden" name="action" value="edit">
                             <div class="form-group">
                                 <label for="werknemerid">Werknemernummer</label>
                                 <input name="werknemerid" type="number" class="form-control" placeholder="<?php echo $surveillant['WerknemerID'] ;?>">
@@ -93,17 +94,19 @@ require_once '../lib/requireAdmin.php';
 
                             <h3>Persoonlijk account</h3>
                             <div class="form-group">
-                                <label>Account aanmaken</label>
+                                <label>Account aanpassen</label>
                                 <input name="account" type="checkbox">
                             </div>
+                            <?php $dataManager->where("id", $surveillant['GebruikerID']);
+                            $users = $dataManager->getOne('users');?>
                             <div class="form-group">
                                 <label>E-mail</label>
-                                <input name="email" type="email" class="form-control" placeholder="naam@provider.nl">
+                                <input name="email" type="text" class="form-control" placeholder="<?php echo $users['email'] ;?>">
                             </div>
-                            <button type="submit" class="btn btn-primary">Toevoegen</button>
+                            <button type="submit" class="btn btn-primary">Aanpassen</button>
                         </form>
                     </div>
-                <?php }?>
+                <?php }//TODO DONT FORGET TO EDIT THIS PAGE!!!!!!?>
                     <!-- /.panel-body -->
             </div>
             <!-- /.col-lg-6 -->
