@@ -1,10 +1,9 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Startklaar
- * Date: 16-6-2015
- * Time: 09:49
- */
+require_once '../lib/connectdb.php';
+require_once '../lib/functions.php';
+require_once '../lib/requireAuth.php';
+//require_once '../lib/requireSession.php';
+//require_once '../lib/requireAdmin.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -58,6 +57,8 @@
         <div class="row">
             <div class="col-lg-12">
                 <form action="academie.php" method="post">
+                    <input type="hidden" name="action" value="create">
+
                     <div class="form-group">
                         <label for="naam">Academie/Opleiding</label>
                         <input name="naam" class="form-control" aria-required="true" placeholder="Academie/Opleiding">
