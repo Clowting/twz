@@ -58,26 +58,29 @@
         <!-- /.row -->
         <div class="row">
             <div class="col-lg-6">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h2>Surveillanten</h2>
-                    </div>
-                    <!-- /.panel-heading -->
-                    <div class="panel-body">
+
                         <?php
-                        $surveillanten = $dataManager->get('Surveillant');
-                        if (!isset($_GET['ID']))
+                        if (!isset($_GET['id']))
                         {
                             echo 'No ID was given...';
                             exit;
                         }
-                        $dataManger->where ("ID", $surveillanten);
-                        if($dataManager->delete('Surveillant')) echo 'Succesvol verwijderd.';
                         ?>
-                    </div>
-                    <!-- /.panel-body -->
-                </div>
-                <!-- /.panel -->
+                        <div class="alert alert-danger">
+                        Weet u zeker dat deze surveillant wilt verwijderen. <br />
+                            <button type="submit" class="btn btn-success btn-circle btn-lg"><i class="fa fa-check"></i>
+                            </button>
+                            <button type="submit" class="btn btn-danger btn-circle btn-lg"><i class="fa fa-times"></i>
+                            </button>
+                            </div>
+                        <?php
+                        function checkDelete()
+                        {
+                            $sid = $_GET['id'];
+                            $dataManager->where("ID", $sid);
+                            if ($dataManager->delete('Surveillant')) echo 'Succesvol verwijderd.';
+                        }
+                        ?>
             </div>
             <!-- /.col-lg-6 -->
         </div>

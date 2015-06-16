@@ -46,9 +46,6 @@
                     <form action="survedit.php">
                     <button type="submit" class="btn btn-primary">Bewerken</button>
                     </form>
-                        <form action="survdel.php">
-                    <button type="submit" class="btn btn-danger">Verwijderen</button>
-                        </form>
                 </h1>
             </div>
             <!-- /.col-lg-12 -->
@@ -83,8 +80,13 @@
                                         echo '<td>' .  $surveillant["Voornaam"] . '</td>';
                                         echo '<td>' .  $surveillant["Tussenvoegsel"] . '</td>';
                                         echo '<td>' .  $surveillant["Achternaam"] . '</td>';
-                                        ?>
-                                        <td><a href="survdel.php?id=<?php echo $surveillant['ID']; ?>">Delete</a></td>
+                                        ?><td>
+                                        <form action="survdel.php" method="get">
+                                            <input type="hidden" name="id" value="<?php echo $surveillant["ID"]; ?>">
+                                            <button type="submit" class="btn btn-danger">Verwijderen</button>
+                                        </form>
+                                        </td>
+                                        <!--<td><a href="survdel.php?id=/">Delete</a></td>-->
                                 <?php
                                         echo '</tr>';
                                     }
