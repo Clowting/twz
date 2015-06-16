@@ -1,23 +1,21 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Startklaar
- * Date: 16-6-2015
- * Time: 09:49
- */
+require_once '../lib/connectdb.php';
+require_once '../lib/functions.php';
+require_once '../lib/requireAuth.php';
+require_once '../lib/requireSession.php';
+require_once '../lib/requireAdmin.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <?php require_once "../lib/connectdb.php"?>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Bootstrap Admin Theme</title>
+    <title>TWZ - Surveillant toevoegen</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -50,7 +48,8 @@
     <div id="page-wrapper">
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header">Toevoegen
+                <h1 class="page-header">Surveillanten
+                    <small>Toevoegen</small>
                 </h1>
             </div>
             <!-- /.col-lg-12 -->
@@ -60,34 +59,35 @@
             <div class="col-lg-6">
                 <!-- /.panel-heading -->
                 <div class="panel-body">
-<<<<<<< HEAD
                     <form action="surveillant.php" method="post">
                         <div class="form-group">
-                            <label for="werknemerid">WerknemerID</label>
-                            <input name="werknemerid" class="form-control" placeholder="WerknemerID">
+                            <label for="werknemerid">Werknemernummer</label>
+                            <input name="werknemerid" type="number" class="form-control" placeholder="Werknemernummer">
                         </div>
                         <div class="form-group">
                             <label for="voornaam">Voornaam</label>
-                            <input name="voornaam" class="form-control" aria-required="true" placeholder="Voornaam">
+                            <input name="voornaam" type="text" class="form-control" aria-required="true" placeholder="Voornaam">
                         </div>
                         <div class="form-group">
                             <label for="tussenvoegsel">Tussenvoegsel</label>
-                            <input name="tussenvoegsel" class="form-control" placeholder="Tussenvoegsel">
+                            <input name="tussenvoegsel" type="text" class="form-control" placeholder="Tussenvoegsel">
                         </div>
                         <div class="form-group">
                             <label for="achternaam">Achternaam</label>
-                            <input name="achternaam" class="form-control" aria-required="true" placeholder="Achternaam">
+                            <input name="achternaam" type="text" class="form-control" aria-required="true" placeholder="Achternaam">
+                        </div>
+
+                        <h3>Persoonlijk account</h3>
+                        <div class="form-group">
+                            <label>Account aanmaken</label>
+                            <input name="account" type="checkbox">
                         </div>
                         <div class="form-group">
-                            <label>E-Mail</label>
-                            <input name="email" class="form-control" placeholder="E-Mail adres">
+                            <label>E-mail</label>
+                            <input name="email" type="email" class="form-control" placeholder="naam@provider.nl">
                         </div>
-
                         <button type="submit" class="btn btn-primary">Toevoegen</button>
                     </form>
-=======
-
->>>>>>> origin/master
                 </div>
                 <!-- /.panel-body -->
             </div>
@@ -115,15 +115,6 @@
 
 <!-- Custom Theme JavaScript -->
 <script src="../dist/js/sb-admin-2.js"></script>
-
-<!-- Page-Level Demo Scripts - Tables - Use for reference -->
-<script>
-    $(document).ready(function() {
-        $('#dataTables-example').DataTable({
-            responsive: true
-        });
-    });
-</script>
 
 </body>
 
