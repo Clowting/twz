@@ -1,13 +1,13 @@
 <?php
 require_once '../lib/connectdb.php';
 require_once '../lib/functions.php';
-require_once '../lib/requireAuth.php';
-require_once '../lib/requireSession.php';
-require_once '../lib/requireAdmin.php';
+//require_once '../lib/requireAuth.php';
+//require_once '../lib/requireSession.php';
+//require_once '../lib/requireAdmin.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
-.
+
 <head>
 
     <meta charset="utf-8">
@@ -100,7 +100,7 @@ file
                             <th>ID</th>
                             <th>Academie</th>
                             <th>Bewerken</th>
-                            <th>Verwijderen</th>
+                            <!--<th>Verwijderen</th>-->
                         </tr>
                         </thead>
                         <tbody>
