@@ -61,7 +61,7 @@
                     }
                     $id = $dataManager->insert('Surveillant', $data);
                     if ($id)
-                        echo 'User was created. ID=' . $id
+                        echo 'User was created. ID=' . $id;
                 }
                     ?>
             </div>
