@@ -17,7 +17,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Bootstrap Admin Theme</title>
+    <title>TWZ - Academiebeheer</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -50,52 +50,25 @@
     <div id="page-wrapper">
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header">Toevoegen
-                </h1>
+                <h1 class="page-header">Toevoegen</h1>
             </div>
             <!-- /.col-lg-12 -->
         </div>
         <!-- /.row -->
         <div class="row">
-            <div class="col-lg-6">
-                <!-- /.panel-heading -->
-                <div class="panel-body">
-<<<<<<< HEAD
-                    <form action="surveillant.php" method="post">
-                        <div class="form-group">
-                            <label for="werknemerid">WerknemerID</label>
-                            <input name="werknemerid" class="form-control" placeholder="WerknemerID">
-                        </div>
-                        <div class="form-group">
-                            <label for="voornaam">Voornaam</label>
-                            <input name="voornaam" class="form-control" aria-required="true" placeholder="Voornaam">
-                        </div>
-                        <div class="form-group">
-                            <label for="tussenvoegsel">Tussenvoegsel</label>
-                            <input name="tussenvoegsel" class="form-control" placeholder="Tussenvoegsel">
-                        </div>
-                        <div class="form-group">
-                            <label for="achternaam">Achternaam</label>
-                            <input name="achternaam" class="form-control" aria-required="true" placeholder="Achternaam">
-                        </div>
-                        <div class="form-group">
-                            <label>E-Mail</label>
-                            <input name="email" class="form-control" placeholder="E-Mail adres">
-                        </div>
-
-                        <button type="submit" class="btn btn-primary">Toevoegen</button>
-                    </form>
-=======
-
->>>>>>> origin/master
-                </div>
-                <!-- /.panel-body -->
+            <div class="col-lg-12">
+                <form action="academie.php" method="post">
+                    <div class="form-group">
+                        <label for="naam">Academie/Opleiding</label>
+                        <input name="naam" class="form-control" aria-required="true" placeholder="Academie/Opleiding">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Toevoegen</button>
+                </form>
             </div>
-            <!-- /.col-lg-6 -->
         </div>
-        <!-- /.row -->
+    <!-- /.row -->
     </div>
-    <!-- /#page-wrapper -->
+<!-- /#page-wrapper -->
 
 </div>
 <!-- /#wrapper -->

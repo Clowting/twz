@@ -17,7 +17,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Bootstrap Admin Theme</title>
+    <title>TWZ - Academiebeheer</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -50,7 +50,7 @@
     <div id="page-wrapper">
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header">Toevoegen
+                <h1 class="page-header">Verwijderen
                 </h1>
             </div>
             <!-- /.col-lg-12 -->
@@ -58,44 +58,55 @@
         <!-- /.row -->
         <div class="row">
             <div class="col-lg-6">
-                <!-- /.panel-heading -->
-                <div class="panel-body">
-<<<<<<< HEAD
-                    <form action="surveillant.php" method="post">
-                        <div class="form-group">
-                            <label for="werknemerid">WerknemerID</label>
-                            <input name="werknemerid" class="form-control" placeholder="WerknemerID">
-                        </div>
-                        <div class="form-group">
-                            <label for="voornaam">Voornaam</label>
-                            <input name="voornaam" class="form-control" aria-required="true" placeholder="Voornaam">
-                        </div>
-                        <div class="form-group">
-                            <label for="tussenvoegsel">Tussenvoegsel</label>
-                            <input name="tussenvoegsel" class="form-control" placeholder="Tussenvoegsel">
-                        </div>
-                        <div class="form-group">
-                            <label for="achternaam">Achternaam</label>
-                            <input name="achternaam" class="form-control" aria-required="true" placeholder="Achternaam">
-                        </div>
-                        <div class="form-group">
-                            <label>E-Mail</label>
-                            <input name="email" class="form-control" placeholder="E-Mail adres">
-                        </div>
 
-                        <button type="submit" class="btn btn-primary">Toevoegen</button>
-                    </form>
-=======
+                <?php
+                if (!isset($_GET['id']))
+                {
+                    echo "<div class='alert alert-danger'>";
+                    echo '<h2>Selecteer een academie op de vorige pagina</h2>';
+                    echo '</div>';
+                    exit;
+                }
+                if(isset($_GET['id'])&& !isset($_GET['confirm'])) {
 
->>>>>>> origin/master
-                </div>
-                <!-- /.panel-body -->
+                echo "<div class='alert alert-danger'>";
+                echo "<h2>Weet u zeker dat u deze academie wilt verwijderen?</h2>";
+                ?>
             </div>
-            <!-- /.col-lg-6 -->
+            <form action='academie.php' method='get' style="float: left">
+                <input type="hidden" name="id" value="<?php echo $_GET['id']; ?>">
+                <input type="hidden" name="action" value="delete">
+                <br />
+                <button type='submit' class='btn btn-success btn-circle btn-xl'><i class='fa fa-check'></i>
+                </button></form>
+
+            <form action="academie.php"">
+            <br />
+            <button type='submit' class='btn btn-danger btn-circle btn-xl'><i class='fa fa-times'></i>
+            </button></form>
+            <?php
+            }
+            if(isset($_GET['id'])&& isset($_GET['confirm'])) {
+
+                $sid = $_GET['id'];
+                $dataManager->where("ID", $sid);
+                if ($dataManager->delete('Surveillant'))
+                    echo "<div class='alert alert-success'>";
+                echo 'Succesvol verwijderd.';
+                echo "</div>";
+                ?>
+                <form action="blank.php">
+                    <button type='submit' class='btn btn-outline btn-info'>Ga terug
+                    </button></form>
+            <?php
+            }
+            ?>
         </div>
-        <!-- /.row -->
+        <!-- /.col-lg-6 -->
     </div>
-    <!-- /#page-wrapper -->
+    <!-- /.row -->
+</div>
+<!-- /#page-wrapper -->
 
 </div>
 <!-- /#wrapper -->
