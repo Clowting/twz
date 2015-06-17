@@ -8,7 +8,7 @@
 <link href="../stylesheets/styles.css" rel="stylesheet">
 
 <!-- Bootstrap Datepicker CSS -->
-<link href="../bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css" rel="stylesheet">
+<link href="../bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker3.min.css" rel="stylesheet">
 
 <!-- MetisMenu CSS -->
 <link href="../bower_components/metisMenu/dist/metisMenu.min.css" rel="stylesheet">

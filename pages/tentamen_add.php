@@ -62,6 +62,10 @@ require_once '../lib/requireAdmin.php';
                                 <label for="aantal">Aantal surveillanten:</label>
                                 <input type="number" class="form-control" name="aantal" id="aantal">
                             </div>
+                            <div class="form-group">
+                                <label for="datum">Datum:</label>
+                                <input type="text" class="form-control date-field" name="datum" id="datum">
+                            </div>
                             <button type="submit" class="btn btn-default">Toevoegen</button>
                         </form>
                     </div>
