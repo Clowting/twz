@@ -139,7 +139,7 @@ require_once '../lib/requireAdmin.php';
                                 if (filter_var($email, FILTER_VALIDATE_EMAIL) && $account == 'on') {
                                     $uid = $auth->getUID($email);
                                     if ($userid != NULL) {
-                                        $dataManager->where('ID', $userid);
+                                        $dataManager->where('id', $userid);
                                         if ($dataManager->update('user', $email)) {
                                             echo '<div class="alert alert-success" role="alert">Het account is succesvol aangepast.</div>';
                                         } else {
