@@ -1,5 +1,7 @@
 <?php
 
+    include_once '../lib/requireAuth.php';
+
 	function isAdmin($user) {
 		return $user['rank'] == 'admin';
 	}
@@ -7,10 +9,10 @@
     function isUser($user) {
         return $user['rank'] == 'user';
     }
-	
-	function isSurveillant($roles) {
-		return in_array('lid', $roles);
-	}
+
+    function hasSession() {
+        return (isset($_COOKIE[$config->cookie_name]) && $auth->checkSession($_COOKIE[$config->cookie_name]));
+    }
 
 	function toTimestamp($value) {
 		$date = DateTime::createFromFormat('Ymd', $value);
@@ -66,7 +68,7 @@
             $n = rand(0, $alphaLength);
             $pass[] = $alphabet[$n];
         }
-        return implode($pass); //turn the array into a string
+        return 'Tw2' . implode($pass); //turn the array into a string
     }
     
     

@@ -11,7 +11,7 @@ $lang['remember_me_invalid'] = "Het onthoud mij veld is incorrect.";
 
 $lang['password_short'] = "Wachtwoord is te kort.";
 $lang['password_long'] = "Wachtwoord is te lang";
-$lang['password_invalid'] = "Het wachtwoord moet minstens een hoofdletter, normale letter en een getal bevatten.";
+$lang['password_invalid'] = "Het wachtwoord moet minstens een hoofdletter, kleine letter en een getal bevatten.";
 $lang['password_nomatch'] = "Wachtwoorden komen niet overeen";
 $lang['password_changed'] = "Wachtwoord succesvol veranderd..";
 $lang['password_incorrect'] = "Huidige wachrwoord is incorrect.";
@@ -19,11 +19,11 @@ $lang['password_notvalid'] = "Wachtwoord is incorrect";
 
 $lang['newpassword_short'] = "Nieuwe wachtwoord is te kort.";
 $lang['newpassword_long'] = "Nieuwe wachtwoord is te lang.";
-$lang['newpassword_invalid'] = "Nieuwe wachtwoord moet minstens een hoofdletter, normale letter en een getal bevatten.";
+$lang['newpassword_invalid'] = "Nieuwe wachtwoord moet minstens een hoofdletter, kleine letter en een getal bevatten.";
 $lang['newpassword_nomatch'] = "Nieuwe wachtwoorden komen niet overeen.";
 
 $lang['email_short'] = "Emailadres is te kort.";
-$lang['email_long'] = "Emailadres is te lang..";
+$lang['email_long'] = "Emailadres is te lang.";
 $lang['email_invalid'] = "Emailadres is onjuist.";
 $lang['email_incorrect'] = "Emailadres is incorrect.";
 $lang['email_banned'] = "Emailadres is niet toegestaan.";
