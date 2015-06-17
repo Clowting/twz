@@ -137,10 +137,10 @@ require_once '../lib/requireAdmin.php';
                             if (isset($_POST['account'])) {
                                 $account = cleanInput($_POST['account']);
                                 if (filter_var($email, FILTER_VALIDATE_EMAIL) && $account == 'on') {
-                                    $uid = $auth->getUID($email);
                                     if ($userid != NULL) {
+                                        $newmail = array("email" => $email);
                                         $dataManager->where('id', $userid);
-                                        if ($dataManager->update('users', $email)) {
+                                        if ($dataManager->update('users', $newmail)) {
                                             echo '<div class="alert alert-success" role="alert">Het account is succesvol aangepast.</div>';
                                         } else {
                                             echo '<div class="alert alert-success" role="alert">Het account voor de surveillant kon niet worden aangepast.</div>';
