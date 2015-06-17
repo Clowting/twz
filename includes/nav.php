@@ -19,12 +19,10 @@
             </a>
 
             <ul class="dropdown-menu dropdown-user">
-                <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
-                </li>
-                <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
+                <li><a href="#"><i class="fa fa-gear fa-fw"></i> Instellingen</a>
                 </li>
                 <li class="divider"></li>
-                <li><a href="login.php?option=logout"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                <li><a href="login.php?option=logout"><i class="fa fa-sign-out fa-fw"></i> Uitloggen</a>
                 </li>
                 </ul>
 
@@ -55,7 +53,7 @@
                 </li>
                 <li>
                     <a href="tables.php"><i class="fa fa-envelope fa-fw"></i> Contact</a>
-                </li><?php if(isAdmin($user)){echo'
+                </li><?php if(isset($user) && isAdmin($user)){echo'
                 <li>
                     <a href="#"><i class="fa fa-user-plus fa-fw"></i> Admin<span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
@@ -76,7 +74,7 @@
                     <!-- /.nav-second-level -->
                 </li>
                 ';}
-                if(isUser($user)){echo'
+                if(isset($user) && isUser($user)){echo'
                 <li>
                     <a href="#"><i class="fa fa-user fa-fw"></i> Surveillant<span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
