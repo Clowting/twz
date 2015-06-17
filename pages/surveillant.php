@@ -125,15 +125,20 @@ require_once '../lib/requireAdmin.php';
 
                         if (validateNumber($werknemerID, 0, 2147483647) &&
                             validateInput($voornaam, 1, 128) &&
-                            validateInput($achternaam, 2, 128) &&
-                            validateInput($tussenvoegsel, 1, 16)
+                            validateInput($achternaam, 2, 128)
                         ) {
                             $data = array(
                                 "WerknemerID" => $werknemerID,
                                 "Voornaam" => $voornaam,
-                                "Achternaam" => $achternaam,
-                                "Tussenvoegsel" => $tussenvoegsel
+                                "Achternaam" => $achternaam
                             );
+
+                            if (validateInput($tussenvoegsel, 1, 16)) {
+                                $data['Tussenvoegsel'] = $tussenvoegsel;
+                            }
+                            else {
+                                $data['Tussenvoegsel'] = '';
+                            }
                             if (isset($_POST['account'])) {
                                 $account = cleanInput($_POST['account']);
                                 if (filter_var($email, FILTER_VALIDATE_EMAIL) && $account == 'on') {

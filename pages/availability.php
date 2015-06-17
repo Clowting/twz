@@ -3,7 +3,7 @@ require_once '../lib/connectdb.php';
 require_once '../lib/functions.php';
 require_once '../lib/requireAuth.php';
 require_once '../lib/requireSession.php';
-require_once '../lib/requireUser.php';
+require_once '../lib/requireAdmin.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -35,6 +35,39 @@ require_once '../lib/requireUser.php';
         <!-- /.row -->
         <div class="row">
             <div class="col-md-12">
+                <?php
+                $cols = Array ("Dag");
+                $tentamendagen = $dataManager->rawQuery('SELECT DISTINCT Dag FROM Tentamen');
+
+                $ddate = "2015-7-13";
+                $date = new DateTime($ddate);
+                $week = $date->format("W");
+                $year = $date->format("Y");
+                echo "Weeknummer: $week";
+
+                $date = new DateTime();
+                $year = $date->format("Y");
+                $date->setISODate($year, $week);
+                echo $date->format('Y-m-d');
+                echo' - ';
+                date_isodate_set($date, 2008, 2, 7);
+                echo date_format($date, 'Y-m-d') . "\n";
+                ?>
+                <form action="availability.php" method="get">
+                    <div class="form-group">
+                        <label>Selects</label>
+                        <select class="form-control" name="week" onchange="form.submit()">
+                            <option>Selecteer een week</option>
+                            <?php foreach($tentamendagen as $tentamendag){
+                            $date = new DateTime($tentamendag->dag);
+                            $week = $date->format("W");
+                            $year = $date->format("Y");
+                            $date->setISODate($year, $week);
+
+                            ?>
+
+                    </div>
+                </form>
 
                 <div class="panel panel-default">
                     <!-- /.panel-heading -->
@@ -51,11 +84,11 @@ require_once '../lib/requireUser.php';
                                 </tr>
                                 </thead>
                                 <tbody>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
+                                <?php
+                                foreach($tentamendagen as $tentamendag){
+                                $date = new DateTime($tentamendag->dag);
+                                $week = $date->format("W");?>
+                                ?>
                                 </tbody>
                             </table>
                         </div>

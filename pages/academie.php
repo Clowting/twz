@@ -68,7 +68,7 @@ require_once '../lib/requireAdmin.php';
             //    }
             //}
             if($_SERVER['REQUEST_METHOD'] == 'POST' ) {
-                if ($_POST['action'] == create) {
+                if (isset($_POST) && $_POST['action'] == 'create') {
                     $data = array();
                     $opleidingnaam = cleanInput($_POST['naam']);
                     if (validateInput($opleidingnaam, 1, 128)) {
@@ -88,7 +88,7 @@ require_once '../lib/requireAdmin.php';
                         echo "</div>";
                     }
                 }
-                if ($_POST['action'] == edit) {
+                if(isset($_POST['action']) && $_POST['action'] == 'edit') {
                     $data = array();
                     $id = $_POST['id'];
                     $opleidingnaam = cleanInput($_POST['naam']);
