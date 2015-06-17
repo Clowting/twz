@@ -1,7 +1,5 @@
 <?php
 
-    include_once '../lib/requireAuth.php';
-
 	function isAdmin($user) {
 		return $user['rank'] == 'admin';
 	}
@@ -10,7 +8,7 @@
         return $user['rank'] == 'user';
     }
 
-    function hasSession() {
+    function hasSession($config, $auth) {
         return (isset($_COOKIE[$config->cookie_name]) && $auth->checkSession($_COOKIE[$config->cookie_name]));
     }
 
