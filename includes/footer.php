@@ -6,6 +6,7 @@
 
 <!-- Bootstrap Datepicker JS -->
 <script src="../bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
+<script src="../bower_components/bootstrap-datepicker/dist/locales/bootstrap-datepicker.nl.min.js"></script>
 
 <!-- Main JS -->
 <script src="../javascripts/main.js"></script>
