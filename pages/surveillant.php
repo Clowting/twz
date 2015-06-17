@@ -195,6 +195,7 @@ require_once '../lib/requireAdmin.php';
                                     <th>Actief</th>
                                     <th>Bewerken</th>
                                     <th>Activiteit</th>
+                                    <th>Beschikbaarheid</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -220,7 +221,7 @@ require_once '../lib/requireAdmin.php';
                                         <td>
                                             <form action="survedit.php" method="get">
                                                 <input type="hidden" name="id" value="<?php echo $surveillant["ID"]; ?>">
-                                                <button type="submit" class="btn btn-primary">Bewerken</button>
+                                                <button type="submit" class="btn btn-outline btn-primary ">Bewerken</button>
                                             </form>
                                         </td>
                                         <td>
@@ -230,14 +231,20 @@ require_once '../lib/requireAdmin.php';
                                             <?php
                                             if ($surveillant["Actief"] == 1) {
                                                 echo'<input type="hidden" name="action" value="inactive">';
-                                                echo'<button type="submit" class="btn btn-danger">Maak Inactief</button>';
+                                                echo'<button type="submit" class="btn btn-outline btn-danger ">Maak Inactief</button>';
                                             } else {
                                                 echo'<input type="hidden" name="action" value="active">';
-                                                echo'<button type="submit" class="btn btn-success">Maak Actief</button>';
+                                                echo'<button type="submit" class="btn btn-outline btn-success ">Maak Actief</button>';
                                             }
                                             ?>
 
                                         </form>
+                                        </td>
+                                        <td>
+                                            <form action="availability.php" method="post">
+                                                <input type="hidden" name="id" value="<?php echo $surveillant["ID"]; ?>">
+                                                <button type="submit" class="btn btn-outline btn-primary ">Beschikbaarheid</button>
+                                            </form>
                                         </td>
                                 <?php
                                         echo '</tr>';

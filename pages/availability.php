@@ -25,10 +25,12 @@ require_once '../lib/requireAdmin.php';
     <div id="page-wrapper">
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header">Surveillanten
-                    <small>Overzicht</small>
-                    <a href="survcreate.php" role="button" class="btn btn-primary align-right">Toevoegen</a>
+                <h1 class="page-header">Surveilleren
+                    <small>Beschikbaarheid</small>
                 </h1>
+                <?php
+                if(isset($_POST['id'])){
+                ?>
             </div>
             <!-- /.col-lg-12 -->
         </div>
@@ -38,7 +40,8 @@ require_once '../lib/requireAdmin.php';
             $tentamenweken = $dataManager->rawQuery('SELECT DISTINCT Week FROM Tentamen');
             ?>
             <div class="col-md-6">
-                <form action="availability.php" method="get">
+                <form action="availability.php" method="post">
+                    <input type="hidden" name="id" value="<?php echo $_POST['id'] ?>">
                     <div class="form-group">
                         <label >Selecteer een week</label>
                         <select class="form-control" name="week" onchange="form.submit()">
@@ -46,7 +49,7 @@ require_once '../lib/requireAdmin.php';
                             <?php foreach($tentamenweken as $tentamenweek){
                                 $w = $tentamenweek['Week'];
                                 echo '<option value="'.$w.'"';
-                                if(isset($_GET['week'])&& $_GET['week']==$w) {echo'selected';} echo'> Week'.$w.' </option>';
+                                if(isset($_POST['week'])&& $_POST['week']==$w) {echo'selected';} echo'> Week '.$w.' </option>';
                             } ?>
                         </select>
                     </div>
@@ -56,7 +59,7 @@ require_once '../lib/requireAdmin.php';
 
             </div>
         </div>
-        <?php if(isset($_GET['week'])&& $_GET['week'] != "NULL") {
+        <?php if(isset($_POST['week'])&& $_POST['week'] != "NULL") {
         $date = new DateTime();
         $year = $date->format("Y")?>
         <div class="row">
@@ -83,7 +86,7 @@ require_once '../lib/requireAdmin.php';
                                     </th>
                                     <td>
                                         <form>
-                                            <?php $date->setISODate($year, $_GET['week']); ?>
+                                            <?php $date->setISODate($year, $_POST['week']); ?>
                                             <input type="hidden" name="periode" value="ochtend">
 
                                             <input type="hidden" name="date" value="<?php echo $date->format('d-m-Y') ?>">
@@ -95,7 +98,7 @@ require_once '../lib/requireAdmin.php';
                                     </td>
                                     <td>
                                         <form>
-                                            <?php $date->setISODate($year, $_GET['week'], 2); ?>
+                                            <?php $date->setISODate($year, $_POST['week'], 2); ?>
                                             <input type="hidden" name="periode" value="ochtend">
 
                                             <input type="hidden" name="date" value="<?php echo $date->format('d-m-Y') ?>">
@@ -107,7 +110,7 @@ require_once '../lib/requireAdmin.php';
                                     </td>
                                     <td>
                                         <form>
-                                            <?php $date->setISODate($year, $_GET['week'], 3); ?>
+                                            <?php $date->setISODate($year, $_POST['week'], 3); ?>
                                             <input type="hidden" name="periode" value="ochtend">
 
                                             <input type="hidden" name="date" value="<?php echo $date->format('d-m-Y') ?>">
@@ -119,7 +122,7 @@ require_once '../lib/requireAdmin.php';
                                     </td>
                                     <td>
                                         <form>
-                                            <?php $date->setISODate($year, $_GET['week'], 4); ?>
+                                            <?php $date->setISODate($year, $_POST['week'], 4); ?>
                                             <input type="hidden" name="periode" value="ochtend">
 
                                             <input type="hidden" name="date" value="<?php echo $date->format('d-m-Y'); ?>">
@@ -131,7 +134,7 @@ require_once '../lib/requireAdmin.php';
                                     </td>
                                     <td>
                                         <form>
-                                            <?php $date->setISODate($year, $_GET['week'], 5); ?>
+                                            <?php $date->setISODate($year, $_POST['week'], 5); ?>
                                             <input type="hidden" name="periode" value="ochtend">
 
                                             <input type="hidden" name="date" value="<?php echo $date->format('d-m-Y'); ?>">
@@ -146,7 +149,7 @@ require_once '../lib/requireAdmin.php';
                                     <th>Middag</th>
                                     <td>
                                         <form>
-                                            <?php $date->setISODate($year, $_GET['week']); ?>
+                                            <?php $date->setISODate($year, $_POST['week']); ?>
                                             <input type="hidden" name="periode" value="middag">
 
                                             <input type="hidden" name="date" value="<?php echo $date->format('d-m-Y'); ?>">
@@ -158,7 +161,7 @@ require_once '../lib/requireAdmin.php';
                                     </td>
                                     <td>
                                         <form>
-                                            <?php $date->setISODate($year, $_GET['week'], 2); ?>
+                                            <?php $date->setISODate($year, $_POST['week'], 2); ?>
                                             <input type="hidden" name="periode" value="middag">
 
                                             <input type="hidden" name="date" value="<?php echo $date->format('d-m-Y'); ?>">
@@ -170,7 +173,7 @@ require_once '../lib/requireAdmin.php';
                                     </td>
                                     <td>
                                         <form>
-                                            <?php $date->setISODate($year, $_GET['week'], 3); ?>
+                                            <?php $date->setISODate($year, $_POST['week'], 3); ?>
                                             <input type="hidden" name="periode" value="middag">
 
                                             <input type="hidden" name="date" value="<?php echo $date->format('d-m-Y'); ?>">
@@ -182,7 +185,7 @@ require_once '../lib/requireAdmin.php';
                                     </td>
                                     <td>
                                         <form>
-                                            <?php $date->setISODate($year, $_GET['week'], 4); ?>
+                                            <?php $date->setISODate($year, $_POST['week'], 4); ?>
                                             <input type="hidden" name="periode" value="middag">
 
                                             <input type="hidden" name="date" value="<?php echo $date->format('d-m-Y'); ?>">
@@ -194,7 +197,7 @@ require_once '../lib/requireAdmin.php';
                                     </td>
                                     <td>
                                         <form>
-                                            <?php $date->setISODate($year, $_GET['week'], 5); ?>
+                                            <?php $date->setISODate($year, $_POST['week'], 5); ?>
                                             <input type="hidden" name="periode" value="middag">
 
                                             <input type="hidden" name="date" value="<?php echo $date->format('d-m-Y'); ?>">
@@ -209,7 +212,7 @@ require_once '../lib/requireAdmin.php';
                                     <th>Avond</th>
                                     <td>
                                         <form>
-                                            <?php $date->setISODate($year, $_GET['week']); ?>
+                                            <?php $date->setISODate($year, $_POST['week']); ?>
                                             <input type="hidden" name="periode" value="avond">
 
                                             <input type="hidden" name="date" value="<?php echo $date->format('d-m-Y'); ?>">
@@ -220,7 +223,7 @@ require_once '../lib/requireAdmin.php';
                                     </td>
                                     <td>
                                         <form>
-                                            <?php $date->setISODate($year, $_GET['week'],2); ?>
+                                            <?php $date->setISODate($year, $_POST['week'],2); ?>
                                             <input type="hidden" name="periode" value="avond">
 
                                             <input type="hidden" name="date" value="<?php echo $date->format('d-m-Y'); ?>">
@@ -231,7 +234,7 @@ require_once '../lib/requireAdmin.php';
                                     </td>
                                     <td>
                                         <form>
-                                            <?php $date->setISODate($year, $_GET['week'],3); ?>
+                                            <?php $date->setISODate($year, $_POST['week'],3); ?>
                                             <input type="hidden" name="periode" value="avond">
 
                                             <input type="hidden" name="date" value="<?php echo $date->format('d-m-Y'); ?>">
@@ -242,7 +245,7 @@ require_once '../lib/requireAdmin.php';
                                     </td>
                                     <td>
                                         <form>
-                                            <?php $date->setISODate($year, $_GET['week'],4); ?>
+                                            <?php $date->setISODate($year, $_POST['week'],4); ?>
                                             <input type="hidden" name="periode" value="avond">
 
                                             <input type="hidden" name="date" value="<?php echo $date->format('d-m-Y'); ?>">
@@ -253,7 +256,7 @@ require_once '../lib/requireAdmin.php';
                                     </td>
                                     <td>
                                         <form>
-                                            <?php $date->setISODate($year, $_GET['week'],5); ?>
+                                            <?php $date->setISODate($year, $_POST['week'],5); ?>
                                             <input type="hidden" name="periode" value="avond">
 
                                             <input type="hidden" name="date" value="<?php echo $date->format('d-m-Y'); ?>">
@@ -273,9 +276,28 @@ require_once '../lib/requireAdmin.php';
                     </div>
                 </div>
                 <!-- /.panel -->
-                <?php } ?>
+
             </div>
-            <!-- /.col-lg-6 -->
+            <!-- /.col-lg-9 -->
+            <div class="col-lg-3 hidden-sm hidden-xs">
+                <div class="panel panel-info">
+                    <div class="panel-heading">
+                        Extra informatie
+                    </div>
+                    <div class="panel-body">
+                        <big>Geef uw beschikbaarheid op per week</big>
+                        <ul>
+                            <li>Selecteer een <b>week</b> waarin tentamens gegeven worden.</li>
+                            <li>Geef per dag aan of u in de <b>ochtend, middag </b>en/of<b> avond</b> beschikbaar bent.</li>
+                            <li>Aan de hand van deze informatie zal een rooster opgesteld worden door <i>TWZ</i>.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <?php }}else {
+                echo'<div class="alert alert-danger" role="alert"><b>Oeps!</b> Er is iets fout gegaan bij het selecteren van de surveillant.</div>';
+            }?>
+        </div>
         </div>
         <!-- /.row -->
     </div>
