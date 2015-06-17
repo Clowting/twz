@@ -7,6 +7,10 @@
 // Import Bootstrap for Sass
 @import "bootstrap";
 
+a, button {
+	@include transition(all .2s linear);
+}
+
 .align-right {
 	float: right;
 }
