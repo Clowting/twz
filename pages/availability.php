@@ -55,7 +55,7 @@ require_once '../lib/requireAdmin.php';
                 ?>
                 <form action="availability.php" method="get">
                     <div class="form-group">
-                        <label>Selects</label>
+                        <label>Selecteer een week</label>
                         <select class="form-control" name="week" onchange="form.submit()">
                             <option>Selecteer een week</option>
                             <?php foreach($tentamendagen as $tentamendag){
@@ -63,8 +63,11 @@ require_once '../lib/requireAdmin.php';
                             $week = $date->format("W");
                             $year = $date->format("Y");
                             $date->setISODate($year, $week);
-
                             ?>
+                                <form>
+                                    <input type="hidden" value="Ochtend">
+                                </form>
+                            <?php}?>
 
                     </div>
                 </form>
@@ -84,11 +87,66 @@ require_once '../lib/requireAdmin.php';
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <?php
-                                foreach($tentamendagen as $tentamendag){
-                                $date = new DateTime($tentamendag->dag);
-                                $week = $date->format("W");?>
-                                ?>
+                                <td>
+                                    <form>
+                                        <?php $date->setISODate($year, $week); ?>
+                                        <input type="hidden" name="periode" value="ochtend">
+
+                                        <input type="hidden" name="date" value="<?php echo $date->format('d-m-Y') ?>">
+                                        <label>
+                                            <input type="checkbox" name="availability">
+                                        </label>
+
+                                    </form>
+                                </td>
+                                <td>
+                                    <form>
+                                        <?php $date->setISODate($year, $week, 1); ?>
+                                        <input type="hidden" name="periode" value="ochtend">
+
+                                        <input type="hidden" name="date" value="<?php echo $date->format('d-m-Y') ?>">
+                                        <label>
+                                            <input type="checkbox" name="availability">
+                                        </label>
+
+                                    </form>
+                                </td>
+                                <td>
+                                    <form>
+                                        <?php $date->setISODate($year, $week, 2); ?>
+                                        <input type="hidden" name="periode" value="ochtend">
+
+                                        <input type="hidden" name="date" value="<?php echo $date->format('d-m-Y') ?>">
+                                        <label>
+                                            <input type="checkbox" name="availability">
+                                        </label>
+
+                                    </form>
+                                </td>
+                                <td>
+                                    <form>
+                                        <?php $date->setISODate($year, $week, 3); ?>
+                                        <input type="hidden" name="periode" value="ochtend">
+
+                                        <input type="hidden" name="date" value="<?php echo $date->format('d-m-Y') ?>">
+                                        <label>
+                                            <input type="checkbox" name="availability">
+                                        </label>
+
+                                    </form>
+                                </td>
+                                <td>
+                                    <form>
+                                        <?php $date->setISODate($year, $week, 4); ?>
+                                        <input type="hidden" name="periode" value="ochtend">
+
+                                        <input type="hidden" name="date" value="<?php echo $date->format('d-m-Y') ?>">
+                                        <label>
+                                            <input type="checkbox" name="availability">
+                                        </label>
+
+                                    </form>
+                                </td>
                                 </tbody>
                             </table>
                         </div>
