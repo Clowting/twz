@@ -34,30 +34,33 @@ require_once '../lib/requireAdmin.php';
         </div>
         <!-- /.row -->
         <div class="row">
-            <div class="col-md-12">
-                <?php
-                $tentamendagen = $dataManager->rawQuery('SELECT DISTINCT Dag FROM Tentamen');
-                ?>
+            <?php
+            $tentamenweken = $dataManager->rawQuery('SELECT DISTINCT Week FROM Tentamen');
+            ?>
+            <div class="col-md-6">
                 <form action="availability.php" method="get">
                     <div class="form-group">
-                        <label>Selecteer een week
+                        <label >Selecteer een week</label>
                         <select class="form-control" name="week" onchange="form.submit()">
-                            <option>Selecteer een week</option>
-                            <?php foreach($tentamendagen as $tentamendag){
-                            $date = new DateTime($tentamendag->dag);
-                            $week = $date->format("W");
-                            $year = $date->format("Y");
-                            $date->setISODate($year, $week);
-                            ?>
-
-                            <option value="<?php echo $week.'"'; if(isset($_GET['week'])&& $_GET['week']==$week){echo'selected';}?>
-                                    >Week <?php echo $week ?></option>
-                            <?php } ?>
-                            </select>
-
+                            <option value="NULL">Selecteer een week</option>
+                            <?php foreach($tentamenweken as $tentamenweek){
+                                $w = $tentamenweek['Week'];
+                                echo '<option value="'.$w.'"';
+                                if(isset($_GET['week'])&& $_GET['week']==$w) {echo'selected';} echo'> Week'.$w.' </option>';
+                            } ?>
+                        </select>
                     </div>
                 </form>
+            </div>
+            <div class="col-md-6">
 
+            </div>
+        </div>
+        <?php if(isset($_GET['week'])&& $_GET['week'] != "NULL") {
+        $date = new DateTime();
+        $year = $date->format("Y")?>
+        <div class="row">
+            <div class="col-lg-9">
                 <div class="panel panel-default">
                     <!-- /.panel-heading -->
                     <div class="panel-body">
@@ -267,8 +270,10 @@ require_once '../lib/requireAdmin.php';
                             </table>
                         </div>
                         <!-- /.table-responsive -->
+                    </div>
                 </div>
                 <!-- /.panel -->
+                <?php } ?>
             </div>
             <!-- /.col-lg-6 -->
         </div>

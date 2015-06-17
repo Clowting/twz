@@ -38,6 +38,8 @@ require_once '../lib/requireAdmin.php';
                 <?php
 
                     if($_SERVER['REQUEST_METHOD'] == 'POST') {
+                        $w = new DateTime($_POST['datum']);
+                        $week = $w->format("W");
 
                         $opleiding = cleanInput($_POST['opleiding']);
                         $naam = cleanInput($_POST['naam']);
@@ -47,12 +49,14 @@ require_once '../lib/requireAdmin.php';
                         $beginTijd = cleanInput($_POST['begintijd']);
                         $eindTijd = cleanInput($_POST['eindtijd']);
 
+
                         if (validateNumber($opleiding, 1, 2147483647) &&
                             validateInput($naam, 2, 128) &&
                             validateInput($opmerking, 2, 2048) &&
                             validateNumber($aantal, 1, 127) &&
                             validateDate($dag, 'd-m-Y') &&
-                            validateInput($achternaam, 2, 128)
+                            validateInput($achternaam, 2, 128) &&
+                            validateDate($week, 'W')
                         ) {
 
 
