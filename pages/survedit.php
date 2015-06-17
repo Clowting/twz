@@ -10,7 +10,7 @@ require_once '../lib/requireAdmin.php';
 
 <head>
 
-    <title>SB Admin 2 - Bootstrap Admin Theme</title>
+    <title>TWZ - Surveillantenbeheer</title>
 
     <?php include_once "../includes/head.php"; ?>
 
@@ -40,6 +40,7 @@ require_once '../lib/requireAdmin.php';
                     echo "</div>";
                 }
                 else {
+
                     $id = $_GET['id'];
                     $dataManager->where("id", $id);
                     $surveillant = $dataManager->getOne('Surveillant');
@@ -50,38 +51,41 @@ require_once '../lib/requireAdmin.php';
                         <form action="surveillant.php" method="post">
                             <h3>Persoonlijke gegevens</h3>
                             <input type="hidden" name="action" value="edit">
+                            <input type="hidden" name="id" value="<?php echo $id; ?>">
+                            <input type="hidden" name="uid" value="<?php echo $surveillant['GebruikerID'] ;?>">
                             <div class="form-group">
                                 <label for="werknemerid">Werknemernummer</label>
-                                <input name="werknemerid" type="number" class="form-control" placeholder="<?php echo $surveillant['WerknemerID'] ;?>">
+                                <input name="werknemerid" type="number" class="form-control" value="<?php echo $surveillant['WerknemerID'] ;?>">
                             </div>
                             <div class="form-group">
                                 <label for="voornaam">Voornaam</label>
-                                <input name="voornaam" type="text" class="form-control" aria-required="true" placeholder="<?php echo $surveillant['Voornaam'] ;?>">
+                                <input name="voornaam" type="text" class="form-control" aria-required="true" value="<?php echo $surveillant['Voornaam'] ;?>">
                             </div>
                             <div class="form-group">
                                 <label for="tussenvoegsel">Tussenvoegsel</label>
-                                <input name="tussenvoegsel" type="text" class="form-control" placeholder="<?php echo $surveillant['Tussenvoegsel'] ;?>">
+                                <input name="tussenvoegsel" type="text" class="form-control" value="<?php echo $surveillant['Tussenvoegsel'] ;?>">
                             </div>
                             <div class="form-group">
                                 <label for="achternaam">Achternaam</label>
-                                <input name="achternaam" type="text" class="form-control" aria-required="true" placeholder="<?php echo $surveillant['Achternaam'] ;?>">
+                                <input name="achternaam" type="text" class="form-control" aria-required="true" value="<?php echo $surveillant['Achternaam'] ;?>">
                             </div>
 
                             <h3>Persoonlijk account</h3>
                             <div class="form-group">
-                                <label>Account aanpassen</label>
                                 <input name="account" type="checkbox">
+                                <label>Account aanpassen of aanmaken</label>
+
                             </div>
                             <?php $dataManager->where("id", $surveillant['GebruikerID']);
                             $users = $dataManager->getOne('users');?>
                             <div class="form-group">
                                 <label>E-mail</label>
-                                <input name="email" type="text" class="form-control" placeholder="<?php echo $users['email'] ;?>">
+                                <input name="email" type="text" class="form-control" value="<?php echo $users['email'] ;?>">
                             </div>
                             <button type="submit" class="btn btn-primary">Aanpassen</button>
                         </form>
                     </div>
-                <?php }//TODO DONT FORGET TO EDIT THIS PAGE!!!!!!?>
+                <?php }?>
                     <!-- /.panel-body -->
             </div>
             <!-- /.col-lg-6 -->

@@ -32,54 +32,54 @@ require_once '../lib/requireAdmin.php';
                 <?php
 
                 if($_SERVER['REQUEST_METHOD'] == 'POST') {
-                    if(isset($_POST['action']) && $_POST['action'] == 'create'){
+                    if (isset($_POST['action']) && $_POST['action'] == 'create') {
                         $werknemerID = cleanInput($_POST['werknemerid']);
                         $voornaam = cleanInput($_POST['voornaam']);
                         $tussenvoegsel = cleanInput($_POST['tussenvoegsel']);
-                        $acthernaam = cleanInput($_POST['achternaam']);
+                        $achternaam = cleanInput($_POST['achternaam']);
                         $email = $_POST['email'];
 
-                        if(validateNumber($werknemerID, 0, 2147483647) &&
+                        if (validateNumber($werknemerID, 0, 2147483647) &&
                             validateInput($voornaam, 1, 128) &&
-                            validateInput($acthernaam, 2, 128)
+                            validateInput($achternaam, 2, 128)
                         ) {
 
-                                $data = array(
-                                    "WerknemerID" => $werknemerID,
-                                    "Voornaam" => $voornaam,
-                                    "Achternaam" => $acthernaam
-                                );
+                            $data = array(
+                                "WerknemerID" => $werknemerID,
+                                "Voornaam" => $voornaam,
+                                "Achternaam" => $achternaam
+                            );
 
-                                if (validateInput($tussenvoegsel, 1, 16)) {
-                                    $data['Tussenvoegsel'] = $tussenvoegsel;
-                                }
+                            if (validateInput($tussenvoegsel, 1, 16)) {
+                                $data['Tussenvoegsel'] = $tussenvoegsel;
+                            }
 
-                                if(isset($_POST['account'])) {
-                                    $account = cleanInput($_POST['account']);
-                                    if(filter_var($email, FILTER_VALIDATE_EMAIL) && $account == 'on') {
-                                        $password = randomPassword();
-                                        $register = $auth->register($email, $password, $password);
+                            if (isset($_POST['account'])) {
+                                $account = cleanInput($_POST['account']);
+                                if (filter_var($email, FILTER_VALIDATE_EMAIL) && $account == 'on') {
+                                    $password = randomPassword();
+                                    $register = $auth->register($email, $password, $password);
 
-                                        if($register['error'] == 0) {
-                                            echo '<div class="alert alert-success" role="alert">Het account is succesvol toegevoegd. (' . $password . ')</div>';
+                                    if ($register['error'] == 0) {
+                                        echo '<div class="alert alert-success" role="alert">Het account is succesvol toegevoegd. (' . $password . ')</div>';
 
-                                            // UID ophalen om in surveillanten tabel toe te voegen.
-                                            $uid = $auth->getUID($email);
-                                            $data['GebruikerID'] = $uid;
+                                        // UID ophalen om in surveillanten tabel toe te voegen.
+                                        $uid = $auth->getUID($email);
+                                        $data['GebruikerID'] = $uid;
 
-                                        } else {
-                                            echo '<div class="alert alert-warning" role="alert">Het account voor de surveillant kon niet worden toegevoegd. ' . $register['message'] . '</div>';
-                                        }
+                                    } else {
+                                        echo '<div class="alert alert-warning" role="alert">Het account voor de surveillant kon niet worden toegevoegd. ' . $register['message'] . '</div>';
                                     }
                                 }
+                            }
 
-                                $insert = $dataManager->insert('Surveillant', $data);
+                            $insert = $dataManager->insert('Surveillant', $data);
 
-                                if($insert) {
-                                    echo '<div class="alert alert-success" role="alert">De surveillant is succesvol toegevoegd.</div>';
-                                } else {
-                                    echo '<div class="alert alert-danger" role="alert">Fout bij het toevoegen van de surveillant aan de database.</div>';
-                                }
+                            if ($insert) {
+                                echo '<div class="alert alert-success" role="alert">De surveillant is succesvol toegevoegd.</div>';
+                            } else {
+                                echo '<div class="alert alert-danger" role="alert">Fout bij het toevoegen van de surveillant aan de database.</div>';
+                            }
 
                         } else {
                             echo '<div class="alert alert-warning" role="alert">Niet alle gegevens zijn juist ingevoerd.</div>';
@@ -89,7 +89,7 @@ require_once '../lib/requireAdmin.php';
                     /**
                      * Inactief en actief maken van surveillanten
                      */
-                    if(isset($_POST['action']) && $_POST['action'] == 'active'){
+                    if (isset($_POST['action']) && $_POST['action'] == 'active') {
                         $data = array();
                         $id = cleanInput($_POST['id']);
                         $data['actief'] = 1;
@@ -102,7 +102,7 @@ require_once '../lib/requireAdmin.php';
 
                     }
 
-                    if(isset($_POST['action']) && $_POST['action'] == 'inactive'){
+                    if (isset($_POST['action']) && $_POST['action'] == 'inactive') {
                         $data = array();
                         $id = cleanInput($_POST['id']);
                         $data['actief'] = 0;
@@ -114,15 +114,68 @@ require_once '../lib/requireAdmin.php';
                         }
 
                     }
-                }
+                    if (isset($_POST['action']) && $_POST['action'] == 'edit') {
+                        $id = cleanInput($_POST['id']);
+                        $werknemerID = cleanInput($_POST['werknemerid']);
+                        $voornaam = cleanInput($_POST['voornaam']);
+                        $achternaam = cleanInput($_POST['achternaam']);
+                        $tussenvoegsel = cleanInput($_POST['tussenvoegsel']);
+                        $email = $_POST['email'];
+                        $userid = $_POST['uid'];
 
-                ?>
+                        if (validateNumber($werknemerID, 0, 2147483647) &&
+                            validateInput($voornaam, 1, 128) &&
+                            validateInput($achternaam, 2, 128) &&
+                            validateInput($tussenvoegsel, 1, 16)
+                        ) {
+                            $data = array(
+                                "WerknemerID" => $werknemerID,
+                                "Voornaam" => $voornaam,
+                                "Achternaam" => $achternaam,
+                                "Tussenvoegsel" => $tussenvoegsel
+                            );
+                            if (isset($_POST['account'])) {
+                                $account = cleanInput($_POST['account']);
+                                if (filter_var($email, FILTER_VALIDATE_EMAIL) && $account == 'on') {
+                                    $uid = $auth->getUID($email);
+                                    if ($userid != NULL) {
+                                        $dataManager->where('ID', $userid);
+                                        if ($dataManager->update('user', $email)) {
+                                            echo '<div class="alert alert-success" role="alert">Het account is succesvol aangepast.</div>';
+                                        } else {
+                                            echo '<div class="alert alert-success" role="alert">Het account voor de surveillant kon niet worden aangepast.</div>';
+                                        }
+                                    } else {
+                                        $password = randomPassword();
+                                        $register = $auth->register($email, $password, $password);
+
+                                        if ($register['error'] == 0) {
+                                            echo '<div class="alert alert-success" role="alert">Het account is succesvol toegevoegd. (' . $password . ')</div>';
+
+                                            // UID ophalen om in surveillanten tabel toe te voegen.
+                                            $uid = $auth->getUID($email);
+                                            $data['GebruikerID'] = $uid;
+                                        }
+                                    }
+                                }
+
+                            }
+                            $dataManager->where('ID', $id);
+                            if ($dataManager->update('Surveillant', $data)) {
+                                echo '<div class="alert alert-success" role="alert">De surveillant is succesvol aangepast.</div>';
+                            }
+                        }
+
+                    }
+                }
+            ?>
             </div>
             <!-- /.col-lg-12 -->
         </div>
         <!-- /.row -->
         <div class="row">
             <div class="col-md-12">
+
                 <div class="panel panel-default">
                     <!-- /.panel-heading -->
                     <div class="panel-body">
