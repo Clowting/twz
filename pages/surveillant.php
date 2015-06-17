@@ -140,7 +140,7 @@ require_once '../lib/requireAdmin.php';
                                     $uid = $auth->getUID($email);
                                     if ($userid != NULL) {
                                         $dataManager->where('id', $userid);
-                                        if ($dataManager->update('user', $email)) {
+                                        if ($dataManager->update('users', $email)) {
                                             echo '<div class="alert alert-success" role="alert">Het account is succesvol aangepast.</div>';
                                         } else {
                                             echo '<div class="alert alert-success" role="alert">Het account voor de surveillant kon niet worden aangepast.</div>';
