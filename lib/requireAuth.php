@@ -5,7 +5,7 @@
  * Date: 16-6-2015
  * Time: 11:07
  */
-include("../PHPAuth/languages/en.php");
+include("../PHPAuth/languages/nl.php");
 include("../PHPAuth/config.class.php");
 include("../PHPAuth/auth.class.php");
 
