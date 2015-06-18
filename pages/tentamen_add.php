@@ -33,80 +33,122 @@ require_once '../lib/requireAdmin.php';
             <!-- /.col-lg-12 -->
         </div>
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-lg-9">
+                <div class="panel panel-default">
+                    <div class="panel-body">
 
-                <?php
+                    <?php
 
-                    if($_SERVER['REQUEST_METHOD'] == 'POST') {
-                        $w = new DateTime($_POST['datum']);
-                        $week = $w->format("W");
+                        if($_SERVER['REQUEST_METHOD'] == 'POST') {
 
-                        $opleiding = cleanInput($_POST['opleiding']);
-                        $naam = cleanInput($_POST['naam']);
-                        $opmerking = cleanInput($_POST['opmerking']);
-                        $aantal = cleanInput($_POST['aantal']);
-                        $dag = cleanInput($_POST['datum']);
-                        $beginTijd = cleanInput($_POST['begintijd']);
-                        $eindTijd = cleanInput($_POST['eindtijd']);
+                            $opleiding = cleanInput($_POST['opleiding']);
+                            $naam = cleanInput($_POST['naam']);
+                            $opmerking = cleanInput($_POST['opmerking']);
+                            $aantal = cleanInput($_POST['aantal']);
+                            $dag = cleanInput($_POST['datum']);
+                            $beginTijd = cleanInput($_POST['begintijd']);
+                            $eindTijd = cleanInput($_POST['eindtijd']);
 
+                            $datum = new DateTime($dag);
 
-                        if (validateNumber($opleiding, 1, 2147483647) &&
-                            validateInput($naam, 2, 128) &&
-                            validateInput($opmerking, 2, 2048) &&
-                            validateNumber($aantal, 1, 127) &&
-                            validateDate($dag, 'd-m-Y') &&
-                            validateInput($achternaam, 2, 128) &&
-                            validateDate($week, 'W')
-                        ) {
+                            $week = $datum->format("W");
+                            $dag = $datum->format("Y-m-d");
 
+                            if (validateNumber($opleiding, 1, 2147483647) &&
+                                validateInput($naam, 2, 128) &&
+                                validateNumber($aantal, 1, 127) &&
+                                validateDate($dag, 'Y-m-d') &&
+                                validateInput($beginTijd, 4, 5) &&
+                                validateInput($eindTijd, 4, 5)
+                            ) {
 
+                                $data = array(
+                                    "OpleidingID" => $opleiding,
+                                    "Naam" => $naam,
+                                    "Aantal" => $aantal,
+                                    "Dag" => $dag,
+                                    "Week" => $week,
+                                    "BeginTijd" => $beginTijd,
+                                    "EindTijd" => $eindTijd
+                                );
 
-                        }
-                    }
+                                if(validateInput($opmerking, 2, 2048)) {
+                                    $data['Opmerking'] = $opmerking;
+                                }
 
-                ?>
+                                $insert = $dataManager->insert('Tentamen', $data);
 
-                <form role="form" method="post" id="tentamen-add">
-                    <div class="form-group">
-                        <label for="opleiding">Opleiding:</label>
-                        <select name="opleiding" multiple class="form-control">
-                        <?php
-                            $academies = $dataManager->get('Opleiding');
+                                if($insert) {
+                                    echo '<div class="alert alert-success" role="alert">Het tentamen is succesvol toegevoegd.</div>';
+                                } else {
+                                    echo '<div class="alert alert-danger" role="alert">Er ging iets fout bij het toevoegen van het tentamen aan de database.</div>';
+                                }
 
-                            foreach($academies as $academie) {
-                                echo '<option value="' . $academie['ID'] . '">' . $academie['Naam'] . '</option>';
+                            } else {
+                                echo '<div class="alert alert-warning" role="alert">Niet alle velden zijn juist ingevoerd.</div>';
                             }
-                        ?>
-                        </select>
+                        }
+
+                    ?>
+
+                        <form role="form" method="post" id="tentamen-add">
+                            <div class="form-group">
+                                <label for="opleiding">Opleiding:</label>
+                                <select name="opleiding" multiple class="form-control">
+                                <?php
+                                    $academies = $dataManager->get('Opleiding');
+
+                                    foreach($academies as $academie) {
+                                        echo '<option value="' . $academie['ID'] . '">' . $academie['Naam'] . '</option>';
+                                    }
+                                ?>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="naam">Naam:</label>
+                                <input type="text" class="form-control" name="naam" id="naam" <?php getTextFieldValue('naam'); ?>>
+                            </div>
+                            <div class="form-group">
+                                <label for="opmerking">Opmerking:</label>
+                                <textarea class="form-control" rows="3" name="opmerking" id="opmerking"><?php getTextAreaValue('opmerking'); ?></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="aantal">Aantal surveillanten:</label>
+                                <input type="number" class="form-control" name="aantal" id="aantal" <?php getTextFieldValue('aantal'); ?>>
+                            </div>
+                            <div class="form-group">
+                                <label for="datum">Datum:</label>
+                                <input type="text" class="form-control date-field" name="datum" id="datum" <?php getTextFieldValue('datum'); ?>>
+                            </div>
+                            <div class="form-group">
+                                <label for="begintijd">Begin tijd:</label>
+                                <input type="time" class="form-control" name="begintijd" id="begintijd" <?php getTextFieldValue('begintijd'); ?>>
+                            </div>
+                            <div class="form-group">
+                                <label for="eindtijd">Eind tijd:</label>
+                                <input type="time" class="form-control" name="eindtijd" id="eindtijd" <?php getTextFieldValue('eindtijd'); ?>>
+                            </div>
+                            <button type="submit" class="btn btn-default">Toevoegen</button>
+                        </form>
                     </div>
-                    <div class="form-group">
-                        <label for="naam">Naam:</label>
-                        <input type="text" class="form-control" name="naam" id="naam">
-                    </div>
-                    <div class="form-group">
-                        <label for="opmerking">Opmerking:</label>
-                        <textarea class="form-control" rows="3" name="opmerking" id="opmerking"></textarea>
-                    </div>
-                    <div class="form-group">
-                        <label for="aantal">Aantal surveillanten:</label>
-                        <input type="number" class="form-control" name="aantal" id="aantal">
-                    </div>
-                    <div class="form-group">
-                        <label for="datum">Datum:</label>
-                        <input type="text" class="form-control date-field" name="datum" id="datum">
-                    </div>
-                    <div class="form-group">
-                        <label for="begintijd">Begin tijd:</label>
-                        <input type="time" class="form-control" name="begintijd" id="begintijd">
-                    </div>
-                    <div class="form-group">
-                        <label for="eindtijd">Eind tijd:</label>
-                        <input type="time" class="form-control" name="eindtijd" id="eindtijd">
-                    </div>
-                    <button type="submit" class="btn btn-default">Toevoegen</button>
-                </form>
+                </div>
             </div>
-            <!-- /.col-lg-6 -->
+            <div class="col-lg-3 hidden-sm hidden-xs">
+                <div class="panel panel-info">
+                    <div class="panel-heading">
+                        Extra informatie
+                    </div>
+                    <div class="panel-body">
+                        <big>Voeg een tentamen toe aan het systeem.</big>
+                        <ul>
+                            <li>De <b>opleiding</b> waarvoor het tentamen wordt gegeven.</li>
+                            <li>De <b>'naam'</b> en eventuele <b>opmerkingen</b> over het tentamen.</li>
+                            <li>Het <b>aantal</b> surveillanten wat moet surveilleren bij het tentamen.</li>
+                            <li>De <b>datum</b> met begin- en eindtijd van het tentamen.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
         </div>
         <!-- /.row -->
     </div>

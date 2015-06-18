@@ -68,5 +68,22 @@
         }
         return 'Tw2' . implode($pass); //turn the array into a string
     }
+
+    // Function for filling in the value of a text field
+    function getTextFieldValue($field) {
+        if($_SERVER['REQUEST_METHOD'] == 'POST') {
+            if(isset($_POST[$field])) {
+                echo 'value="' . $_POST[$field] . '"';
+            }
+        }
+    }
+    // Function for filling in the value of a text area
+    function getTextAreaValue($field) {
+        if($_SERVER['REQUEST_METHOD'] == 'POST') {
+            if(isset($_POST[$field])) {
+                echo $_POST[$field];
+            }
+        }
+    }
     
     
