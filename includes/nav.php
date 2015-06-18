@@ -73,7 +73,13 @@
                     <!-- /.nav-second-level -->
                 </li>
                 ';}
-                if(isset($user) && isUser($user)){echo'
+
+                if(isset($user) && isUser($user)){
+                    $uid = $user['id'];
+                    $cols = Array ("ID");
+                    $dataManager->where('GebruikerID',$uid);
+                    $sid = $dataManager->getOne('Surveillant',null,$cols);
+                    echo'
                 <li>
                     <a href="#"><i class="fa fa-user fa-fw"></i> Surveillant<span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
@@ -81,7 +87,10 @@
                             <a href="self.php"><i class="fa fa-cogs"></i> Account</a>
                         </li>
                         <li>
-                            <a href="availability.php"><i class="fa fa-calendar-o fa-fw"></i>Beschikbaarheid</a>
+                            <form action="availability.php" method="POST">';?>
+                                <input type="hidden" name="id" value="<?php echo $sid["ID"];?>" />
+                                <a href="#" onclick="this.parentNode.submit()"><i class="fa fa-calendar-o fa-fw"></i>Beschikbaarheid</a>
+                            </form>
                         </li>
                         <li>
                             <a href="self_rooster.php"><i class="fa fa-calendar fa-fw"></i>Rooster</a>
@@ -89,7 +98,7 @@
                     </ul>
                     <!-- /.nav-second-level -->
                 </li>
-                ';}?>
+                <?php ;} ?>
             </ul>
         </div>
 
