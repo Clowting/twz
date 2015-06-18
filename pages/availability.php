@@ -34,7 +34,7 @@ require_once '../lib/requireAdmin.php';
         <!-- /.row -->
         <div class="row">
             <?php
-            if(isset($_POST['id'])) {
+            if(isset($_POST['id']) && is_numeric($_POST['id'])) {
                 $tentamenweken = $dataManager->rawQuery('SELECT DISTINCT Week FROM Tentamen ORDER BY Week ASC');
             ?>
             <div class="col-md-6">
@@ -48,7 +48,7 @@ require_once '../lib/requireAdmin.php';
                             foreach($tentamenweken as $tentamenweek) {
                                 $w = $tentamenweek['Week'];
 
-                                if(isset($_POST['week'])&& $_POST['week']==$w) {
+                                if(isset($_POST['week']) && $_POST['week'] == $w) {
                                     echo '<option value="' . $w . '" selected>Week ' . $w . '</option>';
                                 } else {
                                     echo '<option value="' . $w . '">Week ' . $w . '</option>';
@@ -65,9 +65,10 @@ require_once '../lib/requireAdmin.php';
             </div>
         </div>
         <?php
-            if(isset($_POST['week'])&& $_POST['week'] != "NULL") {
+            if(isset($_POST['week']) && $_POST['week'] != "NULL") {
                 $date = new DateTime();
                 $year = $date->format("Y");
+
         ?>
         <div class="row">
             <div class="col-lg-9">
