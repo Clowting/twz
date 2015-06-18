@@ -27,7 +27,7 @@ require_once '../lib/requireAdmin.php';
             <div class="col-lg-12">
                 <h1 class="page-header">Surveillanten
                     <small>Overzicht</small>
-                    <a href="survcreate.php" role="button" class="btn btn-primary align-right">Toevoegen</a>
+                    <a href="survcreate.php" role="button" class="btn btn-outline btn-primary align-right">Toevoegen</a>
                 </h1>
                 <?php
 

@@ -45,7 +45,7 @@ require_once '../lib/requireAdmin.php';
                     $academie = $dataManager->getOne('Opleiding');
 
                     ?>
-                    <div class="col-lg-12">
+                    <div class="col-lg-9">
                         <form action="academie.php" method="post">
                             <input type="hidden" name="action" value="edit">
                             <input type="hidden" name="id" value="<?php echo $id ; ?>">
@@ -56,6 +56,20 @@ require_once '../lib/requireAdmin.php';
                             </div>
                             <button type="submit" class="btn btn-primary">Bewerken</button>
                         </form>
+                    </div>
+                    <div class="col-lg-3 hidden-sm hidden-xs">
+                        <div class="panel panel-info">
+                            <div class="panel-heading">
+                                Extra informatie
+                            </div>
+                            <div class="panel-body">
+                                <big>Bewerk een academie/Opleiding.</big>
+                                <ul>
+                                    <li>De <b>Academie/Opleiding</b> waar de examens gehouden worden.</li>
+                                    <li><b>Academie/Oplieding</b> is een verplicht veld.</li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
                 <?php
                 }
