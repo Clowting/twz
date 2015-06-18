@@ -27,14 +27,14 @@ if($dagdeel == 'ochtend') {
     echo 'success';
 }
 else if($dagdeel == 'middag'){
-    $sql = "INSERT INTO Beschikbaarheid (SurveillantID, Datum, Ochtend)
+    $sql = "INSERT INTO Beschikbaarheid (SurveillantID, Datum, Middag)
                 VALUES(?,?,?)
                 ON DUPLICATE KEY UPDATE middag = ?";
     $dataManager->rawQuery($sql, $values);
     echo 'success';
 }
 else if($dagdeel == 'avond'){
-    $sql = "INSERT INTO Beschikbaarheid (SurveillantID, Datum, Ochtend)
+    $sql = "INSERT INTO Beschikbaarheid (SurveillantID, Datum, Avond)
                 VALUES(?,?,?)
                 ON DUPLICATE KEY UPDATE avond = ?";
     $dataManager->rawQuery($sql, $values);
