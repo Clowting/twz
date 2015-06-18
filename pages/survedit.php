@@ -32,7 +32,7 @@ require_once '../lib/requireAdmin.php';
         </div>
         <!-- /.row -->
         <div class="row">
-            <div class="col-lg-12">
+            <div class="col-lg-9">
                 <?php
                 if(!isset($_GET['id'])){
                 echo "<div class='alert alert-danger'>";
@@ -89,6 +89,21 @@ require_once '../lib/requireAdmin.php';
                     <!-- /.panel-body -->
             </div>
             <!-- /.col-lg-6 -->
+            <div class="col-lg-3 hidden-sm hidden-xs">
+                <div class="panel panel-info">
+                    <div class="panel-heading">
+                        Extra informatie
+                    </div>
+                    <div class="panel-body">
+                        <big>Bewerk een surveillant.</big>
+                        <ul>
+                            <li>het <b>werknemernummer</b> uit de salarisadministratie.</li>
+                            <li><b>Voornaam</b> en <b>Achternaam</b> zijn verplichte velden.</li>
+                            <li>Om meteen ook een gebruikersaccount aan te maken of te bewerken voor de surveillant check je <br /><input type="checkbox" checked disabled> <b>Account aanpassen of aanmaken</b> en voer je het emailadres van de surveillant in. <i>(Voer hier een geldig emailadres in!)</i></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
         </div>
         <!-- /.row -->
     </div>

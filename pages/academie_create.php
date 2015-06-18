@@ -33,7 +33,7 @@ require_once '../lib/requireAdmin.php';
         </div>
         <!-- /.row -->
         <div class="row">
-            <div class="col-lg-12">
+            <div class="col-lg-9">
                 <form action="academie.php" method="post">
                     <input type="hidden" name="action" value="create">
 
@@ -43,6 +43,20 @@ require_once '../lib/requireAdmin.php';
                     </div>
                     <button type="submit" class="btn btn-primary">Toevoegen</button>
                 </form>
+            </div>
+            <div class="col-lg-3 hidden-sm hidden-xs">
+                <div class="panel panel-info">
+                    <div class="panel-heading">
+                        Extra informatie
+                    </div>
+                    <div class="panel-body">
+                        <big>Voeg een academie/Opleiding toe.</big>
+                        <ul>
+                            <li>De <b>Academie/Opleiding</b> waar de examens gehouden worden.</li>
+                            <li><b>Academie/Oplieding</b> is een verplicht veld.</li>
+                        </ul>
+                    </div>
+                </div>
             </div>
         </div>
     <!-- /.row -->
