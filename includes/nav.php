@@ -63,7 +63,7 @@
                             <a href="academie.php"><i class="fa fa-university fa-fw"></i> Opleidingen/Academies</a>
                         </li>
                         <li>
-                            <a href="tentamen_rooster.php"><i class="fa fa-calendar-o fa-fw"></i> Tentamenroosters</a>
+                            <a href="tentamen.php"><i class="fa fa-calendar-o fa-fw"></i> Tentamens</a>
                         </li>
                         <li>
                             <a href="rooster.php"><i class="fa fa-calendar fa-fw"></i> Roosters</a>

@@ -27,7 +27,7 @@ require_once '../lib/requireAdmin.php';
         <div class="row">
             <div class="col-lg-12">
                 <h1 class="page-header">Tentamens
-                    <small>Overzicht</small> <a href="tentamen_add.php" role="button" class="btn btn-primary align-right">Toevoegen</a>
+                    <small>Overzicht</small> <a href="tentamen_add.php" role="button" class="btn btn-outline btn-primary align-right">Toevoegen</a>
                 </h1>
             </div>
             <!-- /.col-lg-12 -->
@@ -67,7 +67,7 @@ require_once '../lib/requireAdmin.php';
                                             echo '<td>' . $tentamen['Dag'] . '</td>';
                                             echo '<td>' . $tentamen['BeginTijd'] . '</td>';
                                             echo '<td>' . $tentamen['EindTijd'] . '</td>';
-                                            echo '<td><a href="tentamen_edit.php?id=' . $tentamen['TentamenID'] . '"><i class="fa fa-arrow-right"></i></a></td>';
+                                            echo '<td><a href="tentamen_edit.php?id=' . $tentamen['TentamenID'] . '" class="btn btn-outline btn-primary">Bewerken</a></td>';
                                         echo '</tr>';
                                     }
                                 ?>
