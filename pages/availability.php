@@ -28,16 +28,14 @@ require_once '../lib/requireAdmin.php';
                 <h1 class="page-header">Surveilleren
                     <small>Beschikbaarheid</small>
                 </h1>
-                <?php
-                if(isset($_POST['id'])){
-                ?>
             </div>
             <!-- /.col-lg-12 -->
         </div>
         <!-- /.row -->
         <div class="row">
             <?php
-            $tentamenweken = $dataManager->rawQuery('SELECT DISTINCT Week FROM Tentamen ORDER BY Week ASC');
+            if(isset($_POST['id'])) {
+                $tentamenweken = $dataManager->rawQuery('SELECT DISTINCT Week FROM Tentamen ORDER BY Week ASC');
             ?>
             <div class="col-md-6">
                 <form action="availability.php" method="post">
@@ -46,11 +44,18 @@ require_once '../lib/requireAdmin.php';
                         <label >Selecteer een week</label>
                         <select class="form-control" name="week" onchange="form.submit()">
                             <option value="NULL">Selecteer een week</option>
-                            <?php foreach($tentamenweken as $tentamenweek){
+                            <?php
+                            foreach($tentamenweken as $tentamenweek) {
                                 $w = $tentamenweek['Week'];
-                                echo '<option value="'.$w.'"';
-                                if(isset($_POST['week'])&& $_POST['week']==$w) {echo'selected';} echo'> Week '.$w.' </option>';
-                            } ?>
+
+                                if(isset($_POST['week'])&& $_POST['week']==$w) {
+                                    echo '<option value="' . $w . '" selected>Week ' . $w . '</option>';
+                                } else {
+                                    echo '<option value="' . $w . '">Week ' . $w . '</option>';
+                                }
+
+                            }
+                            ?>
                         </select>
                     </div>
                 </form>
@@ -59,9 +64,11 @@ require_once '../lib/requireAdmin.php';
 
             </div>
         </div>
-        <?php if(isset($_POST['week'])&& $_POST['week'] != "NULL") {
-        $date = new DateTime();
-        $year = $date->format("Y")?>
+        <?php
+            if(isset($_POST['week'])&& $_POST['week'] != "NULL") {
+                $date = new DateTime();
+                $year = $date->format("Y");
+        ?>
         <div class="row">
             <div class="col-lg-9">
                 <div class="panel panel-default">
@@ -132,9 +139,12 @@ require_once '../lib/requireAdmin.php';
                     </div>
                 </div>
             </div>
-            <?php }}else {
+            <?php
+                }
+            } else {
                 echo'<div class="alert alert-danger" role="alert"><b>Oeps!</b> Er is iets fout gegaan bij het selecteren van de surveillant.</div>';
-            }?>
+            }
+            ?>
         </div>
         </div>
         <!-- /.row -->
