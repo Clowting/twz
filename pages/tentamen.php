@@ -10,7 +10,7 @@ require_once '../lib/requireAdmin.php';
 
 <head>
 
-    <title>TWZ - Academiebeheer</title>
+    <title>TWZ - Tentamen overizcht</title>
 
     <?php include_once "../includes/head.php" ?>
 
