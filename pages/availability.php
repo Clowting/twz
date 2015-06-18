@@ -84,190 +84,28 @@ require_once '../lib/requireAdmin.php';
                                     <th>
                                         Ochtend
                                     </th>
-                                    <td>
-                                        <form>
-                                            <?php $date->setISODate($year, $_POST['week']); ?>
-                                            <input type="hidden" name="periode" value="ochtend">
-
-                                            <input type="hidden" name="date" value="<?php echo $date->format('d-m-Y') ?>">
-                                            <label>
-                                                <input type="checkbox" name="availability">
-                                            </label>
-
-                                        </form>
-                                    </td>
-                                    <td>
-                                        <form>
-                                            <?php $date->setISODate($year, $_POST['week'], 2); ?>
-                                            <input type="hidden" name="periode" value="ochtend">
-
-                                            <input type="hidden" name="date" value="<?php echo $date->format('d-m-Y') ?>">
-                                            <label>
-                                                <input type="checkbox" name="availability">
-                                            </label>
-
-                                        </form>
-                                    </td>
-                                    <td>
-                                        <form>
-                                            <?php $date->setISODate($year, $_POST['week'], 3); ?>
-                                            <input type="hidden" name="periode" value="ochtend">
-
-                                            <input type="hidden" name="date" value="<?php echo $date->format('d-m-Y') ?>">
-                                            <label>
-                                                <input type="checkbox" name="availability">
-                                            </label>
-
-                                        </form>
-                                    </td>
-                                    <td>
-                                        <form>
-                                            <?php $date->setISODate($year, $_POST['week'], 4); ?>
-                                            <input type="hidden" name="periode" value="ochtend">
-
-                                            <input type="hidden" name="date" value="<?php echo $date->format('d-m-Y'); ?>">
-                                            <label>
-                                                <input type="checkbox" name="availability">
-                                            </label>
-
-                                        </form>
-                                    </td>
-                                    <td>
-                                        <form>
-                                            <?php $date->setISODate($year, $_POST['week'], 5); ?>
-                                            <input type="hidden" name="periode" value="ochtend">
-
-                                            <input type="hidden" name="date" value="<?php echo $date->format('d-m-Y'); ?>">
-                                            <label>
-                                                <input type="checkbox" name="availability">
-                                            </label>
-
-                                        </form>
-                                    </td>
+                                    <?php for ($day = 1; $day <= 5; $day++) {
+                                     $date->setISODate($year, $_POST['week'], $day);?>
+                                        <td><input type="checkbox" name="<?php echo $date->format('Y-m-d') ?>" value="ochtend-<?php echo $_POST['id'] ?>"></td>
+                                    <?php } ?>
                                 </tr>
                                 <tr>
-                                    <th>Middag</th>
-                                    <td>
-                                        <form>
-                                            <?php $date->setISODate($year, $_POST['week']); ?>
-                                            <input type="hidden" name="periode" value="middag">
-
-                                            <input type="hidden" name="date" value="<?php echo $date->format('d-m-Y'); ?>">
-                                            <label>
-                                                <input type="checkbox" name="availability">
-                                            </label>
-
-                                        </form>
-                                    </td>
-                                    <td>
-                                        <form>
-                                            <?php $date->setISODate($year, $_POST['week'], 2); ?>
-                                            <input type="hidden" name="periode" value="middag">
-
-                                            <input type="hidden" name="date" value="<?php echo $date->format('d-m-Y'); ?>">
-                                            <label>
-                                                <input type="checkbox" name="availability">
-                                            </label>
-
-                                        </form>
-                                    </td>
-                                    <td>
-                                        <form>
-                                            <?php $date->setISODate($year, $_POST['week'], 3); ?>
-                                            <input type="hidden" name="periode" value="middag">
-
-                                            <input type="hidden" name="date" value="<?php echo $date->format('d-m-Y'); ?>">
-                                            <label>
-                                                <input type="checkbox" name="availability">
-                                            </label>
-
-                                        </form>
-                                    </td>
-                                    <td>
-                                        <form>
-                                            <?php $date->setISODate($year, $_POST['week'], 4); ?>
-                                            <input type="hidden" name="periode" value="middag">
-
-                                            <input type="hidden" name="date" value="<?php echo $date->format('d-m-Y'); ?>">
-                                            <label>
-                                                <input type="checkbox" name="availability">
-                                            </label>
-
-                                        </form>
-                                    </td>
-                                    <td>
-                                        <form>
-                                            <?php $date->setISODate($year, $_POST['week'], 5); ?>
-                                            <input type="hidden" name="periode" value="middag">
-
-                                            <input type="hidden" name="date" value="<?php echo $date->format('d-m-Y'); ?>">
-                                            <label>
-                                                <input type="checkbox" name="availability">
-                                            </label>
-
-                                        </form>
-                                    </td>
+                                    <th>
+                                        Middag
+                                    </th>
+                                    <?php for ($day = 1; $day <= 5; $day++) {
+                                        $date->setISODate($year, $_POST['week'], $day);?>
+                                        <td><input type="checkbox" name="<?php echo $date->format('Y-m-d') ?>" value="middag-<?php echo $_POST['id'] ?>"></td>
+                                    <?php } ?>
                                 </tr>
                                 <tr>
-                                    <th>Avond</th>
-                                    <td>
-                                        <form>
-                                            <?php $date->setISODate($year, $_POST['week']); ?>
-                                            <input type="hidden" name="periode" value="avond">
-
-                                            <input type="hidden" name="date" value="<?php echo $date->format('d-m-Y'); ?>">
-                                            <label>
-                                                <input type="checkbox" name="availability">
-                                            </label>
-                                        </form>
-                                    </td>
-                                    <td>
-                                        <form>
-                                            <?php $date->setISODate($year, $_POST['week'],2); ?>
-                                            <input type="hidden" name="periode" value="avond">
-
-                                            <input type="hidden" name="date" value="<?php echo $date->format('d-m-Y'); ?>">
-                                            <label>
-                                                <input type="checkbox" name="availability">
-                                            </label>
-                                        </form>
-                                    </td>
-                                    <td>
-                                        <form>
-                                            <?php $date->setISODate($year, $_POST['week'],3); ?>
-                                            <input type="hidden" name="periode" value="avond">
-
-                                            <input type="hidden" name="date" value="<?php echo $date->format('d-m-Y'); ?>">
-                                            <label>
-                                                <input type="checkbox" name="availability">
-                                            </label>
-                                        </form>
-                                    </td>
-                                    <td>
-                                        <form>
-                                            <?php $date->setISODate($year, $_POST['week'],4); ?>
-                                            <input type="hidden" name="periode" value="avond">
-
-                                            <input type="hidden" name="date" value="<?php echo $date->format('d-m-Y'); ?>">
-                                            <label>
-                                                <input type="checkbox" name="availability">
-                                            </label>
-                                        </form>
-                                    </td>
-                                    <td>
-                                        <form>
-                                            <?php $date->setISODate($year, $_POST['week'],5); ?>
-                                            <input type="hidden" name="periode" value="avond">
-
-                                            <input type="hidden" name="date" value="<?php echo $date->format('d-m-Y'); ?>">
-                                            <label>
-                                                <input type="checkbox" name="availability">
-                                            </label>
-                                        </form>
-                                    </td>
-                                </tr>
-                                <tr>
-
+                                    <th>
+                                        Avond
+                                    </th>
+                                    <?php for ($day = 1; $day <= 5; $day++) {
+                                        $date->setISODate($year, $_POST['week'], $day);?>
+                                        <td><input type="checkbox" name="<?php echo $date->format('Y-m-d') ?>" value="avond-<?php echo $_POST['id'] ?>"></td>
+                                    <?php } ?>
                                 </tr>
                                 </tbody>
                             </table>
@@ -307,7 +145,6 @@ require_once '../lib/requireAdmin.php';
 <!-- /#wrapper -->
 
 <?php include_once "../includes/footer.php"; ?>
-
 </body>
-
+<script src="../javascripts/ischecked.js"></script>
 </html>
