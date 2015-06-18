@@ -51,7 +51,7 @@
                     <a href="index.php"><i class="fa fa-dashboard fa-fw"></i> Hoofdpagina</a>
                 </li>
                 <li>
-                    <a href="tables.php"><i class="fa fa-envelope fa-fw"></i> Contact</a>
+                    <a href="contact.php"><i class="fa fa-envelope fa-fw"></i> Contact</a>
                 </li><?php if(isset($user) && isAdmin($user)){echo'
                 <li>
                     <a href="#"><i class="fa fa-user-plus fa-fw"></i> Admin<span class="fa arrow"></span></a>
