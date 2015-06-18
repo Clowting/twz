@@ -85,5 +85,19 @@
             }
         }
     }
+
+    function getBeschikbaarheidChecked($dataManager, $surveillantID, $datum, $dagdeel) {
+
+        $dataManager->where('SurveillantID', $surveillantID);
+        $dataManager->where('Datum', $datum);
+        $dataManager->where($dagdeel, 1);
+
+        $result = $dataManager->getOne('Beschikbaarheid');
+
+        if(count($result) > 0) {
+            echo 'checked';
+        }
+
+    }
     
     
