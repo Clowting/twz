@@ -50,6 +50,7 @@ $(document).ready(function() {
                 required:  "Kies a.u.b. een opleiding/academie."
             },
             naam: {
+                required:  "Voer a.u.b. de 'naam' van het tentamen in.",
                 minlength: "Voer a.u.b. minimaal 2 tekens in."
             },
             opmerking: {
