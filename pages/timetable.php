@@ -34,44 +34,84 @@ require_once '../lib/requireAdmin.php';
         <!-- /.row -->
 
         <div class="row">
-            <div class="col-md-12">
-                <div class="panel panel-default">
-                    <!-- /.panel-heading -->
-                    <div class="panel-body">
 
-                        <form role="form">
-                            <div class="form-group">
-                                <label for="week">Week:</label>
-                                <input type="week" class="form-control" id="week">
-                            </div>
-                            <button type="submit" class="btn btn-default">Bekijken</button>
-                        </form>
+            <form role="form" method="post">
+                <div class="form-group col-md-10">
+                    <label for="week">Week:</label>
+                    <select name="week" class="form-control">
+                    <?php
+                        $tentamenweken = $dataManager->rawQuery('SELECT DISTINCT Week FROM Tentamen ORDER BY Week ASC');
 
-                        <div class="table-responsive">
-                            <table class="table table-hover">
-                                <thead>
-                                    <tr>
-                                        <th>Data &#9660;</th>
-
-                                    </tr>
-                                </thead>
-                                <tbody>
-
-                                </tbody>
-                            </table>
-                        </div>
-                        <!-- /.table-responsive -->
-                    </div>
-                    <!-- /.panel -->
+                        foreach($tentamenweken as $tentamenweek) {
+                            echo '<option value="' . $tentamenweek['Week'] . '">Week ' . $tentamenweek['Week'] . '</option>';
+                        }
+                    ?>
+                    </select>
                 </div>
-                <!-- /.col-lg-6 -->
-            </div>
-            <!-- /.row -->
-        </div>
-        <!-- /#page-wrapper -->
+                <label for="submit">Verstuur</label>
+                <button type="submit" class="btn btn-default col-md-2">Bekijken</button>
+            </form>
 
+        </div>
+        <div class="row">
+
+            <?php
+
+                if($_SERVER['REQUEST_METHOD'] == 'POST') {
+                    $week = cleanInput($_POST['week']);
+                    if(validateInput($week, 1, 2)) {
+
+            ?>
+
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Data &#9660;</th>
+                            <th>Maandag</th>
+                            <th>Dinsdag</th>
+                            <th>Woensdag</th>
+                            <th>Donderdag</th>
+                            <th>Vrijdag</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <?php
+
+                        $dataManager->where('Week', $week);
+
+                        $dataManager->orderBy('Dag', 'ASC');
+                        $dataManager->orderBy('BeginTijd', 'ASC');
+                        $dataManager->orderBy('EindTijd', 'ASC');
+
+                        $tentamens= $dataManager->get('Tentamen');
+
+                        foreach($tentamens as $tentamen) {
+
+                            $datum = new DateTime($tentamen['Dag']);
+                            $dag = $datum->format('D');
+                            print_r($dag);
+
+                        }
+
+                    ?>
+                    </tbody>
+                </table>
+            </div>
+            <!-- /.table-responsive -->
+
+            <?php
+                    }
+                }
+            ?>
+
+        </div>
+        <!-- /.row -->
     </div>
-    <!-- /#wrapper -->
+    <!-- /#page-wrapper -->
+
+</div>
+<!-- /#wrapper -->
 
     <?php include_once "../includes/footer.php"; ?>
 

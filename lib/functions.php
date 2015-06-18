@@ -116,5 +116,29 @@
             return true;
         }
     }
+
+    function convertDayToNumber($day) {
+
+        switch($day) {
+            case 'Mon':
+                return 1;
+                break;
+            case 'Tue':
+                return 2;
+                break;
+            case 'Wed':
+                return 3;
+                break;
+            case 'Thu':
+                return 4;
+                break;
+            case 'Fri':
+                return 5;
+                break;
+            default:
+                return false;
+                break;
+        }
+    }
     
     
