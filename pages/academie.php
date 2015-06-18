@@ -27,7 +27,7 @@ require_once '../lib/requireAdmin.php';
         <div class="row">
             <div class="col-lg-12">
                 <h1 class="page-header">Opleidingen/Academies
-                    <small>Overzicht</small> <a href="academie_create.php" role="button" class="btn btn-primary align-right">Toevoegen</a> </h1>
+                    <small>Overzicht</small> <a href="academie_create.php" role="button" class="btn btn-outline btn-primary align-right">Toevoegen</a> </h1>
             </div>
             <!-- /.col-lg-12 -->
         </div>
@@ -119,7 +119,7 @@ require_once '../lib/requireAdmin.php';
                                         <td style="text-align: right;">
                                             <form action="academie_edit.php" method="get">
                                                 <input type="hidden" name="id" value="<?php echo $academie["ID"]; ?>">
-                                                <button type="submit" class="btn btn-primary">Bewerken</button>
+                                                <button type="submit" class="btn btn-outline btn-primary">Bewerken</button>
                                             </form>
                                         </td>
                                         <td>

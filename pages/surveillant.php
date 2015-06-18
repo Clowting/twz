@@ -200,7 +200,7 @@ require_once '../lib/requireAdmin.php';
                                 </thead>
                                 <tbody>
                                 <?php
-                                $surveillanten = $dataManager->get('Surveillant');
+                                $surveillanten = $dataManager->rawQuery('SELECT * FROM Surveillant SORT BY Actief DESC');
 
                                 if ($dataManager->count > 0)
 

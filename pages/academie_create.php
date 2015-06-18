@@ -34,15 +34,19 @@ require_once '../lib/requireAdmin.php';
         <!-- /.row -->
         <div class="row">
             <div class="col-lg-9">
-                <form action="academie.php" method="post">
-                    <input type="hidden" name="action" value="create">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <form action="academie.php" method="post">
+                            <input type="hidden" name="action" value="create">
 
-                    <div class="form-group">
-                        <label for="naam">Academie/Opleiding</label>
-                        <input name="naam" class="form-control" aria-required="true" placeholder="Academie/Opleiding">
+                            <div class="form-group">
+                                <label for="naam">Academie/Opleiding</label>
+                                <input name="naam" class="form-control" aria-required="true" placeholder="Academie/Opleiding">
+                            </div>
+                            <button type="submit" class="btn btn-outline btn-primary">Toevoegen</button>
+                        </form>
                     </div>
-                    <button type="submit" class="btn btn-primary">Toevoegen</button>
-                </form>
+                </div>
             </div>
             <div class="col-lg-3 hidden-sm hidden-xs">
                 <div class="panel panel-info">

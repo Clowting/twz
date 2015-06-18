@@ -33,6 +33,9 @@ require_once '../lib/requireAdmin.php';
         </div>
         <!-- /.row -->
         <div class="row">
+            <div class="col-lg-9">
+            <div class="panel panel-default">
+                <div class="panel-body">
             <?php
                 if(!isset($_GET['id'])){
                             echo "<div class='alert alert-danger'>";
@@ -54,26 +57,31 @@ require_once '../lib/requireAdmin.php';
                                 <?php echo'<input name="naam" class="form-control" aria-required="true" placeholder="'. $academie["Naam"] .'">'?>
 
                             </div>
-                            <button type="submit" class="btn btn-primary">Bewerken</button>
+                            <button type="submit" class="btn btn-outline btn-primary">Bewerken</button>
                         </form>
                     </div>
-                    <div class="col-lg-3 hidden-sm hidden-xs">
-                        <div class="panel panel-info">
-                            <div class="panel-heading">
-                                Extra informatie
-                            </div>
-                            <div class="panel-body">
-                                <big>Bewerk een academie/Opleiding.</big>
-                                <ul>
-                                    <li>De <b>Academie/Opleiding</b> waar de examens gehouden worden.</li>
-                                    <li><b>Academie/Oplieding</b> is een verplicht veld.</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
+
                 <?php
                 }
                 ?>
+            </div>
+            </div>
+            </div>
+            <div class="col-lg-3 hidden-sm hidden-xs">
+                <div class="panel panel-info">
+                    <div class="panel-heading">
+                        Extra informatie
+                    </div>
+                    <div class="panel-body">
+                        <big>Bewerk een Academie/Opleiding.</big>
+                        <ul>
+                            <li>De <b>Academie/Opleiding</b> waar tentamens aan gekoppeld kunnen worden.</li>
+                            <li><b>Academie/Opleiding</b> is een verplicht veld.</li>
+                            <li>Gebruik <b>a-z,0-9</b> of <b>spatie</b></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
         </div>
     <!-- /.row -->
     </div>
