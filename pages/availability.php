@@ -94,7 +94,7 @@ require_once '../lib/requireAdmin.php';
                                     </th>
                                     <?php for ($day = 1; $day <= 5; $day++) {
                                      $date->setISODate($year, $_POST['week'], $day);?>
-                                        <td><input <?php getBeschikbaarheidChecked($dataManager, $_POST['id'], $date, 'Ochtend') ?> type="checkbox" name="<?php echo $date->format('Y-m-d') ?>" value="ochtend-<?php echo $_POST['id'] ?>"></td>
+                                        <td><input <?php getBeschikbaarheidChecked($dataManager, $_POST['id'], $date->format('Y-m-d'), 'Ochtend') ?> type="checkbox" name="<?php echo $date->format('Y-m-d') ?>" value="ochtend-<?php echo $_POST['id'] ?>"></td>
                                     <?php } ?>
                                 </tr>
                                 <tr>
@@ -103,7 +103,7 @@ require_once '../lib/requireAdmin.php';
                                     </th>
                                     <?php for ($day = 1; $day <= 5; $day++) {
                                         $date->setISODate($year, $_POST['week'], $day);?>
-                                        <td><input <?php getBeschikbaarheidChecked($dataManager, $_POST['id'], $date, 'Middag') ?> type="checkbox" name="<?php echo $date->format('Y-m-d') ?>" value="middag-<?php echo $_POST['id'] ?>"></td>
+                                        <td><input <?php getBeschikbaarheidChecked($dataManager, $_POST['id'], $date->format('Y-m-d'), 'Middag') ?> type="checkbox" name="<?php echo $date->format('Y-m-d') ?>" value="middag-<?php echo $_POST['id'] ?>"></td>
                                     <?php } ?>
                                 </tr>
                                 <tr>
@@ -112,7 +112,7 @@ require_once '../lib/requireAdmin.php';
                                     </th>
                                     <?php for ($day = 1; $day <= 5; $day++) {
                                         $date->setISODate($year, $_POST['week'], $day);?>
-                                        <td><input <?php getBeschikbaarheidChecked($dataManager, $_POST['id'], $date, 'Avond') ?> type="checkbox" name="<?php echo $date->format('Y-m-d') ?>" value="avond-<?php echo $_POST['id'] ?>"></td>
+                                        <td><input <?php getBeschikbaarheidChecked($dataManager, $_POST['id'], $date->format('Y-m-d'), 'Avond') ?> type="checkbox" name="<?php echo $date->format('Y-m-d') ?>" value="avond-<?php echo $_POST['id'] ?>"></td>
                                     <?php } ?>
                                 </tr>
                                 </tbody>
