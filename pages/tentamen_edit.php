@@ -10,7 +10,7 @@ require_once '../lib/requireAdmin.php';
 
 <head>
 
-    <title>TWZ - Academiebeheer</title>
+    <title>TWZ - Tentamen aanpassen</title>
 
     <?php include_once "../includes/head.php" ?>
 
@@ -33,13 +33,31 @@ require_once '../lib/requireAdmin.php';
             <!-- /.col-lg-12 -->
         </div>
         <div class="row">
+
+        <?php
+
+            if(isset($_GET['id']) && is_numeric($_GET['id'])) {
+                $dataManager->where('ID', $_GET['id']);
+                $tentamen = $dataManager->getOne('Tentamen');
+
+                $dag = new DateTime($tentamen['Dag']);
+                $datum = $dag->format('d-m-Y');
+
+                $begin = new DateTime($tentamen['BeginTijd']);
+                $beginTijd = $begin->format('H:i');
+
+                $eind = new DateTime($tentamen['EindTijd']);
+                $eindTijd = $eind->format('H:i');
+
+                ?>
+
             <div class="col-lg-9">
                 <div class="panel panel-default">
                     <div class="panel-body">
 
-                    <?php
+                        <?php
 
-                        if($_SERVER['REQUEST_METHOD'] == 'POST') {
+                        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
                             $opleiding = cleanInput($_POST['opleiding']);
                             $naam = cleanInput($_POST['naam']);
@@ -72,13 +90,14 @@ require_once '../lib/requireAdmin.php';
                                     "EindTijd" => $eindTijd
                                 );
 
-                                if(validateInput($opmerking, 2, 2048)) {
+                                if (validateInput($opmerking, 2, 2048)) {
                                     $data['Opmerking'] = $opmerking;
                                 }
 
-                                $insert = $dataManager->insert('Tentamen', $data);
+                                $dataManager->where('ID', $_GET['id']);
+                                $update = $dataManager->update('Tentamen', $data);
 
-                                if($insert) {
+                                if ($update) {
                                     echo '<div class="alert alert-success" role="alert">Het tentamen is succesvol toegevoegd.</div>';
                                 } else {
                                     echo '<div class="alert alert-danger" role="alert">Er ging iets fout bij het toevoegen van het tentamen aan de database.</div>';
@@ -89,44 +108,56 @@ require_once '../lib/requireAdmin.php';
                             }
                         }
 
-                    ?>
+                        ?>
 
                         <form role="form" method="post" id="tentamen-add">
                             <div class="form-group">
                                 <label for="opleiding">Opleiding:</label>
                                 <select name="opleiding" multiple class="form-control">
-                                <?php
+                                    <?php
                                     $academies = $dataManager->get('Opleiding');
 
-                                    foreach($academies as $academie) {
-                                        echo '<option value="' . $academie['ID'] . '">' . $academie['Naam'] . '</option>';
+                                    foreach ($academies as $academie) {
+
+                                        if($academie['ID'] == $tentamen['OpleidingID']) {
+                                            echo '<option value="' . $academie['ID'] . '" selected>' . $academie['Naam'] . '</option>';
+                                        } else {
+                                            echo '<option value="' . $academie['ID'] . '">' . $academie['Naam'] . '</option>';
+                                        }
+
                                     }
-                                ?>
+                                    ?>
                                 </select>
                             </div>
                             <div class="form-group">
                                 <label for="naam">Naam:</label>
-                                <input type="text" class="form-control" name="naam" id="naam" <?php getTextFieldValue('naam'); ?>>
+                                <input type="text" class="form-control" name="naam"
+                                       id="naam" value="<?php echo $tentamen['Naam']; ?>">
                             </div>
                             <div class="form-group">
                                 <label for="opmerking">Opmerking:</label>
-                                <textarea class="form-control" rows="3" name="opmerking" id="opmerking"><?php getTextAreaValue('opmerking'); ?></textarea>
+                                <textarea class="form-control" rows="3" name="opmerking"
+                                          id="opmerking"><?php echo $tentamen['Opmerking']; ?></textarea>
                             </div>
                             <div class="form-group">
                                 <label for="aantal">Aantal surveillanten:</label>
-                                <input type="number" class="form-control" name="aantal" id="aantal" <?php getTextFieldValue('aantal'); ?>>
+                                <input type="number" class="form-control" name="aantal"
+                                       id="aantal" value="<?php echo $tentamen['Aantal']; ?>">
                             </div>
                             <div class="form-group">
                                 <label for="datum">Datum:</label>
-                                <input type="text" class="form-control date-field" name="datum" id="datum" <?php getTextFieldValue('datum'); ?>>
+                                <input type="text" class="form-control date-field" name="datum"
+                                       id="datum" value="<?php echo $datum; ?>">
                             </div>
                             <div class="form-group">
                                 <label for="begintijd">Begin tijd:</label>
-                                <input type="time" class="form-control" name="begintijd" id="begintijd" <?php getTextFieldValue('begintijd'); ?>>
+                                <input type="time" class="form-control" name="begintijd"
+                                       id="begintijd" value="<?php echo $beginTijd; ?>">
                             </div>
                             <div class="form-group">
                                 <label for="eindtijd">Eind tijd:</label>
-                                <input type="time" class="form-control" name="eindtijd" id="eindtijd" <?php getTextFieldValue('eindtijd'); ?>>
+                                <input type="time" class="form-control" name="eindtijd"
+                                       id="eindtijd" value="<?php echo $eindTijd; ?>">
                             </div>
                             <button type="submit" class="btn btn-default">Toevoegen</button>
                         </form>
@@ -149,6 +180,11 @@ require_once '../lib/requireAdmin.php';
                     </div>
                 </div>
             </div>
+        <?php
+            } else {
+                echo '<div class="alert alert-warning" role="alert">Het opgevraagde tentamen bestaat niet.</div>';
+            }
+        ?>
         </div>
         <!-- /.row -->
     </div>
