@@ -37,7 +37,7 @@ require_once '../lib/requireAdmin.php';
         <!-- /.row -->
         <div class="row">
             <?php
-            $tentamenweken = $dataManager->rawQuery('SELECT DISTINCT Week FROM Tentamen');
+            $tentamenweken = $dataManager->rawQuery('SELECT DISTINCT Week FROM Tentamen ORDER BY Week ASC');
             ?>
             <div class="col-md-6">
                 <form action="availability.php" method="post">
