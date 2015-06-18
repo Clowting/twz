@@ -41,14 +41,19 @@ require_once '../lib/hasSession.php';
                             <div class="col-lg-12">
                              Welkom Bij de surveillantenadministratie van The Work Zone(<i>TWZ</i>).<br /> <br />
 
-                             <i>TWZ</i> verzorgt de externe surveillanten voor de <a href="hz.nl">HZ University of Applied Sciences</a> te Vlissingen.
+                             <i>TWZ</i> verzorgt de externe surveillanten voor de <a href="http://hz.nl">HZ University of Applied Sciences</a> te Vlissingen.
                              Deze webapplicatie is bedoeld voor werknemers van <i>TWZ</i> en de surveillanten die zij inplant voor het surveilleren van de tentamens.
-                             Als u een surveillant of medewerker van <i>TWZ</i> bent, log dan in op de site via de onderstaande knop.
+                                <?php if(!hasSession($config,$auth)){?>Als u een surveillant of medewerker van <i>TWZ</i> bent, log dan in op de site via de onderstaande knop.<?php }else{ ?>
+                                Nu U ingelogd bent kunt U in het linker menu uw zaken regelen.<?php } ?>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-lg-4 col-lg-offset-4"> <br />
+                                <?php if(!hasSession($config,$auth)){?>
                                 <a href="login.php" class="btn btn-lg btn-primary btn-block"><i class="fa fa-key fa-fw"></i> Naar de loginpagina</a>
+                                <?php }else{ ?>
+                                <button class="btn btn-lg btn-success btn-block"><i class="fa fa-check fa-fw"></i>U bent Ingelogd</button>
+                                <?php } ?>
                             </div>
                         </div>
                     </div>
