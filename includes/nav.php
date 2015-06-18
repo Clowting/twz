@@ -66,7 +66,7 @@
                             <a href="tentamen.php"><i class="fa fa-calendar-o fa-fw"></i> Tentamens</a>
                         </li>
                         <li>
-                            <a href="rooster.php"><i class="fa fa-calendar fa-fw"></i> Roosters</a>
+                            <a href="timetable.php"><i class="fa fa-calendar fa-fw"></i> Rooster</a>
                         </li>
                     </ul>
 
@@ -75,27 +75,32 @@
                 ';}
 
                 if(isset($user) && isUser($user)){
-                    $uid = $user['id'];
-                    $cols = Array ("ID");
-                    $dataManager->where('GebruikerID',$uid);
-                    $sid = $dataManager->getOne('Surveillant',null,$cols);
-                    echo'
+                $uid = $user['id'];
+                $cols = Array ("ID");
+                $dataManager->where('GebruikerID',$uid);
+                $sid = $dataManager->getOne('Surveillant',null,$cols);
+                echo'
                 <li>
                     <a href="#"><i class="fa fa-user fa-fw"></i> Surveillant<span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                         <li>
                             <form action="availability.php" method="POST">';?>
                                 <input type="hidden" name="id" value="<?php echo $sid["ID"];?>" />
+
                                 <a href="#" onclick="this.parentNode.submit()"><i class="fa fa-calendar-o fa-fw"></i>Beschikbaarheid</a>
                             </form>
                         </li>
                         <li>
-                            <a href="self_rooster.php"><i class="fa fa-calendar fa-fw"></i>Rooster</a>
+                            <form action="my_timetable.php" method="POST">
+                                <input type="hidden" name="id" value="<?php echo $sid["ID"];?>" />
+                                <input type="hidden" name="week" value="NULL" />
+                                <a href="#" onclick="this.parentNode.submit()"><i class="fa fa-calendar fa-fw"></i>Mijn Rooster</a>
+                            </form>
                         </li>
                     </ul>
-                    <!-- /.nav-second-level -->
-                </li>
-                <?php ;} ?>
+            <!-- /.nav-second-level -->
+            </li>
+            <?php ;} ?>
             </ul>
         </div>
 
