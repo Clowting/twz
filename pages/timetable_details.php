@@ -49,6 +49,24 @@ require_once '../lib/requireAdmin.php';
                 $eind = new DateTime($tentamen['EindTijd']);
                 $eindTijd = $eind->format('H:i');
 
+                $ochtendBegin = new DateTime('8:45');
+                $ochtendBegin = $ochtendBegin->format('H:i');
+
+                $ochtendEind = new DateTime('13:15');
+                $ochtendEind = $ochtendEind->format('H:i');
+
+                $middagBegin = new DateTime('12:45');
+                $middagBegin = $middagBegin->format('H:i');
+
+                $middagEind = new DateTime('17:15');
+                $middagEind = $middagEind->format('H:i');
+
+                $avondBegin = new DateTime('16:45');
+                $avondBegin = $avondBegin->format('H:i');
+
+                $avondEind = new DateTime('21:15');
+                $avondEind = $avondEind->format('H:i');
+
                 ?>
 
             <div class="col-lg-9">
@@ -116,19 +134,75 @@ require_once '../lib/requireAdmin.php';
                                 <select name="surveillant" multiple class="form-control">
                                     <?php
 
-                                    $dataManager->join("Surveillant s", "b.SurveillantID=s.ID", "LEFT");
-                                    $dataManager->where('Datum', $tentamen['Dag']);
-                                    $dataManager->orderBy('s.Achternaam', 'ASC');
+                                    $beschikbaarheden = $dataManager->rawQuery('
+                                        SELECT *
+                                        FROM   Beschikbaarheid b
+                                               LEFT JOIN Surveillant s
+                                                      on b.SurveillantID = s.ID
+                                        WHERE  (b.SurveillantID NOT IN (SELECT ts.SurveillantID
+                                                                        FROM   Tentamen t
+                                                                               LEFT JOIN TentamenSurveillant ts
+                                                                                      on ts.TentamenID = t.ID
+                                                                        WHERE  BeginTijd BETWEEN ? AND ?
+                                                                               AND Dag = ?)
+                                               AND b.SurveillantID NOT IN (SELECT ts.SurveillantID
+                                                                            FROM   Tentamen t
+                                                                                   LEFT JOIN TentamenSurveillant ts
+                                                                                          on ts.TentamenID = t.ID
+                                                                            WHERE  EindTijd BETWEEN ? AND ?
+                                                                                   AND Dag = ?)
+                                               AND b.SurveillantID NOT IN (SELECT SurveillantID
+                                                                            FROM   TentamenSurveillant
+                                                                            WHERE  TentamenID = ?))
+                                               AND Datum = ?
+                                        ORDER  BY s.Achternaam ASC
+                                    ', array(
+                                        $beginTijd,
+                                        $eindTijd,
+                                        $tentamen['Dag'],
+                                        $beginTijd,
+                                        $eindTijd,
+                                        $tentamen['Dag'],
+                                        $tentamen['ID'],
+                                        $tentamen['Dag']
+                                    ));
 
-                                    $surveillanten = $dataManager->get('Beschikbaarheid b');
-                                    print_r($surveillanten);
+                                    print_r($dataManager->getLastQuery());
 
-                                    /*foreach ($surveillanten as $surveillant) {
+                                    print_r($beschikbaarheden);
 
-                                        $naam = generateName($surveillant['Voornaam'], $surveillant['Tussenvoegsel'], $surveillant['Achternaam']);
+                                    foreach ($beschikbaarheden as $beschikbaarheid) {
 
-                                        echo '<option value="' . $surveillant['ID'] . '" selected>' . $naam . '</option>';
-                                    }*/
+                                        $naam = generateName($beschikbaarheid['Voornaam'], $beschikbaarheid['Tussenvoegsel'], $beschikbaarheid['Achternaam']);
+
+                                        if (
+                                            $beschikbaarheid['Ochtend'] == '1' &&
+                                            $ochtendBegin <= $beginTijd &&
+                                            $eindTijd <= $ochtendEind
+                                        ) {
+
+                                            echo '<option value="' . $beschikbaarheid['ID'] . '" selected>' . $naam . '</option>';
+
+                                        } else if (
+                                            $beschikbaarheid['Middag'] == '1' &&
+                                            $middagBegin <= $beginTijd &&
+                                            $eindTijd <= $middagEind
+                                        ) {
+
+                                            echo '<option value="' . $beschikbaarheid['ID'] . '" selected>' . $naam . '</option>';
+
+                                        } else if (
+                                            $beschikbaarheid['Avond'] == '1' &&
+                                            $avondBegin <= $beginTijd &&
+                                            $eindTijd <= $avondEind
+                                        ) {
+
+                                            echo '<option value="' . $beschikbaarheid['ID'] . '" selected>' . $naam . '</option>';
+
+                                        }
+
+                                    }
+
                                     ?>
                                 </select>
                             </div>
