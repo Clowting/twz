@@ -70,7 +70,7 @@ require_once '../lib/functions.php';
                                 </div>
                                 <div class="checkbox">
                                     <label>
-                                        <input name="remember" type="checkbox" value="1">Remember Me
+                                        <input name="remember" type="checkbox" value="1">Onthouden
                                     </label>
                                 </div>
                                 <!-- Change this to a button or input when using this as a form -->
