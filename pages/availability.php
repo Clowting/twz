@@ -145,6 +145,7 @@ require_once '../lib/requireAdmin.php';
 <!-- /#wrapper -->
 
 <?php include_once "../includes/footer.php"; ?>
-</body>
 <script src="../javascripts/ischecked.js"></script>
+
+</body>
 </html>
