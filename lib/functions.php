@@ -99,5 +99,22 @@
         }
 
     }
+
+    function checkUser($dataManager, $user, $id) {
+        if($user['rank'] != 'admin') {
+            $dataManager->where('ID', $id);
+            $dataManager->where('GebruikerID', $user['id']);
+            $result = $dataManager->getOne('Surveillant');
+
+            if(count($result) > 0) {
+                return true;
+            } else {
+                return false;
+            }
+
+        } else {
+            return true;
+        }
+    }
     
     

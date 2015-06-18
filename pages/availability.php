@@ -3,7 +3,6 @@ require_once '../lib/connectdb.php';
 require_once '../lib/functions.php';
 require_once '../lib/requireAuth.php';
 require_once '../lib/requireSession.php';
-require_once '../lib/requireAdmin.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -34,7 +33,7 @@ require_once '../lib/requireAdmin.php';
         <!-- /.row -->
         <div class="row">
             <?php
-            if(isset($_POST['id']) && is_numeric($_POST['id'])) {
+            if(isset($_POST['id']) && is_numeric($_POST['id']) && checkUser($dataManager, $user, $_POST['id'])) {
                 $tentamenweken = $dataManager->rawQuery('SELECT DISTINCT Week FROM Tentamen ORDER BY Week ASC');
             ?>
             <div class="col-md-6">
