@@ -84,9 +84,6 @@
                     <a href="#"><i class="fa fa-user fa-fw"></i> Surveillant<span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                         <li>
-                            <a href="self.php"><i class="fa fa-cogs"></i> Account</a>
-                        </li>
-                        <li>
                             <form action="availability.php" method="POST">';?>
                                 <input type="hidden" name="id" value="<?php echo $sid["ID"];?>" />
                                 <a href="#" onclick="this.parentNode.submit()"><i class="fa fa-calendar-o fa-fw"></i>Beschikbaarheid</a>
