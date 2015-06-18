@@ -74,7 +74,7 @@ require_once '../lib/functions.php';
                                     </label>
                                 </div>
                                 <!-- Change this to a button or input when using this as a form -->
-                                <button type="submit" class="btn btn-lg btn-success btn-block">Login</button>
+                                <button type="submit" class="btn btn-lg btn-success btn-block"><i class="fa fa-key fa-fw"></i> Login</button>
                             </fieldset>
                         </form>
                     </div>
