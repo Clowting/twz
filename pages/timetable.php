@@ -90,7 +90,39 @@ require_once '../lib/requireAdmin.php';
 
                             $datum = new DateTime($tentamen['Dag']);
                             $dag = $datum->format('D');
-                            print_r($dag);
+
+                            $beginTijd = new DateTime($tentamen['BeginTijd']);
+                            $beginTijd = $beginTijd->format('H:i');
+
+                            $eindTijd = new DateTime($tentamen['EindTijd']);
+                            $eindTijd = $eindTijd->format('H:i');
+
+                            echo '<tr>';
+
+                            switch($dag) {
+                                case 'Mon':
+                                    echo '<td>' . $beginTijd . '-' . $eindTijd . '</td>';
+                                    echo '<td colspan="5"><a href="timetable_details.php?id=' . $tentamen['ID'] . '">Doe iets!</a></td>';
+                                    break;
+                                case 'Tue':
+                                    echo '<td colspan="2">' . $beginTijd . '-' . $eindTijd . '</td>';
+                                    echo '<td colspan="4"><a href="timetable_details.php?id=' . $tentamen['ID'] . '">Doe iets!</a></td>';
+                                    break;
+                                case 'Wed':
+                                    echo '<td colspan="3">' . $beginTijd . '-' . $eindTijd . '</td>';
+                                    echo '<td colspan="3"><a href="timetable_details.php?id=' . $tentamen['ID'] . '">Doe iets!</a></td>';
+                                    break;
+                                case 'Thu':
+                                    echo '<td colspan="4">' . $beginTijd . '-' . $eindTijd . '</td>';
+                                    echo '<td colspan="2"><a href="timetable_details.php?id=' . $tentamen['ID'] . '">Doe iets!</a></td>';
+                                    break;
+                                case 'Fri':
+                                    echo '<td colspan="5">' . $beginTijd . '-' . $eindTijd . '</td>';
+                                    echo '<td><a href="timetable_details.php?id=' . $tentamen['ID'] . '">Doe iets!</a></td>';
+                                    break;
+                            }
+
+                            echo '</tr>';
 
                         }
 
