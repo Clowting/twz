@@ -167,14 +167,14 @@ require_once '../lib/requireAdmin.php';
                                                LEFT JOIN Surveillant s
                                                       on b.SurveillantID = s.ID
                                         WHERE  (b.SurveillantID NOT IN (SELECT ts.SurveillantID
-                                                                        FROM   Tentamen t
-                                                                               LEFT JOIN TentamenSurveillant ts
+                                                                        FROM   TentamenSurveillant ts
+                                                                               LEFT JOIN Tentamen t
                                                                                       on ts.TentamenID = t.ID
                                                                         WHERE  BeginTijd BETWEEN ? AND ?
                                                                                AND Dag = ?)
                                                AND b.SurveillantID NOT IN (SELECT ts.SurveillantID
-                                                                            FROM   Tentamen t
-                                                                                   LEFT JOIN TentamenSurveillant ts
+                                                                            FROM   TentamenSurveillant ts
+                                                                                   LEFT JOIN Tentamen t
                                                                                           on ts.TentamenID = t.ID
                                                                             WHERE  EindTijd BETWEEN ? AND ?
                                                                                    AND Dag = ?))
@@ -189,8 +189,6 @@ require_once '../lib/requireAdmin.php';
                                         $tentamen['Dag'],
                                         $tentamen['Dag']
                                     ));
-
-                                    print_r($dataManager->getLastQuery());
 
                                     print_r($beschikbaarheden);
 
