@@ -155,7 +155,7 @@ require_once '../lib/requireAdmin.php';
                                         $register = $auth->register($email, $password, $password);
 
                                         if ($register['error'] == 0) {
-                                            echo '<div class="alert alert-success" role="alert">Het account is succesvol toegevoegd. (' . $password . ')</div>';
+                                            echo '<div class="alert alert-success" role="alert">Het account is succesvol aangemaakt. Het wachtwoord is:"' . $password . '")</div>';
 
                                             // UID ophalen om in surveillanten tabel toe te voegen.
                                             $uid = $auth->getUID($email);
