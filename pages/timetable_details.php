@@ -144,7 +144,7 @@ require_once '../lib/requireAdmin.php';
                             }
 
                             if($succesCount > 0) {
-                                echo '<div class="alert alert-succes" role="alert">Er zijn <strong>' . $succesCount . '</strong> surveillanten succesvol gekoppeld.</div>';
+                                echo '<div class="alert alert-success" role="alert">Er zijn <strong>' . $succesCount . '</strong> surveillanten succesvol gekoppeld.</div>';
                             }
 
                             if($failCount > 0) {
