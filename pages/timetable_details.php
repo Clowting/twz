@@ -37,6 +37,7 @@ require_once '../lib/requireAdmin.php';
         <?php
 
             if(isset($_GET['id']) && is_numeric($_GET['id'])) {
+
                 $dataManager->where('ID', $_GET['id']);
                 $tentamen = $dataManager->getOne('Tentamen');
 
@@ -75,63 +76,93 @@ require_once '../lib/requireAdmin.php';
 
                         <?php
 
+                        echo '<h2>' . $tentamen['Naam'] . '</h2>';
+                        echo '<hr/>';
+                        echo '<h4><strong>' . $datum . '</strong>, van ' . $beginTijd . ' t/m ' . $eindTijd . '</h4>';
+
+                        if(isset($tentamen['Opmerking'])) {
+                            echo '<p>' . $tentamen['Opmerking'] . '</p>';
+                        }
+
+                        echo '<div class="table-responsive">';
+                        echo '<table class="table table-hover table-condensed ">';
+
+                            echo '<tr>';
+                                echo '<th>Surveillanten</th>';
+                                echo '<th>Opties</th>';
+                            echo '</tr>';
+
+                            $dataManager->join("TentamenSurveillant ts", "s.ID=ts.SurveillantID", "LEFT");
+                            $dataManager->where('TentamenID', $tentamen['ID']);
+                            $surfs = $dataManager->get('Surveillant s');
+
+                            foreach($surfs as $surf) {
+                                $naam = generateName($surf['Voornaam'], $surf['Tussenvoegsel'], $surf['Achternaam']);
+
+                                echo '<tr>';
+
+                                    echo '<td>' . $naam . '</td>';
+                                    echo '<td><a href="timetable_unlink.php?sid=' . $surf['ID'] . '&tid=' . $tentamen['ID'] . '">Ontkoppel</a></td>';
+
+                                echo '</tr>';
+                            }
+
+
+                        echo '</table>';
+
+                        echo '</div>';
+
+
                         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
-                            $opleiding = cleanInput($_POST['opleiding']);
-                            $naam = cleanInput($_POST['naam']);
-                            $opmerking = cleanInput($_POST['opmerking']);
-                            $aantal = cleanInput($_POST['aantal']);
-                            $dag = cleanInput($_POST['datum']);
-                            $beginTijd = cleanInput($_POST['begintijd']);
-                            $eindTijd = cleanInput($_POST['eindtijd']);
+                            $surveillanten = $_POST['surveillanten'];
+                            $succesCount = 0;
+                            $failCount = 0;
 
-                            $datum = new DateTime($dag);
 
-                            $week = $datum->format("W");
-                            $dag = $datum->format("Y-m-d");
+                            foreach($surveillanten as $surveillant) {
 
-                            if (validateNumber($opleiding, 1, 2147483647) &&
-                                validateInput($naam, 2, 128) &&
-                                validateNumber($aantal, 1, 127) &&
-                                validateDate($dag, 'Y-m-d') &&
-                                validateInput($beginTijd, 4, 5) &&
-                                validateInput($eindTijd, 4, 5)
-                            ) {
+                                $surveillant = cleanInput($surveillant);
 
-                                $data = array(
-                                    "OpleidingID" => $opleiding,
-                                    "Naam" => $naam,
-                                    "Aantal" => $aantal,
-                                    "Dag" => $dag,
-                                    "Week" => $week,
-                                    "BeginTijd" => $beginTijd,
-                                    "EindTijd" => $eindTijd
-                                );
+                                if(validateNumber($surveillant, 1, 2147483647)) {
 
-                                if (validateInput($opmerking, 2, 2048)) {
-                                    $data['Opmerking'] = $opmerking;
+                                    //$dataManager->where('SurveillantID', $surveillant);
+                                    //$dataManager->where('TentamenID', $tentamen['ID']);
+                                    //$dataManager->delete('TentamenSurveillant');
+
+                                    $data = array(
+                                        "SurveillantID" => $surveillant,
+                                        "TentamenID" => $tentamen['ID']
+                                    );
+
+                                    $insert = $dataManager->insert('TentamenSurveillant', $data);
+
+                                    if($insert) {
+                                        $succesCount++;
+                                    } else {
+                                        $failCount++;
+                                    }
+
                                 }
 
-                                $dataManager->where('ID', $_GET['id']);
-                                $update = $dataManager->update('Tentamen', $data);
-
-                                if ($update) {
-                                    echo '<div class="alert alert-success" role="alert">Het tentamen is succesvol toegevoegd.</div>';
-                                } else {
-                                    echo '<div class="alert alert-danger" role="alert">Er ging iets fout bij het toevoegen van het tentamen aan de database.</div>';
-                                }
-
-                            } else {
-                                echo '<div class="alert alert-warning" role="alert">Niet alle velden zijn juist ingevoerd.</div>';
                             }
+
+                            if($succesCount > 0) {
+                                echo '<div class="alert alert-succes" role="alert">Er zijn <strong>' . $succesCount . '</strong> surveillanten succesvol gekoppeld.</div>';
+                            }
+
+                            if($failCount > 0) {
+                                echo '<div class="alert alert-warning" role="alert">Er konden <strong>' . $failCount . '</strong> surveillanten niet succesvol worden gekoppeld.</div>';
+                            }
+
                         }
 
                         ?>
 
                         <form role="form" method="post" id="tentamen-add">
                             <div class="form-group">
-                                <label for="surveillant">Surveillant:</label>
-                                <select name="surveillant" multiple class="form-control">
+                                <label for="surveillanten">Surveillant:</label>
+                                <select name="surveillanten[]" multiple class="form-control">
                                     <?php
 
                                     $beschikbaarheden = $dataManager->rawQuery('
