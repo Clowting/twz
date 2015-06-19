@@ -73,7 +73,7 @@ require_once '../lib/hasSession.php';
                                 <i class="fa fa-users fa-5x"></i>
                             </div>
                             <div class="col-xs-9 text-right">
-                                <div class="huge">Surveillanten</div>
+                                <div class="large">Surveillanten</div>
                             </div>
                         </div>
                     </div>
@@ -94,7 +94,7 @@ require_once '../lib/hasSession.php';
                                 <i class="fa fa-university fa-5x"></i>
                             </div>
                             <div class="col-xs-9 text-right">
-                                <div class="huge">Opleidingen</div>
+                                <div class="large">Opleidingen</div>
                             </div>
                         </div>
                     </div>
@@ -115,7 +115,7 @@ require_once '../lib/hasSession.php';
                                 <i class="fa fa-calendar-o fa-5x"></i>
                             </div>
                             <div class="col-xs-9 text-right">
-                                <div class="huge">Tentamens</div>
+                                <div class="large">Tentamens</div>
                             </div>
                         </div>
                     </div>
@@ -136,7 +136,7 @@ require_once '../lib/hasSession.php';
                                 <i class="fa fa-calendar fa-5x"></i>
                             </div>
                             <div class="col-xs-9 text-right">
-                                <div class="huge">Roosters</div>
+                                <div class="large">Roosters</div>
                             </div>
                         </div>
                     </div>
@@ -160,7 +160,7 @@ require_once '../lib/hasSession.php';
                                 <i class="fa fa-calendar-o fa-5x"></i>
                             </div>
                             <div class="col-xs-9 text-right">
-                                <div class="huge">Beschikbaarheid</div>
+                                <div class="large">Beschikbaarheid</div>
                             </div>
                         </div>
                     </div>
@@ -184,7 +184,7 @@ require_once '../lib/hasSession.php';
                                 <i class="fa fa-calendar fa-5x"></i>
                             </div>
                             <div class="col-xs-9 text-right">
-                                <div class="huge">Mijn Rooster</div>
+                                <div class="large">Mijn Rooster</div>
                             </div>
                         </div>
                     </div>
