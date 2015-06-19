@@ -79,6 +79,7 @@ require_once '../lib/requireAdmin.php';
                         echo '<h2>' . $tentamen['Naam'] . '</h2>';
                         echo '<hr/>';
                         echo '<h4><strong>' . $datum . '</strong>, van ' . $beginTijd . ' t/m ' . $eindTijd . '</h4>';
+                        echo '<p>Er zijn/is totaal <strong>' . $tentamen['Aantal'] . '</strong> surveillanten gewenst.</p>';
 
                         if(isset($tentamen['Opmerking'])) {
                             echo '<p>' . $tentamen['Opmerking'] . '</p>';
@@ -189,8 +190,6 @@ require_once '../lib/requireAdmin.php';
                                         $tentamen['Dag'],
                                         $tentamen['Dag']
                                     ));
-
-                                    print_r($beschikbaarheden);
 
                                     foreach ($beschikbaarheden as $beschikbaarheid) {
 

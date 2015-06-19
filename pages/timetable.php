@@ -78,16 +78,20 @@ require_once '../lib/requireAdmin.php';
                     <tbody>
                     <?php
 
+                        $dataManager->join("TentamenSurveillant ts", "t.ID=ts.TentamenID", "LEFT");
+
                         $dataManager->where('Week', $week);
 
                         $dataManager->orderBy('Dag', 'ASC');
                         $dataManager->orderBy('BeginTijd', 'ASC');
                         $dataManager->orderBy('EindTijd', 'ASC');
+                        $dataManager->groupBy('ID');
 
-                        $tentamens= $dataManager->get('Tentamen');
+                        $tentamens= $dataManager->get('Tentamen t', null,
+                            't.*, COUNT(ts.SurveillantID) AS AantalSurveillantenToegewezen'
+                        );
 
                         foreach($tentamens as $tentamen) {
-
                             $datum = new DateTime($tentamen['Dag']);
                             $dag = $datum->format('D');
 
@@ -97,28 +101,40 @@ require_once '../lib/requireAdmin.php';
                             $eindTijd = new DateTime($tentamen['EindTijd']);
                             $eindTijd = $eindTijd->format('H:i');
 
+                            $buttonClassState = '';
+
+                            if($tentamen['Aantal'] == $tentamen['AantalSurveillantenToegewezen']) {
+                                $buttonClassState = 'btn-success';
+                            }
+                            else if($tentamen['Aantal'] > $tentamen['AantalSurveillantenToegewezen']) {
+                                $buttonClassState = 'btn-warning';
+                            }
+                            else {
+                                $buttonClassState = 'btn-danger';
+                            }
+
                             echo '<tr>';
 
                             switch($dag) {
                                 case 'Mon':
                                     echo '<td>' . $beginTijd . '-' . $eindTijd . '</td>';
-                                    echo '<td colspan="5"><a href="timetable_details.php?id=' . $tentamen['ID'] . '" class="btn btn-outline btn-primary">' . $tentamen['Naam'] . '</a></td>';
+                                    echo '<td colspan="5"><a href="timetable_details.php?id=' . $tentamen['ID'] . '" class="btn btn-outline ' . $buttonClassState . '">' . $tentamen['Naam'] . '</a></td>';
                                     break;
                                 case 'Tue':
                                     echo '<td colspan="2">' . $beginTijd . '-' . $eindTijd . '</td>';
-                                    echo '<td colspan="4"><a href="timetable_details.php?id=' . $tentamen['ID'] . '" class="btn btn-outline btn-primary">' . $tentamen['Naam'] . '</a></td>';
+                                    echo '<td colspan="4"><a href="timetable_details.php?id=' . $tentamen['ID'] . '" class="btn btn-outline ' . $buttonClassState . '">' . $tentamen['Naam'] . '</a></td>';
                                     break;
                                 case 'Wed':
                                     echo '<td colspan="3">' . $beginTijd . '-' . $eindTijd . '</td>';
-                                    echo '<td colspan="3"><a href="timetable_details.php?id=' . $tentamen['ID'] . '" class="btn btn-outline btn-primary">' . $tentamen['Naam'] . '</a></td>';
+                                    echo '<td colspan="3"><a href="timetable_details.php?id=' . $tentamen['ID'] . '" class="btn btn-outline ' . $buttonClassState . '">' . $tentamen['Naam'] . '</a></td>';
                                     break;
                                 case 'Thu':
                                     echo '<td colspan="4">' . $beginTijd . '-' . $eindTijd . '</td>';
-                                    echo '<td colspan="2"><a href="timetable_details.php?id=' . $tentamen['ID'] . '" class="btn btn-outline btn-primary">' . $tentamen['Naam'] . '</a></td>';
+                                    echo '<td colspan="2"><a href="timetable_details.php?id=' . $tentamen['ID'] . '" class="btn btn-outline ' . $buttonClassState . '">' . $tentamen['Naam'] . '</a></td>';
                                     break;
                                 case 'Fri':
                                     echo '<td colspan="5">' . $beginTijd . '-' . $eindTijd . '</td>';
-                                    echo '<td><a href="timetable_details.php?id=' . $tentamen['ID'] . '" class="btn btn-outline btn-primary">' . $tentamen['Naam'] . '</a></td>';
+                                    echo '<td><a href="timetable_details.php?id=' . $tentamen['ID'] . '" class="btn btn-outline ' . $buttonClassState . '">' . $tentamen['Naam'] . '</a></td>';
                                     break;
                             }
 
