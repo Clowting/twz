@@ -102,19 +102,19 @@ require_once '../lib/requireAdmin.php';
                             switch($dag) {
                                 case 'Mon':
                                     echo '<td>' . $beginTijd . '-' . $eindTijd . '</td>';
-                                    echo '<td colspan="5"><a href="timetable_details.php?id=' . $tentamen['ID'] . '">Doe iets!</a></td>';
+                                    echo '<td colspan="5"><a href="timetable_details.php?id=' . $tentamen['ID'] . '" class="btn btn-outline btn-primary">' . $tentamen['Naam'] . '</a></td>';
                                     break;
                                 case 'Tue':
                                     echo '<td colspan="2">' . $beginTijd . '-' . $eindTijd . '</td>';
-                                    echo '<td colspan="4"><a href="timetable_details.php?id=' . $tentamen['ID'] . '">Doe iets!</a></td>';
+                                    echo '<td colspan="4"><a href="timetable_details.php?id=' . $tentamen['ID'] . '" class="btn btn-outline btn-primary">' . $tentamen['Naam'] . '</a></td>';
                                     break;
                                 case 'Wed':
                                     echo '<td colspan="3">' . $beginTijd . '-' . $eindTijd . '</td>';
-                                    echo '<td colspan="3"><a href="timetable_details.php?id=' . $tentamen['ID'] . '">Doe iets!</a></td>';
+                                    echo '<td colspan="3"><a href="timetable_details.php?id=' . $tentamen['ID'] . '" class="btn btn-outline btn-primary">' . $tentamen['Naam'] . '</a></td>';
                                     break;
                                 case 'Thu':
                                     echo '<td colspan="4">' . $beginTijd . '-' . $eindTijd . '</td>';
-                                    echo '<td colspan="2"><a href="timetable_details.php?id=' . $tentamen['ID'] . '">Doe iets!</a></td>';
+                                    echo '<td colspan="2"><a href="timetable_details.php?id=' . $tentamen['ID'] . '" class="btn btn-outline btn-primary">' . $tentamen['Naam'] . '</a></td>';
                                     break;
                                 case 'Fri':
                                     echo '<td colspan="5">' . $beginTijd . '-' . $eindTijd . '</td>';
