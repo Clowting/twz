@@ -99,10 +99,10 @@ require_once '../lib/requireAdmin.php';
                             foreach($surfs as $surf) {
                                 $naam = generateName($surf['Voornaam'], $surf['Tussenvoegsel'], $surf['Achternaam']);
 
-                                echo '<tr>';
+                                echo '<tr id="sid-' . $surf['ID'] . '-tid-' . $tentamen['ID'] . '">';
 
                                     echo '<td>' . $naam . '</td>';
-                                    echo '<td><a href="timetable_unlink.php?sid=' . $surf['ID'] . '&tid=' . $tentamen['ID'] . '">Ontkoppel</a></td>';
+                                    echo '<td><button onclick="timetableUnlink(' . $surf['ID'] . ',' . $tentamen['ID'] . ')" class="btn btn-outline btn-danger">Ontkoppel</button></td>';
 
                                 echo '</tr>';
                             }
@@ -125,10 +125,6 @@ require_once '../lib/requireAdmin.php';
                                 $surveillant = cleanInput($surveillant);
 
                                 if(validateNumber($surveillant, 1, 2147483647)) {
-
-                                    //$dataManager->where('SurveillantID', $surveillant);
-                                    //$dataManager->where('TentamenID', $tentamen['ID']);
-                                    //$dataManager->delete('TentamenSurveillant');
 
                                     $data = array(
                                         "SurveillantID" => $surveillant,
@@ -181,10 +177,7 @@ require_once '../lib/requireAdmin.php';
                                                                                    LEFT JOIN TentamenSurveillant ts
                                                                                           on ts.TentamenID = t.ID
                                                                             WHERE  EindTijd BETWEEN ? AND ?
-                                                                                   AND Dag = ?)
-                                               AND b.SurveillantID NOT IN (SELECT SurveillantID
-                                                                            FROM   TentamenSurveillant
-                                                                            WHERE  TentamenID = ?))
+                                                                                   AND Dag = ?))
                                                AND Datum = ?
                                         ORDER  BY s.Achternaam ASC
                                     ', array(
@@ -194,7 +187,6 @@ require_once '../lib/requireAdmin.php';
                                         $beginTijd,
                                         $eindTijd,
                                         $tentamen['Dag'],
-                                        $tentamen['ID'],
                                         $tentamen['Dag']
                                     ));
 

@@ -8,8 +8,6 @@ $(document).ready(function(){
         var attrName = $(this).prop('name');
         var data = {isChecked: checked, id: value, date: attrName};
 
-        console.log(checked);
-
         $.ajax({
             url: "updateBeschikbaarheid.php",
             type: "POST",

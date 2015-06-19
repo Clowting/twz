@@ -76,3 +76,21 @@ $(document).ready(function() {
     });
 
 });
+
+function timetableUnlink(sid, tid) {
+    var data = {sid: sid, tid: tid};
+
+    $.ajax({
+        url: "timetableUnlink.php",
+        type: "POST",
+        data: data,
+        success: function(result) {
+            if(result == 'success') {
+
+                $('#sid-' + sid + '-tid-' + tid).fadeOut(function() {
+                    $('#sid-' + sid + '-tid-' + tid).remove();
+                });
+            }
+        }
+    });
+}
