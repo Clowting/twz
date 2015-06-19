@@ -118,7 +118,7 @@ require_once '../lib/requireAdmin.php';
                                     break;
                                 case 'Fri':
                                     echo '<td colspan="5">' . $beginTijd . '-' . $eindTijd . '</td>';
-                                    echo '<td><a href="timetable_details.php?id=' . $tentamen['ID'] . '">Doe iets!</a></td>';
+                                    echo '<td><a href="timetable_details.php?id=' . $tentamen['ID'] . '" class="btn btn-outline btn-primary">' . $tentamen['Naam'] . '</a></td>';
                                     break;
                             }
 

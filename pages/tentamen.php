@@ -48,6 +48,7 @@ require_once '../lib/requireAdmin.php';
                                     <th>Begin tijd</th>
                                     <th>Eind tijd</th>
                                     <th>Bewerken</th>
+                                    <th>Details</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -60,14 +61,25 @@ require_once '../lib/requireAdmin.php';
                                     $tentames = $dataManager->get('Tentamen t', null, 'o.Naam AS Opleiding, t.Naam AS Tentamen, t.ID AS TentamenID, t.Opmerking, t.Aantal, t.Dag, t.BeginTijd, t.EindTijd');
 
                                     foreach($tentames as $tentamen) {
+
+                                        $dag = new DateTime($tentamen['Dag']);
+                                        $datum = $dag->format('d-m-Y');
+
+                                        $begin = new DateTime($tentamen['BeginTijd']);
+                                        $beginTijd = $begin->format('H:i');
+
+                                        $eind = new DateTime($tentamen['EindTijd']);
+                                        $eindTijd = $eind->format('H:i');
+
                                         echo '<tr>';
                                             echo '<td>' . $tentamen['Opleiding'] . '</td>';
                                             echo '<td>' . $tentamen['Tentamen'] . '</td>';
                                             echo '<td>' . $tentamen['Aantal'] . '</td>';
-                                            echo '<td>' . $tentamen['Dag'] . '</td>';
-                                            echo '<td>' . $tentamen['BeginTijd'] . '</td>';
-                                            echo '<td>' . $tentamen['EindTijd'] . '</td>';
+                                            echo '<td>' . $datum . '</td>';
+                                            echo '<td>' . $beginTijd . '</td>';
+                                            echo '<td>' . $eindTijd . '</td>';
                                             echo '<td><a href="tentamen_edit.php?id=' . $tentamen['TentamenID'] . '" class="btn btn-outline btn-primary">Bewerken</a></td>';
+                                            echo '<td><a href="timetable_details.php?id=' . $tentamen['TentamenID'] . '" class="btn btn-outline btn-success">Details</a></td>';
                                         echo '</tr>';
                                     }
                                 ?>
