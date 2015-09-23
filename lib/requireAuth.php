@@ -9,7 +9,7 @@ include("../PHPAuth/languages/nl.php");
 include("../PHPAuth/config.class.php");
 include("../PHPAuth/auth.class.php");
 
-$dbh = new PDO("mysql:host=clowting.me;dbname=twz", "twz", "Fun3nHeD@T9teM6M");
+$dbh = new PDO("mysql:host=localhost;dbname=twz", "root", "password");
 
 $config = new Config($dbh);
 $auth = new Auth($dbh, $config, $lang);
